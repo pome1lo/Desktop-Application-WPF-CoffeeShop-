@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Coffee_Shop</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>StaticFiles\Img\Favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StaticFiles\Img\About.png" />
+    <None Remove="StaticFiles\Img\AcaiLemonade.png" />
+    <None Remove="StaticFiles\Img\Basket.png" />
+    <None Remove="StaticFiles\Img\bg.png" />
+    <None Remove="StaticFiles\Img\CaffeMisto.png" />
+    <None Remove="StaticFiles\Img\CaramelMacchiato.png" />
+    <None Remove="StaticFiles\Img\ChestnutLatte.png" />
+    <None Remove="StaticFiles\Img\ChocolateEspresso.png" />
+    <None Remove="StaticFiles\Img\CinnamonLatte.png" />
+    <None Remove="StaticFiles\Img\ColdBrew.png" />
+    <None Remove="StaticFiles\Img\DragonDrink.png" />
+    <None Remove="StaticFiles\Img\Exit.png" />
+    <None Remove="StaticFiles\Img\Favicon.ico" />
+    <None Remove="StaticFiles\Img\KiwiStarfruit.png" />
+    <None Remove="StaticFiles\Img\Logo.png" />
+    <None Remove="StaticFiles\Img\MangoDragonfruit.png" />
+    <None Remove="StaticFiles\Img\Map.png" />
+    <None Remove="StaticFiles\Img\Menu.png" />
+    <None Remove="StaticFiles\Img\Our1.jpg" />
+    <None Remove="StaticFiles\Img\Our2.jpg" />
+    <None Remove="StaticFiles\Img\Profile.png" />
+    <None Remove="StaticFiles\Img\Question.png" />
+    <None Remove="StaticFiles\Img\Settings.png" />
+    <None Remove="StaticFiles\Img\StarDrink.png" />
+    <None Remove="StaticFiles\Img\StrawberryAcai.png" />
+    <None Remove="StaticFiles\Img\VanillaSweet.png" />
+    <None Remove="StaticFiles\Img\VerandaBlend.png" />
+    <None Remove="StaticFiles\Img\WhiteChocolate.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="StaticFiles\Img\Favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="StaticFiles\Img\About.png" />
+    <Resource Include="StaticFiles\Img\ChestnutLatte.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="StaticFiles\Img\AcaiLemonade.png" />
+    <Resource Include="StaticFiles\Img\Basket.png" />
+    <Resource Include="StaticFiles\Img\bg.png" />
+    <Resource Include="StaticFiles\Img\CaffeMisto.png" />
+    <Resource Include="StaticFiles\Img\CaramelMacchiato.png" />
+    <Resource Include="StaticFiles\Img\ChocolateEspresso.png" />
+    <Resource Include="StaticFiles\Img\CinnamonLatte.png" />
+    <Resource Include="StaticFiles\Img\ColdBrew.png" />
+    <Resource Include="StaticFiles\Img\DragonDrink.png" />
+    <Resource Include="StaticFiles\Img\Exit.png" />
+    <Resource Include="StaticFiles\Img\Favicon.ico" />
+    <Resource Include="StaticFiles\Img\KiwiStarfruit.png" />
+    <Resource Include="StaticFiles\Img\Logo.png" />
+    <Resource Include="StaticFiles\Img\MangoDragonfruit.png" />
+    <Resource Include="StaticFiles\Img\Map.png" />
+    <Resource Include="StaticFiles\Img\Menu.png" />
+    <Resource Include="StaticFiles\Img\Our1.jpg" />
+    <Resource Include="StaticFiles\Img\Our2.jpg" />
+    <Resource Include="StaticFiles\Img\Profile.png" />
+    <Resource Include="StaticFiles\Img\Question.png" />
+    <Resource Include="StaticFiles\Img\Settings.png" />
+    <Resource Include="StaticFiles\Img\StarDrink.png" />
+    <Resource Include="StaticFiles\Img\StrawberryAcai.png" />
+    <Resource Include="StaticFiles\Img\VanillaSweet.png" />
+    <Resource Include="StaticFiles\Img\VerandaBlend.png" />
+    <Resource Include="StaticFiles\Img\WhiteChocolate.png" />
+  </ItemGroup>
+
+</Project>

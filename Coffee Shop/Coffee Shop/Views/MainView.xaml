@@ -1,0 +1,106 @@
+﻿<Window x:Class="Coffee_Shop.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coffee_Shop"
+        mc:Ignorable="d" 
+        Background="Transparent"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" MinHeight="450" MinWidth="820"
+        Height="450" Width="820">
+    <Border Style="{StaticResource ResourceKey=BorderForWindow}" Background="#232323">
+        <Grid Background="Transparent">
+            <!--<Grid.Style>
+                <Style>
+                    <Style.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10" />
+                        </Style>
+                    </Style.Resources>
+                    </Style>
+            </Grid.Style>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#232323">
+                <Grid.Effect>
+                    <DropShadowEffect ShadowDepth="19" BlurRadius="20"/>
+                </Grid.Effect>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition MinWidth="250"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" VerticalAlignment="Center" Width="120" Source="\StaticFiles\Img\Logo.png"/>
+                <Button Grid.Column="1" Name="AdminPanelButton" Visibility="Collapsed" Command="{Binding ShowAdminPageCommand}" Width="200" Height="40">Admin panel</Button>
+                <DockPanel Grid.Column="3">
+                    <Grid DockPanel.Dock="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Button Command="{Binding ShowBasketCommand}" Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Basket.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Button Command="{Binding ShowMenuCommand}" Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Menu.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <Button Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Profile.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <Button Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Settings.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4">
+                            <Button Command="{Binding ShowAboutCommand}" Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\About.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="5">
+                            <Button Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Map.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="6">
+                            <Button Command="{Binding ExitCommand}" Style="{StaticResource ButtonHeader}">
+                                <StackPanel>
+                                    <Image Width="30" Height="30" Source="\StaticFiles\Img\Exit.png"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>   
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <!-- Header-->
+            <Frame Name="MainFrame" Source="{Binding MainFrame, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Height="370" Width="800"/>
+        </Grid>
+    </Border>
+</Window>

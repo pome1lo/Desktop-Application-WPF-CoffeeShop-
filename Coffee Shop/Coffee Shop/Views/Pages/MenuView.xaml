@@ -1,0 +1,256 @@
+﻿<Page x:Class="Coffee_Shop.Views.Pages.MenuView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coffee_Shop.Views.Pages" 
+      mc:Ignorable="d" 
+      d:DesignHeight="370" d:DesignWidth="800"
+      Title="MenuView">
+    <Grid Background="#232323">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Find:" Foreground="White" Margin="5"/>
+            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Width="185" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TBSearch}"/>
+
+            <!---->
+            <!-- ПАКЕТ УДАЛИТЬ -->
+            <!---->
+            <!--<WrapPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    <TextBox Name="TBoxSearch" Style="{StaticResource TBSearch}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding Path=SearchChanged}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                </StackPanel>
+            </WrapPanel>-->
+            
+            <TextBlock Grid.Row="2" Text="By price range:" Foreground="White" Margin="5"/>
+            <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding RangeFrom, UpdateSourceTrigger=PropertyChanged}" Width="80" Style="{StaticResource TBSearch}"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RangeTo, UpdateSourceTrigger=PropertyChanged}"   Width="80" Style="{StaticResource TBSearch}"></TextBox>
+            <TextBlock Grid.Row="4" Text="By category:" Foreground="White" Margin="5"/>
+            <ComboBox Grid.Row="5" Grid.ColumnSpan="2" Margin="5" SelectedItem="{Binding CategoryItem, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Content="Food"/>
+                <ComboBoxItem Content="Bob"/>
+                <ComboBoxItem Content="Charlie"/>
+            </ComboBox>
+            <TextBlock Grid.Row="6" Text="By Calories:" Foreground="White" Margin="5"/>
+            <Slider Value="{Binding SliderValue, UpdateSourceTrigger=PropertyChanged}" TickFrequency="5" Maximum="390" Minimum="130" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Width="180" Foreground="#FFAE2A2A" BorderBrush="#FFD13838"/>
+            <StackPanel Grid.Row="8">
+                <TextBlock Text="By product type:" Foreground="White" Margin="5"/>
+                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
+                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
+                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
+            </StackPanel>
+            <Button Content="Find" Grid.Row="9" Grid.ColumnSpan="2" Command="{Binding FindButtonCommand}" Style="{StaticResource ButtonForLogIO}"/>
+        </Grid>
+        <ListView ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}"
+                  Name="LVforProducts" 
+                  Grid.Column="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalContentAlignment="Center"
+                  BorderBrush="Transparent"
+                  ScrollViewer.CanContentScroll="False" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  Background="Transparent">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard >
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="16">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <Grid Width="130" Margin="0 16 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" CornerRadius="20 0 0 20" Width="90" Height="90" HorizontalAlignment="Center">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="Fill" ImageSource="{Binding Img}"/>
+                                    </Border.Background>
+                                    <Border.ToolTip>
+                                        <!--<ToolTip Width="700" Height="400" Background="Transparent" BorderThickness="0"-->
+                                        <ToolTip Width="850" Height="550" Background="Transparent" BorderThickness="0"
+                                                 BorderBrush="Transparent">
+                                            <!--Placement="Absolute" HorizontalOffset="20" VerticalOffset="160">-->
+
+                                            <Border Background="#191B1D" Width="400" Height="380" CornerRadius="10">
+                                                <Border.Style>
+                                                    <Style TargetType="{x:Type Border}">
+                                                        <Style.Triggers>
+                                                            <EventTrigger RoutedEvent="Loaded">
+                                                                <EventTrigger.Actions>
+                                                                    <BeginStoryboard >
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5" />
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </EventTrigger.Actions>
+                                                            </EventTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Border.Effect>
+                                                    <DropShadowEffect BlurRadius="10" Color="Black" ShadowDepth="10"/>
+                                                </Border.Effect>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0">
+                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
+                                                            <TextBlock FontSize="25" TextAlignment="Center" Margin="0 8 0 0" Text="{Binding Name}" Foreground="White"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="0" Grid.Row="1" Height="auto" Margin="6 0 6 0">
+                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
+                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Allergens" Foreground="White"/>
+                                                        </Border>
+                                                        <TextBlock Foreground="White" Margin="0 5 0 0" Text="Not available for this item"/>
+                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                            We cannot guarantee that any unpackaged products served in our stores are allergen-free because we use shared equipment to store, prepare, and serve them. Customers with allergies can find ingredient information for products on the labels of our packaged products or online at Coffeeshop.com/menu.
+                                                        </TextBlock>
+                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                            * 2,000 calories a day is used for general nutrition advice, but calorie needs vary.
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="6 0 10 0">
+                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
+                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Nutrition" Foreground="White"/>
+                                                        </Border>
+                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                            Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not.
+                                                        </TextBlock>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="150"/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock Text="{Binding Description.TotalFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.SaturatedFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.TransFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.Cholesterol, StringFormat={}{0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.Sodium, StringFormat={}{0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.TotalCarbohydrates, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.Protein, StringFormat={}{0} g}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.Caffeine, StringFormat={}{0} mg}" Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="1"/>
+
+                                                            <TextBlock Text="Total Fat"     Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="0"/>
+                                                            <TextBlock Text="Saturated Fat" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="0"/>
+                                                            <TextBlock Text="Trans Fat"     Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="0"/>
+                                                            <TextBlock Text="Cholesterol"   Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="0"/>
+                                                            <TextBlock Text="Sodium"        Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="0"/>
+                                                            <TextBlock Text="Total Carbohydrates" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="0"/>
+                                                            <TextBlock Text="Protein"       Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="0"/>
+                                                            <TextBlock Text="Caffeine"      Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="0"/>
+
+                                                            <!--<TextBlock Text="{Binding Description.TotalFat, StringFormat={}Total Fat {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="0"/>
+                                                            <TextBlock Text="{Binding Description.SaturatedFat, StringFormat={}Saturated Fat {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="1"/>
+                                                            <TextBlock Text="{Binding Description.TransFat, StringFormat={}Trans Fat {0} g}"     Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="2"/>
+                                                            <TextBlock Text="{Binding Description.Cholesterol, StringFormat={}Cholesterol {0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="3"/>
+                                                            <TextBlock Text="{Binding Description.Sodium, StringFormat={}Sodium {0} mg}"       Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="4"/>
+                                                            <TextBlock Text="{Binding Description.TotalCarbohydrates, StringFormat={}Total Carbohydrates {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="5"/>
+                                                            <TextBlock Text="{Binding Description.Protein, StringFormat={}Protein {0} g}"      Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="6"/>
+                                                            <TextBlock Text="{Binding Description.Caffeine, StringFormat={}Caffeine {0} mg}"     Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="7"/>-->
+
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <!--<TextBlock Text="{Binding Name}" />
+                                                <TextBlock Text="{Binding Calories}" />-->
+                                            </Border>
+
+
+
+                                        </ToolTip>
+                                    </Border.ToolTip>
+                                </Border>
+
+
+                                <Grid Grid.Row="1" Height="auto" Width="260">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Background="Transparent" HorizontalAlignment="Right">
+                                        <Image HorizontalAlignment="Right" Grid.Column="1" Width="25" Source="\StaticFiles\Img\Basket.png"/>
+                                    </Button>
+                                    <TextBlock Text="{Binding Name}" Margin="0 3 0 0" Height="20" Foreground="White" Width="100" FontSize="13" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                </Grid>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

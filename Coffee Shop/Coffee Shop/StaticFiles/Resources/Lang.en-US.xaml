@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!-- < Название окна .xaml > -->
+    <v:Double x:Key="m_Number">20.15</v:Double>
+        <!--
+        ** СНАЧАЛА ВВЕСТИ ВСЕ ДАННЫЕ ДЛЯ ЭЛЕМЕНТОВ В Lang.xaml
+        ** ПОСЛЕ СКОПИРОВАТЬ ЕГО И ПОМЕНЯТЬ НА ТЕКУЩЕЕ НАЗВАНИЕ КУЛЬУТРЫ
+        ** CultureName ( ru-RU )
+    
+        ** Для того чтобы использовать пишем у тега например:
+        
+        <Label Content="{DynamicResource m_Title}"/>
+    
+    
+        // https://habr.com/ru/post/256193/
+    -->
+    
+
+    <!-- .xaml -->
+    <!-- AdminView.xaml -->
+    <v:String x:Key="Admin_TextLanguage">Сhange the application language</v:String>
+    <v:String x:Key="Admin_NewProduct">Add a new product</v:String>
+    <v:String x:Key="Admin_ProdName">Name</v:String>
+    <v:String x:Key="Admin_ProdPrice">Price</v:String>
+    <v:String x:Key="Admin_ProdImg">Img</v:String>
+    <v:String x:Key="Admin_ProdCalories">Calories</v:String>
+    <v:String x:Key="Admin_ProdTotalFat">Total Fat</v:String>
+    <v:String x:Key="Admin_ProdSaturatedFat">Saturated Fat</v:String>
+    <v:String x:Key="Admin_ProdTransFat">Trans Fat</v:String>
+    <v:String x:Key="Admin_ProdCholesterol">Cholesterol</v:String>
+    <v:String x:Key="Admin_ProdSodium">Sodium</v:String>
+    <v:String x:Key="Admin_ProdTotalCarbohydrates">Total Carbohydrates</v:String>
+    <v:String x:Key="Admin_ProdProtein">Protein</v:String>
+    <v:String x:Key="Admin_ProdCaffeine">Caffeine</v:String>
+    <v:String x:Key="Admin_AddButton">Add new Product</v:String>
+    
+    
+    <!-- LogIOView.xaml -->
+    <v:String x:Key="Log_UserName">User Name</v:String>
+    <v:String x:Key="Log_Password">Password</v:String>
+    <v:String x:Key="Log_Clear">Clear</v:String>
+    <v:String x:Key="Log_SignIn">Sign in</v:String>
+    <v:String x:Key="Log_ConfirmPassword">Confirm Password</v:String>
+    <v:String x:Key="Log_Join">Join</v:String>
+    
+    
+    <!-- About.xaml -->
+    <v:String x:Key="About_Title">Our Company</v:String>
+    <v:String x:Key="About_SubtitleHeritage">Our Heritage</v:String>
+    <v:String x:Key="About_TextHeritage1">
+        Our story begins in 1971 along the cobblestone streets of Seattle’s historic Pike Place Market. 
+        It was here where Coffee Shop opened its first store, offering fresh-roasted coffee beans, tea 
+        and spices from around the world for our customers to take home. Our name was inspired by the 
+        classic tale, “Moby-Dick,” evoking the seafaring tradition of the early coffee traders.
+    </v:String>
+    <v:String x:Key="About_TextHeritage2">
+        Ten years later, a young New Yorker named Howard Schultz would walk through these doors and 
+        become captivated with Coffee Shop coffee from his first sip. After joining the company in 1982,
+        a different cobblestone road would lead him to another discovery. It was on a trip to Milan in
+        1983 that Howard first experienced Italy’s coffeehouses, and he returned to Seattle inspired to
+        bring the warmth and artistry of its coffee culture to Coffee Shop. By 1987, we swapped our
+        brown aprons for green ones and embarked on our next chapter as a coffeehouse.
+    </v:String>
+    <v:String x:Key="About_TextHeritage3">
+        Coffee Shop would soon expand to Chicago and Vancouver, Canada and then on to California, 
+        Washington, D.C. and New York. By 1996, we would cross the Pacific to open our first store in 
+        Japan, followed by Europe in 1998 and China in 1999. Over the next two decades, we would grow 
+        to welcome millions of customers each week and become a part of the fabric of tens of thousands 
+        of neighborhoods all around the world. In everything we do, we are always dedicated to Our Mission:
+        to inspire and nurture the human spirit – one person, one cup, and one neighborhood at a time.
+    </v:String>
+
+    <v:String x:Key="About_SubtitleCoffee">Coffee &amp; Craft</v:String>
+    <v:String x:Key="About_TextCoffee1">
+        It takes many hands to craft the perfect cup of coffee – from the farmers who tend to the red-ripe
+        coffee cherries, to the master roasters who coax the best from every bean, and to the barista who 
+        serves it with care. We are committed to the highest standards of quality and service, embracing
+        our heritage while innovating to create new experiences to savor.
+    </v:String>
+    
+    <v:String x:Key="About_SubtitlePartners">Our Partners</v:String>
+    <v:String x:Key="About_TextPartners1">
+        We like to say that we are not in the coffee business serving people, but in the people business
+        serving coffee. Our employees – who we call partners – are at the heart of the Coffee Shop experience.
+        We are committed to making our partners proud and investing in their health, well-being and success and 
+        to creating a culture of belonging where everyone is welcome.
+    </v:String>
+    <v:String x:Key="About_TextPartners2">
+        We Believe in the Pursuit of Doing Good
+    </v:String>
+    <v:String x:Key="About_TextPartners3">
+        As it has been from the beginning, our purpose goes far beyond profit. We believe Coffee Shop can,
+        and should, have a positive impact on the communities we serve.
+    </v:String>
+    
+    <v:String x:Key="About_SubtitlePeople">People</v:String>
+    <v:String x:Key="About_TextPeople">
+        Our aspiration is to be people positive – investing in humanity and the well-being of everyone we 
+        connect with, from our partners to coffee farmers to the customers in our stores and beyond.
+    </v:String>
+
+    <v:String x:Key="About_SubtitlePlanet">Planet</v:String>
+    <v:String x:Key="About_TextPlanet">
+        We are striving to become resource positive – giving back more than we take from the planet. We 
+        are working to store more carbon than we emit, replenish more freshwater than we use, and
+        eliminate waste. We know we can’t do it alone. It takes all of us.
+    </v:String>
+    
+    
+
+</ResourceDictionary>

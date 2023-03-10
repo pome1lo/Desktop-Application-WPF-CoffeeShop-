@@ -1,0 +1,103 @@
+﻿<Window x:Class="CoffeeShop.Views.LogIOView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeShop.Views" 
+        xmlns:components="clr-namespace:Coffee_Shop.Components"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Authorization" Height="430" Width="300">
+    <Grid>
+        <!--xmlns:components="clr-namespace:Coffee_Shop.Components" 
+        xmlns:viewmodels="clr-namespace:Coffee_Shop.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:LogIOViewModel}"-->
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="\StaticFiles\Img\bg.png" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="\StaticFiles\Img\Logo.png" Grid.ColumnSpan="2" Width="150"/>
+        <StackPanel x:Name="BlackPanel"  Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="2" Background="#85101010" Height="125" >
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="13" />
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </StackPanel.Style>
+                <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="1" Grid.Row="1" x:Name="SignInStartPage" Content="{DynamicResource Log_SignIn}" Click="SignInStartPageClick" Style="{StaticResource ButtonForLogIO}" Margin="0 45"/>
+                <Button Grid.Column="0" Grid.Row="1" x:Name="JoinStartPage"  Content="{DynamicResource Log_Join}" Click="JoinStartPageClick"  Style="{StaticResource ButtonForLogIO}" Margin="0 45"/>
+                <Grid x:Name="SignInForm"  Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Margin="0 35 0 15">
+                        <TextBlock Text="{DynamicResource Log_UserName}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
+                        <TextBox Text="{Binding UserName}" Style="{StaticResource TextBoxForLogIO}"/>
+                    </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="0 15 0 15">
+                        <TextBlock Text="{DynamicResource Log_Password}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
+                        <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <Button Grid.Row="2" Grid.Column="0" Content="{DynamicResource Log_Clear}" Margin="0 15" Command="{Binding ClearCommand}" Style="{StaticResource ButtonForLogIO}"/>
+                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource Log_SignIn}" Margin="0 15" Command="{Binding SignInCommand}" Style="{StaticResource ButtonForLogIO}"/>
+                </Grid>
+                <Grid x:Name="JoinForm" Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Margin="0 15 0 15" >
+                        <TextBlock Text="{DynamicResource Log_UserName}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
+                        <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxForLogIO}"/>
+                    </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="0 7 0 7">
+                        <TextBlock Text="{DynamicResource Log_Password}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
+                        <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Margin="0 7 0 7">
+                        <TextBlock Text="{DynamicResource Log_ConfirmPassword}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
+                        <components:BindablePasswordBox Password="{Binding PasswordConfirmation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <Button Grid.Row="3" Grid.Column="0" Content="{DynamicResource Log_Clear}" Margin="0 15" Command="{Binding ClearCommand}" Style="{StaticResource ButtonForLogIO}"/>
+                    <Button Grid.Row="3" Grid.Column="1" Content="{DynamicResource Log_Join}" Margin="0 15" Command="{Binding JoinCommand}"  Style="{StaticResource ButtonForLogIO}"/>
+                </Grid>
+
+
+                    
+                    
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
