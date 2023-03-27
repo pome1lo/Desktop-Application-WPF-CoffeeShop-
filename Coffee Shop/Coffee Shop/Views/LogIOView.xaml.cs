@@ -17,26 +17,9 @@ namespace CoffeeShop.Views
             InitializeComponent();
         }
 
-        private void SignInStartPageClick(object sender, RoutedEventArgs e)
+        private void RollUp(object sender, RoutedEventArgs e)
         {
-            SignInStartPage.Visibility = Visibility.Collapsed;
-            JoinStartPage.Visibility = Visibility.Collapsed;
-            BlackPanel.SetValue(Grid.RowSpanProperty, 2);
-            BlackPanel.SetValue(Grid.RowProperty, 1);
-            BlackPanel.Height = 266;
-
-            SignInForm.Visibility = Visibility.Visible;
-        }
-
-        private void JoinStartPageClick(object sender, RoutedEventArgs e)
-        {
-            SignInStartPage.Visibility = Visibility.Collapsed;
-            JoinStartPage.Visibility = Visibility.Collapsed;
-            BlackPanel.SetValue(Grid.RowSpanProperty, 2);
-            BlackPanel.SetValue(Grid.RowProperty, 1);
-            BlackPanel.Height = 266;
-
-            JoinForm.Visibility = Visibility.Visible;
+            WindowState = WindowState.Minimized;
         }
     }
 }

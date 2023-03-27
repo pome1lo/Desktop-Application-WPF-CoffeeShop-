@@ -8,109 +8,67 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminView">
 
-    <ScrollViewer VerticalScrollBarVisibility="Hidden" Background="White" Width="auto">
-        <Grid Width="{Binding ElementName=AdminView, Path=Width, UpdateSourceTrigger=PropertyChanged}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <ToolBar Height="25" VerticalAlignment="Top">
-                <Button Content="User database" Command="{Binding ShowUserDataBaseCommand}"/>
-                <Separator />
-                <Button Content="Person database" Command="{Binding ShowProductDataBaseCommand}"/>
-                <Separator />
-                <Button Content="Add new Person" Command="{Binding }"/>
-                <Separator />
-                <Button Content="Add new Product" Command="{Binding ShowAddNewProductCommand}"/>
-                <Separator />
-                <Button Content="Other parameters" Command="{Binding ShowOtherParamerersCommand}"/>
-                <Separator />
-            </ToolBar>
-
-            <DockPanel Name="PanelOtherParameters" Visibility="Collapsed" Grid.Row="2" >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <TextBlock Grid.Row="1" Text="{DynamicResource Admin_TextLanguage}" FontSize="15"></TextBlock>
-                <ComboBox Grid.Row="1" Grid.Column="2" SelectedItem="{Binding Language, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Content=".en-US"></ComboBoxItem>
-                    <ComboBoxItem Content=".ru-RU"></ComboBoxItem>
-                </ComboBox>
-            </DockPanel>
-
-            <DockPanel Name="PanelAddNewProduct" Visibility="Collapsed" Grid.Row="2" HorizontalAlignment="Center">
-                <Grid DockPanel.Dock="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" TextAlignment="Center" Text="{DynamicResource Admin_NewProduct}" FontSize="15"/>
-            
-                    <TextBlock Grid.Row="3"  TextAlignment="Left" Text="{DynamicResource Admin_ProdName}"/>
-                    <TextBox   Grid.Row="3"  Grid.Column="2" Text="{Binding ProductName}"/>
-                    <TextBlock Grid.Row="4"  TextAlignment="Left" Text="{DynamicResource Admin_ProdPrice}"/>
-                    <TextBox   Grid.Row="4"  Grid.Column="2" Text="{Binding ProductPrice}"/>
-                    <TextBlock Grid.Row="5"  TextAlignment="Left" Text="{DynamicResource Admin_ProdImg}"/>
-                    <TextBox   Grid.Row="5"  Grid.Column="2" Text="{Binding ProductImg}"/>
-                    <TextBlock Grid.Row="6"  TextAlignment="Left" Text="{DynamicResource Admin_ProdCalories}"/>
-                    <TextBox   Grid.Row="6"  Grid.Column="2" Text="{Binding ProductCalories}"/>
-                    <TextBlock Grid.Row="7"  TextAlignment="Left" Text="{DynamicResource Admin_ProdTotalFat}"/>
-                    <TextBox   Grid.Row="7"  Grid.Column="2" Text="{Binding ProductTotalFat}"/>
-                    <TextBlock Grid.Row="8"  TextAlignment="Left" Text="{DynamicResource Admin_ProdSaturatedFat}"/>
-                    <TextBox   Grid.Row="8"  Grid.Column="2" Text="{Binding ProductSaturatedFat}"/>
-                    <TextBlock Grid.Row="9"  TextAlignment="Left" Text="{DynamicResource Admin_ProdTransFat}"/>
-                    <TextBox   Grid.Row="9"  Grid.Column="2" Text="{Binding ProductTransFat}"/>
-                    <TextBlock Grid.Row="10" TextAlignment="Left" Text="{DynamicResource Admin_ProdCholesterol}"/>
-                    <TextBox   Grid.Row="10" Grid.Column="2" Text="{Binding ProductCholesterol}"/>
-                    <TextBlock Grid.Row="11" TextAlignment="Left" Text="{DynamicResource Admin_ProdSodium}"/>
-                    <TextBox   Grid.Row="11" Grid.Column="2" Text="{Binding ProductSodium}"/>
-                    <TextBlock Grid.Row="12" TextAlignment="Left" Text="{DynamicResource Admin_ProdTotalCarbohydrates}"/>
-                    <TextBox   Grid.Row="12" Grid.Column="2" Text="{Binding ProductTotalCarbohydrates}"/>
-                    <TextBlock Grid.Row="13" TextAlignment="Left" Text="{DynamicResource Admin_ProdProtein}"/>
-                    <TextBox   Grid.Row="13" Grid.Column="2" Text="{Binding ProductProtein}"/>
-                    <TextBlock Grid.Row="14" TextAlignment="Left" Text="{DynamicResource Admin_ProdCaffeine}"/>
-                    <TextBox   Grid.Row="14" Grid.Column="2" Text="{Binding ProductCaffeine}"/>
-
-                    <Button Command="{Binding AddNewProductCommand}" Content="{DynamicResource Admin_AddButton}" Grid.Row="15" Grid.ColumnSpan="2" Width="200"/>
-                </Grid>
-            </DockPanel>
-
-            <DockPanel Name="PanelPersonDataBase" Visibility="Collapsed" Grid.Row="2" HorizontalAlignment="Center">
-                <Button Command="{Binding DeletePersonCommand}" Content="Delete Person" DockPanel.Dock="Top"/>
-                <DataGrid ItemsSource="{Binding Persons}" SelectedItem="{Binding SelectedItemForPersonsDB}" Width="auto" DockPanel.Dock="Bottom"/>
-            </DockPanel>
-
-            <DockPanel Name="PanelProductDataBase" Visibility="Collapsed" Grid.Row="2" HorizontalAlignment="Center">
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <Button Command="{Binding ShowUserDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/StaticFiles/Img/Users.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="User database"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/Products.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Product database"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/News.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="News database"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/AddUser.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new user"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/AddProduct.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new product"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/AddNews.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new news"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Command="{Binding ShowProductDataBaseCommand}"
+                            Style="{StaticResource AdminMenuButton}">
+                        <DockPanel>
+                            <Image Source="/StaticFiles/Img/Other.png" Width="25" Margin="10 0"/>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Other parameters"/>
+                        </DockPanel>
+                    </Button>
+            </StackPanel>
+            <DockPanel Name="PanelProductDataBase" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center">
                 <Button Command="{Binding DeleteProductCommand}" Content="Delete Product" DockPanel.Dock="Top"/>
                 <DataGrid ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItemForProductsDB}" Width="auto" DockPanel.Dock="Bottom"/>
             </DockPanel>
-
         </Grid>
-    </ScrollViewer>
+    </Border>
 </Page>

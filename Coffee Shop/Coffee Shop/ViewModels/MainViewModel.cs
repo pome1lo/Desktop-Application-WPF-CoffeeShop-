@@ -73,12 +73,11 @@ namespace Coffee_Shop.ViewModels
 
         private void SettingUpForAdmin()
         {
-            mainFrame.Content = App.ConnectionViewModelWithAdmin();
+            App.ConnectionViewModelWithAdmin();
             AdminButton.Visibility = Visibility.Visible;
         }
 
         #endregion
-
 
         #region Commands
         // chane for example About to Show About Page
@@ -100,7 +99,7 @@ namespace Coffee_Shop.ViewModels
 
         private void ShowMenu()
         {
-            mainFrame.Content = App.ConnectionViewModelWithMenu();
+            App.ConnectionViewModelWithMenu();
         }
 
         #endregion
@@ -173,6 +172,29 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
+        
+        #region Home
+
+        private DelegateCommand? showHomeCommand;
+
+        public ICommand ShowHomeCommand
+        {
+            get
+            {
+                if (showHomeCommand == null)
+                {
+                    showHomeCommand = new DelegateCommand(ShowHome);
+                }
+                return showHomeCommand;
+            }
+        }
+
+        private void ShowHome()
+        {
+            App.ConnectionTheHomeViewModel();
+        }
+
+        #endregion
 
         #region Admin
 
@@ -192,7 +214,7 @@ namespace Coffee_Shop.ViewModels
 
         private void ShowAdminPage()
         {
-            mainFrame.Content = App.ConnectionViewModelWithAdmin();
+            App.ConnectionViewModelWithAdmin();
         }
 
         #endregion

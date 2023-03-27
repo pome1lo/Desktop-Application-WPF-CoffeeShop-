@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ScrollViewer" x:Key="ChangeThemeScrollViewer">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    <Style TargetType="TextBox">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Red"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TextBlockAbout">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Width" Value="480"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="FontFamily" Value="Malgun Gothic"/>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="ChangeThemeStackPanel">
+        <Setter Property="Background" Value="#859B9B9B"/>
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="13" />
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style TargetType="Border" x:Key="ChangeThemeForWindowBorder">
+        <Setter Property="BorderBrush" Value="#CFB73E"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+    <Style TargetType="Border" x:Key="ChangeThemeBorder">
+        <Setter Property="Background" Value="White"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard >
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -33,13 +33,6 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.pdb
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.genruntimeconfig.cache
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\ref\Coffee Shop.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Humanizer.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Mono.TextTemplating.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Json.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_Content.g.cs
@@ -53,7 +46,6 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Components\BindablePasswordBox.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.ru-RU.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.g.cs
@@ -61,3 +53,10 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.en-US.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Dark.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Light.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\MainStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll.config
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\CommonStyles.baml

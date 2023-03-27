@@ -24,5 +24,9 @@ namespace Coffee_Shop
         {
             InitializeComponent();
         }
+        private void RollUp(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }

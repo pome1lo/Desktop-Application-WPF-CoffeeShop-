@@ -25,6 +25,9 @@
     <Compile Update="Views\Pages\MenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\ProductInfoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Components\BindablePasswordBox.xaml">
@@ -34,6 +37,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StaticFiles\Resources\Lang.en-US.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StaticFiles\Styles\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StaticFiles\Styles\MainStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StaticFiles\Themes\Light.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StaticFiles\Themes\Dark.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainView.xaml">
@@ -55,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\MenuView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\ProductInfoView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

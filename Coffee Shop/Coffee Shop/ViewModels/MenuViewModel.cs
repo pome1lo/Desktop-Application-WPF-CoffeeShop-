@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Views.Pages;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
 using CoffeShop.Data;
@@ -32,14 +33,16 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-    private static ObservableCollection<Product> GetProductsFromTheDatabase()
+        private static ObservableCollection<Product> GetProductsFromTheDatabase()
         {
             var Products = new ObservableCollection<Product>();
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Products.ToList().ForEach(x => Products.Add(x));
-                Products.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]); 
-            }
+            //using (ApplicationContext db = ApplicationContext.GetContext())
+            //{
+            //    db.Products.ToList().ForEach(x => Products.Add(x));
+            //    Products.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]); 
+            //}
+            db.GetProductList().ToList().ForEach(x => Products.Add(x));
+            Products.ToList().ForEach(x => x.Description = db.GetDescriptionList().ToList()[x.Id - 1]);
             return Products;
         }
 
@@ -130,7 +133,24 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
+        #endregion
 
+        #region Selected Item For List Products
+
+        private Product? selectedItemForListProducts;
+
+        public Product? SelectedItemForListProducts
+        {
+            get
+            {
+                return selectedItemForListProducts;
+            }
+            set
+            {
+                selectedItemForListProducts = value;
+                OnPropertyChanged(nameof(SelectedItemForListProducts));
+            }
+        }
 
         #endregion
 
@@ -138,16 +158,44 @@ namespace Coffee_Shop.ViewModels
 
         private void Sort()
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var currentProducts = ApplicationContext.GetContext().Products.ToList();
-                currentProducts = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
-                Products = new ObservableCollection<Product>(currentProducts);
-            }
+            //using (ApplicationContext db = ApplicationContext.GetContext())
+            //{
+            //    var currentProducts = ApplicationContext.GetContext().Products.ToList();
+            //    currentProducts = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+            //    Products = new ObservableCollection<Product>(currentProducts);
+            //}
+            var currentProducts = db.GetProductList().ToList();
+            currentProducts = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+            Products = new ObservableCollection<Product>(currentProducts);
         }
 
 
         #region Command
+
+
+        #region Add to basket 
+
+        private DelegateCommand? addToBasketCommand;
+
+        public ICommand AddToBasketCommand
+        {
+            get
+            {
+                if (addToBasketCommand == null)
+                {
+                    addToBasketCommand = new DelegateCommand(AddToBasket);
+                }
+                return addToBasketCommand;
+            }
+        }
+
+        private void AddToBasket()
+        {
+            App.ConnectionTheProductInfoViewModel(SelectedItemForListProducts);
+        }
+
+        #endregion
+
 
         private DelegateCommand? findButtonCommand;
 

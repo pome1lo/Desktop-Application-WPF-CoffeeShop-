@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coffee_Shop.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,19 @@ namespace Coffee_Shop.ViewModels
 {
     internal class BasketViewModel : ViewModelBase
     {
-        //public ObservableCollection<> ListFromTheProducts = new ObservableCollection<>();
-    }
+		private List<ProductFromBasket> products;
+
+		public List<ProductFromBasket> Products
+		{
+			get 
+			{
+				return products; 
+			}
+			set 
+			{ 
+				products = value; 
+			}
+		}
+
+	}
 }

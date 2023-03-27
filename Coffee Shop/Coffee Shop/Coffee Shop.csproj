@@ -12,6 +12,10 @@
   <ItemGroup>
     <None Remove="StaticFiles\Img\About.png" />
     <None Remove="StaticFiles\Img\AcaiLemonade.png" />
+    <None Remove="StaticFiles\Img\AddNews.png" />
+    <None Remove="StaticFiles\Img\AddProduct.png" />
+    <None Remove="StaticFiles\Img\AddUser.png" />
+    <None Remove="StaticFiles\Img\back-image.jpg" />
     <None Remove="StaticFiles\Img\Basket.png" />
     <None Remove="StaticFiles\Img\bg.png" />
     <None Remove="StaticFiles\Img\CaffeMisto.png" />
@@ -23,18 +27,28 @@
     <None Remove="StaticFiles\Img\DragonDrink.png" />
     <None Remove="StaticFiles\Img\Exit.png" />
     <None Remove="StaticFiles\Img\Favicon.ico" />
+    <None Remove="StaticFiles\Img\key-icon.png" />
     <None Remove="StaticFiles\Img\KiwiStarfruit.png" />
     <None Remove="StaticFiles\Img\Logo.png" />
+    <None Remove="StaticFiles\Img\LogoImg.png" />
+    <None Remove="StaticFiles\Img\LogoText.png" />
     <None Remove="StaticFiles\Img\MangoDragonfruit.png" />
     <None Remove="StaticFiles\Img\Map.png" />
     <None Remove="StaticFiles\Img\Menu.png" />
+    <None Remove="StaticFiles\Img\News.png" />
+    <None Remove="StaticFiles\Img\news1.jpeg" />
+    <None Remove="StaticFiles\Img\Other.png" />
     <None Remove="StaticFiles\Img\Our1.jpg" />
     <None Remove="StaticFiles\Img\Our2.jpg" />
+    <None Remove="StaticFiles\Img\pointer.cur" />
+    <None Remove="StaticFiles\Img\Products.png" />
     <None Remove="StaticFiles\Img\Profile.png" />
     <None Remove="StaticFiles\Img\Question.png" />
     <None Remove="StaticFiles\Img\Settings.png" />
     <None Remove="StaticFiles\Img\StarDrink.png" />
     <None Remove="StaticFiles\Img\StrawberryAcai.png" />
+    <None Remove="StaticFiles\Img\user-icon.png" />
+    <None Remove="StaticFiles\Img\Users.png" />
     <None Remove="StaticFiles\Img\VanillaSweet.png" />
     <None Remove="StaticFiles\Img\VerandaBlend.png" />
     <None Remove="StaticFiles\Img\WhiteChocolate.png" />
@@ -45,16 +59,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="StaticFiles\Img\news1.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="StaticFiles\Img\About.png" />
+    <Resource Include="StaticFiles\Img\AddNews.png" />
+    <Resource Include="StaticFiles\Img\AddProduct.png" />
+    <Resource Include="StaticFiles\Img\AddUser.png" />
+    <Resource Include="StaticFiles\Img\back-image.jpg" />
     <Resource Include="StaticFiles\Img\ChestnutLatte.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
   </ItemGroup>
 
@@ -70,18 +87,27 @@
     <Resource Include="StaticFiles\Img\DragonDrink.png" />
     <Resource Include="StaticFiles\Img\Exit.png" />
     <Resource Include="StaticFiles\Img\Favicon.ico" />
+    <Resource Include="StaticFiles\Img\key-icon.png" />
     <Resource Include="StaticFiles\Img\KiwiStarfruit.png" />
     <Resource Include="StaticFiles\Img\Logo.png" />
+    <Resource Include="StaticFiles\Img\LogoImg.png" />
+    <Resource Include="StaticFiles\Img\LogoText.png" />
     <Resource Include="StaticFiles\Img\MangoDragonfruit.png" />
     <Resource Include="StaticFiles\Img\Map.png" />
     <Resource Include="StaticFiles\Img\Menu.png" />
+    <Resource Include="StaticFiles\Img\News.png" />
+    <Resource Include="StaticFiles\Img\Other.png" />
     <Resource Include="StaticFiles\Img\Our1.jpg" />
     <Resource Include="StaticFiles\Img\Our2.jpg" />
+    <Resource Include="StaticFiles\Img\pointer.cur" />
+    <Resource Include="StaticFiles\Img\Products.png" />
     <Resource Include="StaticFiles\Img\Profile.png" />
     <Resource Include="StaticFiles\Img\Question.png" />
     <Resource Include="StaticFiles\Img\Settings.png" />
     <Resource Include="StaticFiles\Img\StarDrink.png" />
     <Resource Include="StaticFiles\Img\StrawberryAcai.png" />
+    <Resource Include="StaticFiles\Img\user-icon.png" />
+    <Resource Include="StaticFiles\Img\Users.png" />
     <Resource Include="StaticFiles\Img\VanillaSweet.png" />
     <Resource Include="StaticFiles\Img\VerandaBlend.png" />
     <Resource Include="StaticFiles\Img\WhiteChocolate.png" />

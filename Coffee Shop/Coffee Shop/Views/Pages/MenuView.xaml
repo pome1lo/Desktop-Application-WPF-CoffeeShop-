@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="370" d:DesignWidth="800"
       Title="MenuView">
-    <Grid Background="#232323">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
@@ -33,7 +33,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Find:" Foreground="White" Margin="5"/>
+            <TextBlock Grid.Row="0" Text="Find:" Margin="5"/>
             <TextBox Grid.Row="1" Grid.ColumnSpan="2" Width="185" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TBSearch}"/>
 
             <!---->
@@ -54,22 +54,22 @@
                 </StackPanel>
             </WrapPanel>-->
             
-            <TextBlock Grid.Row="2" Text="By price range:" Foreground="White" Margin="5"/>
+            <TextBlock Grid.Row="2" Text="By price range:" Margin="5"/>
             <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding RangeFrom, UpdateSourceTrigger=PropertyChanged}" Width="80" Style="{StaticResource TBSearch}"></TextBox>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RangeTo, UpdateSourceTrigger=PropertyChanged}"   Width="80" Style="{StaticResource TBSearch}"></TextBox>
-            <TextBlock Grid.Row="4" Text="By category:" Foreground="White" Margin="5"/>
+            <TextBlock Grid.Row="4" Text="By category:" Margin="5"/>
             <ComboBox Grid.Row="5" Grid.ColumnSpan="2" Margin="5" SelectedItem="{Binding CategoryItem, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem Content="Food"/>
                 <ComboBoxItem Content="Bob"/>
                 <ComboBoxItem Content="Charlie"/>
             </ComboBox>
-            <TextBlock Grid.Row="6" Text="By Calories:" Foreground="White" Margin="5"/>
+            <TextBlock Grid.Row="6" Text="By Calories:" Margin="5"/>
             <Slider Value="{Binding SliderValue, UpdateSourceTrigger=PropertyChanged}" TickFrequency="5" Maximum="390" Minimum="130" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Width="180" Foreground="#FFAE2A2A" BorderBrush="#FFD13838"/>
             <StackPanel Grid.Row="8">
-                <TextBlock Text="By product type:" Foreground="White" Margin="5"/>
-                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
-                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
-                <RadioButton Foreground="White" Margin="0 5 0 5">s</RadioButton>            
+                <TextBlock Text="By product type:" Margin="5"/>
+                <RadioButton Margin="0 5 0 5">s</RadioButton>            
+                <RadioButton Margin="0 5 0 5">s</RadioButton>            
+                <RadioButton Margin="0 5 0 5">s</RadioButton>            
             </StackPanel>
             <Button Content="Find" Grid.Row="9" Grid.ColumnSpan="2" Command="{Binding FindButtonCommand}" Style="{StaticResource ButtonForLogIO}"/>
         </Grid>
@@ -81,7 +81,8 @@
                   BorderBrush="Transparent"
                   ScrollViewer.CanContentScroll="False" 
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  Background="Transparent">
+                  Background="Transparent"
+                  SelectedItem="{Binding SelectedItemForListProducts}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -100,11 +101,31 @@
                             </EventTrigger.Actions>
                         </EventTrigger>
                     </Style.Triggers>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border>
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="{x:Static MouseAction.LeftClick}"
+                                                       Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.SelectedItemForListProducts}"
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}"  
+                                                      />
+                                    </Border.InputBindings>
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="16">
+                        <!--<Border.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick"
+                                          Command="{Binding AddToBasketCommand}"
+                                          CommandParameter="{Binding}" /> 
+                        </Border.InputBindings>-->
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"/>
                         </Border.Effect>
@@ -121,27 +142,8 @@
                                         <ImageBrush Stretch="Fill" ImageSource="{Binding Img}"/>
                                     </Border.Background>
                                     <Border.ToolTip>
-                                        <!--<ToolTip Width="700" Height="400" Background="Transparent" BorderThickness="0"-->
-                                        <ToolTip Width="850" Height="550" Background="Transparent" BorderThickness="0"
-                                                 BorderBrush="Transparent">
-                                            <!--Placement="Absolute" HorizontalOffset="20" VerticalOffset="160">-->
-
-                                            <Border Background="#191B1D" Width="400" Height="380" CornerRadius="10">
-                                                <Border.Style>
-                                                    <Style TargetType="{x:Type Border}">
-                                                        <Style.Triggers>
-                                                            <EventTrigger RoutedEvent="Loaded">
-                                                                <EventTrigger.Actions>
-                                                                    <BeginStoryboard >
-                                                                        <Storyboard>
-                                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5" />
-                                                                        </Storyboard>
-                                                                    </BeginStoryboard>
-                                                                </EventTrigger.Actions>
-                                                            </EventTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
+                                        <ToolTip Width="850" Height="550" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                                            <Border Style="{StaticResource ChangeThemeBorder}" Width="400" Height="380" CornerRadius="10">
                                                 <Border.Effect>
                                                     <DropShadowEffect BlurRadius="10" Color="Black" ShadowDepth="10"/>
                                                 </Border.Effect>
@@ -156,26 +158,26 @@
                                                     </Grid.RowDefinitions>
                                                     <StackPanel Grid.ColumnSpan="2" Grid.Row="0">
                                                         <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" TextAlignment="Center" Margin="0 8 0 0" Text="{Binding Name}" Foreground="White"/>
+                                                            <TextBlock FontSize="25" TextAlignment="Center" Margin="0 8 0 0" Text="{Binding Name}"/>
                                                         </Border>
                                                     </StackPanel>
                                                     <StackPanel Grid.Column="0" Grid.Row="1" Height="auto" Margin="6 0 6 0">
                                                         <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Allergens" Foreground="White"/>
+                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Allergens"/>
                                                         </Border>
-                                                        <TextBlock Foreground="White" Margin="0 5 0 0" Text="Not available for this item"/>
-                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                        <TextBlock Margin="0 5 0 0" Text="Not available for this item"/>
+                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
                                                             We cannot guarantee that any unpackaged products served in our stores are allergen-free because we use shared equipment to store, prepare, and serve them. Customers with allergies can find ingredient information for products on the labels of our packaged products or online at Coffeeshop.com/menu.
                                                         </TextBlock>
-                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
                                                             * 2,000 calories a day is used for general nutrition advice, but calorie needs vary.
                                                         </TextBlock>
                                                     </StackPanel>
                                                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="6 0 10 0">
                                                         <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Nutrition" Foreground="White"/>
+                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Nutrition"/>
                                                         </Border>
-                                                        <TextBlock Foreground="White" TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
+                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
                                                             Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not.
                                                         </TextBlock>
                                                         <Grid>
@@ -240,10 +242,13 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Background="Transparent" HorizontalAlignment="Right">
+                                    <Button Background="Transparent" HorizontalAlignment="Right"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.AddToBasketCommand}"
+                                            CommandParameter="{Binding}"
+                                            >
                                         <Image HorizontalAlignment="Right" Grid.Column="1" Width="25" Source="\StaticFiles\Img\Basket.png"/>
                                     </Button>
-                                    <TextBlock Text="{Binding Name}" Margin="0 3 0 0" Height="20" Foreground="White" Width="100" FontSize="13" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding Name}" Margin="0 3 0 0" Height="20" Width="100" FontSize="13" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                                 </Grid>
 
                             </Grid>

@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Views.Pages;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
 using CoffeeShop.Views;
@@ -21,23 +22,23 @@ namespace Coffee_Shop.ViewModels
     internal class LogIOViewModel : ViewModelBase
     {
         public Person person { get; set; } = new();
-        private List<Person> persons { get; set; } = InitializePersonsCollection();
+        private static List<Person> persons { get; set; } = new();
         private string passwordConfirmation { get; set; } = string.Empty;
+
 
         private LogIOView? IOView;
 
         public LogIOViewModel(ref LogIOView logIOView)
         {
             this.IOView = logIOView;
+
+            persons = InitializePersonsCollection();
         }
 
         private static List<Person> InitializePersonsCollection()
         {
             var temp = new List<Person>();
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Persons.ToList().ForEach(x => temp.Add(x));
-            }
+            db?.GetPersonList().ToList().ForEach(x => temp.Add(x));
             return temp;
         }
 
@@ -102,7 +103,7 @@ namespace Coffee_Shop.ViewModels
 
         private void SignIn()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = ApplicationContext.GetContext())
             {
                 if (persons.Any(x => x.UserName == person.UserName && x.Password == person.Password))
                 {
@@ -110,7 +111,7 @@ namespace Coffee_Shop.ViewModels
 
                     InitializingTheUserType();
 
-                    App.СonfiguringTheMainView(UserType);
+                    App.ConnectionTheMainView(UserType);
                     this.IOView?.Close();
                 }
                 else
@@ -157,18 +158,43 @@ namespace Coffee_Shop.ViewModels
         {
             if (person.Password == PasswordConfirmation)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    person.Id = db.Persons.Count() + 1;
-                    db.Persons.AddRange(person);
-                    db.SaveChanges();
-                }
+                person.Id = db.GetPersonList().Count() + 1;
+                db.CreatePerson(person);
+                db.Save();
+                //person.Id = db.Persons.Count() + 1;
+                //db.Persons.AddRange(person);
+                //db.SaveChanges();
+                
                 new MainView().Show();
             }
         }
 
         #endregion
 
+        #region Exit
+
+        private DelegateCommand? exitCommand;
+
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (exitCommand == null)
+                {
+                    exitCommand = new DelegateCommand(Exit);
+                }
+                return exitCommand;
+            }
+        }
+
+        private void Exit()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        #endregion
+
+        // добавить
         #region Clear
 
         private DelegateCommand? clearCommand;
@@ -194,7 +220,7 @@ namespace Coffee_Shop.ViewModels
         }
 
 
-        #endregion
+        #endregion// 
 
         #endregion
     }

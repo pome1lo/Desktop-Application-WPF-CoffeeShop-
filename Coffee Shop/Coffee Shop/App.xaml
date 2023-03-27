@@ -7,142 +7,14 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/StaticFiles/Resources/Lang.en-US.xaml" />
+                <ResourceDictionary Source="/StaticFiles/Themes/Dark.xaml" />
+                <ResourceDictionary Source="/StaticFiles/Styles/CommonStyles.xaml" />
+                
+                
+                
+                
+                <ResourceDictionary Source="/StaticFiles/Styles/MainStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Border" x:Key="BorderForWindow">
-                <Setter Property="BorderBrush" Value="#CFB73E"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="BorderThickness" Value="1"/>
-            </Style>
-            <Style TargetType="Button" x:Key="ButtonHeader">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Margin" Value="10 15.5 10 10"/>
-                <Setter Property="Width" Value="32"/>
-                <Setter Property="Height" Value="32"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Style.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="100" />
-                    </Style>
-                </Style.Resources>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Trigger>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
-                        <Setter Property="RenderTransform">
-                            <Setter.Value>
-                                <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
-                            </Setter.Value>
-                        </Setter>
-                    </Trigger>
-
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="TextBox" x:Key="TBSearch">
-                <Style.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10" />
-                    </Style>
-                </Style.Resources>
-                <Setter Property="BorderThickness" Value="1.5"/>
-                <Setter Property="BorderBrush" Value="#CFB73E"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Width" Value="200"/>
-                <Setter Property="Padding" Value="15 2 0 2"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontWeight" Value="DemiBold"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-            </Style>
-            <Style TargetType="TextBlock" x:Key="DataTableInToolTip">
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Style.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10" />
-                        <Setter Property="BorderBrush" Value="#CFB73E" />
-                        <Setter Property="BorderThickness" Value="0 0 0 1" />
-                        <Setter Property="BorderThickness" Value="0 0 0 1" />
-                    </Style>
-                </Style.Resources>
-            </Style>
-            <Style TargetType="TextBox" x:Key="TextBoxForLogIO">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type TextBox}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FFFADF5A"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Width" Value="250"/>
-                <Setter Property="Foreground" Value="#FFFADF5A"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Padding" Value="10 2 10 10"/>
-                <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                <Setter Property="BorderBrush" Value="White"/>
-            </Style>
-            <Style TargetType="Button" x:Key="ButtonForLogIO">
-                <Style.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="13" />
-                    </Style>
-                </Style.Resources>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="#CFB73E"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Width" Value="80"/>
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontWeight" Value="DemiBold"/>
-            </Style>
-            <Style TargetType="PasswordBox" x:Key="PasswordForLogIO">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type PasswordBox}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="true">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FFFADF5A"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Width" Value="250"/>
-                <Setter Property="Foreground" Value="#FFFADF5A"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Padding" Value="10 2 10 10"/>
-                <Setter Property="BorderThickness" Value="0 0 0 2"/>
-                <Setter Property="BorderBrush" Value="White"/>
-            </Style>
-            <Style TargetType="TextBlock" x:Key="TextBlockAbout">
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="TextWrapping" Value="Wrap"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="Width" Value="480"/>
-                <Setter Property="TextAlignment" Value="Justify"/>
-                <Setter Property="FontFamily" Value="Malgun Gothic"/>
-            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

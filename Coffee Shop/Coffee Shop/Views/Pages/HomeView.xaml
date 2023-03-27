@@ -9,6 +9,33 @@
       Title="HomeView">
 
     <Grid>
-        <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100">Home</TextBlock>
+        <ListView ItemsSource="{Binding News}" HorizontalContentAlignment="Center">
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </ListView.Style>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#CFB73E" Width="700"
+                                    BorderThickness="0 0 0 1"
+                                    HorizontalAlignment="Center">
+                        <Grid Background="Transparent" Margin="0" Width="650">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Img}" Width="100" Height="100" Margin="0 0 30 0"/>
+                            <StackPanel Orientation="Vertical" Grid.Column="1">
+                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" FontWeight="Bold" FontSize="15" Padding="0 0 0 10"/>
+                                <TextBlock Text="{Binding Content}" TextWrapping="Wrap" TextAlignment="Justify" FontSize="11" Padding="0 0 0 10"/>
+                                <TextBlock Text="{Binding Date}" TextWrapping="Wrap" FontSize="11" Padding="0 0 0 10"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:CoffeeShop.Views" 
         xmlns:components="clr-namespace:Coffee_Shop.Components"
         mc:Ignorable="d"
+         WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Title="Authorization" Height="430" Width="300">
-    <Grid>
-        <!--xmlns:components="clr-namespace:Coffee_Shop.Components" 
+        Title="Authorization" Height="550" Width="800">
+    <!--<Grid>
+        --><!--xmlns:components="clr-namespace:Coffee_Shop.Components" 
         xmlns:viewmodels="clr-namespace:Coffee_Shop.ViewModels" 
-        d:DataContext="{d:DesignInstance Type=viewmodels:LogIOViewModel}"-->
+        d:DataContext="{d:DesignInstance Type=viewmodels:LogIOViewModel}"--><!--
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="\StaticFiles\Img\bg.png" AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
@@ -25,17 +29,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Image Source="\StaticFiles\Img\Logo.png" Grid.ColumnSpan="2" Width="150"/>
-        <StackPanel x:Name="BlackPanel"  Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="2" Background="#85101010" Height="125" >
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Style.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="13" />
-                        </Style>
-                    </Style.Resources>
-                </Style>
-            </StackPanel.Style>
-                <Grid VerticalAlignment="Center">
+        <StackPanel x:Name="BlackPanel" Style="{StaticResource ChangeThemeStackPanel}" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="2" Height="125" >
+            <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -44,8 +39,8 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="1" Grid.Row="1" x:Name="SignInStartPage" Content="{DynamicResource Log_SignIn}" Click="SignInStartPageClick" Style="{StaticResource ButtonForLogIO}" Margin="0 45"/>
-                <Button Grid.Column="0" Grid.Row="1" x:Name="JoinStartPage"  Content="{DynamicResource Log_Join}" Click="JoinStartPageClick"  Style="{StaticResource ButtonForLogIO}" Margin="0 45"/>
+                <Button Grid.Column="1" Grid.Row="1" x:Name="SignInStartPage" Content="{DynamicResource Log_SignIn}" Template="{StaticResource ButtonTemplate}" Click="SignInStartPageClick" Margin="0 45" />
+                <Button Grid.Column="0" Grid.Row="1" x:Name="JoinStartPage"  Content="{DynamicResource Log_Join}" Template="{StaticResource ButtonTemplate}" Click="JoinStartPageClick" Margin="0 45"/>
                 <Grid x:Name="SignInForm"  Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -64,8 +59,8 @@
                         <TextBlock Text="{DynamicResource Log_Password}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
                         <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     </StackPanel>
-                    <Button Grid.Row="2" Grid.Column="0" Content="{DynamicResource Log_Clear}" Margin="0 15" Command="{Binding ClearCommand}" Style="{StaticResource ButtonForLogIO}"/>
-                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource Log_SignIn}" Margin="0 15" Command="{Binding SignInCommand}" Style="{StaticResource ButtonForLogIO}"/>
+                    <Button Grid.Row="2" Grid.Column="0" Content="{DynamicResource Log_Clear}" Template="{StaticResource ButtonTemplate}" Margin="0 15" Command="{Binding ClearCommand}"  />
+                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource Log_SignIn}" Template="{StaticResource ButtonTemplate}" Margin="0 15" Command="{Binding SignInCommand}" />
                 </Grid>
                 <Grid x:Name="JoinForm" Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
@@ -93,11 +88,229 @@
                     <Button Grid.Row="3" Grid.Column="0" Content="{DynamicResource Log_Clear}" Margin="0 15" Command="{Binding ClearCommand}" Style="{StaticResource ButtonForLogIO}"/>
                     <Button Grid.Row="3" Grid.Column="1" Content="{DynamicResource Log_Join}" Margin="0 15" Command="{Binding JoinCommand}"  Style="{StaticResource ButtonForLogIO}"/>
                 </Grid>
-
-
-                    
-                    
             </Grid>
         </StackPanel>
-    </Grid>
+    </Grid>-->
+
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="\StaticFiles\Img\back-image.jpg" Stretch="None"/>
+        </Border.Background>
+        <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#363636" Offset="0"/>
+                    <GradientStop Color="#CFB73E" Offset="0.75"/>
+                    <GradientStop Color="#E1CA52" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#000000" Offset="0"/>
+                    <GradientStop Color="#262626" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="LOG IN"
+                               Foreground="DarkGray"
+                               FontSize="10"
+                               FontFamily="Montserrat"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                    <Button Click="RollUp"                           
+                            BorderThickness="0"
+                            Content="―"
+                            FontSize="15"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Background="Transparent"
+                            Grid.Column="1" HorizontalAlignment="Right" Width="25">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" 
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Command="{Binding ExitCommand}"                          
+                            BorderThickness="0"
+                            Content="✕"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="DarkRed"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <StackPanel Width="220"
+                            Grid.Row="1"
+                            Orientation="Vertical"
+                            Margin="0,35,0,0">
+
+                    <Image Source="\StaticFiles\Img\LogoImg.png"
+                           Width="57" Height="57" Margin="0 0 0 10"/>
+
+                    <Image Source="\StaticFiles\Img\LogoText.png"
+                           Width="170" Margin="5 0 0 10"/>
+
+                    <TextBlock Text="Let's warm up your morning! The best stories are told over a cup of coffee..."
+                               Foreground="LightGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+
+
+                    <TextBlock Text="Username"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,35,0,0"/>
+
+                    <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ResourceKey=LogInTextBox}">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="\StaticFiles\Img\user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="Password"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+
+
+                    <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="#D7596D"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,10,0,0"
+                               TextWrapping="Wrap"/>
+
+                    <Button x:Name="btnLogin" 
+                            Command="{Binding SignInCommand}"
+                            BorderThickness="0"
+                            Content="LOG IN"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,30,0,0">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#E1CA52"/>
+                                        <Setter Property="Foreground" Value="#E1CA52"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,15,0,0">
+
+                        <TextBlock Text="Forgot Password?"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"/>
+
+                        <TextBlock Text="Reset"
+                               Foreground="White"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Cursor="Hand"
+                               Margin="8,0,0,0"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    </Border>
+
+
 </Window>

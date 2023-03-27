@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoffeShop.Models
 {
-    class Product
+    public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

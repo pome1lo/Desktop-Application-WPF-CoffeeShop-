@@ -21,7 +21,7 @@
     <v:String x:Key="Admin_ProdProtein">Белок</v:String>
     <v:String x:Key="Admin_ProdCaffeine">Кофеин</v:String>
     <v:String x:Key="Admin_AddButton">Добавить новый товар</v:String>
-
+    <v:String x:Key="Admin_TextTheme">Изменить тему приложения</v:String>
 
     <!-- LogIOView.xaml -->
     <v:String x:Key="Log_UserName">Имя пользователя</v:String>

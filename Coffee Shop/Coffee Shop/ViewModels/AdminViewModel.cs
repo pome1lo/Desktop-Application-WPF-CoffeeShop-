@@ -14,6 +14,7 @@ using CoffeShop.Data;
 using System.Collections.ObjectModel;
 using Coffee_Shop.Models;
 using System.Windows.Controls;
+using Coffee_Shop.Database;
 
 namespace Coffee_Shop.ViewModels
 {
@@ -29,6 +30,7 @@ namespace Coffee_Shop.ViewModels
         {
             this.controls = controlsForAdmin;
             this.language = controlsForAdmin.CultureName;
+            this.theme = controlsForAdmin.Theme;
             this.current = controlsForAdmin.PanelAddNewProduct;
 
             GetDataFromDatabase();
@@ -40,7 +42,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Change language
 
-        private string language;
+        private string? language;
         public string Language
         {
             get
@@ -56,13 +58,34 @@ namespace Coffee_Shop.ViewModels
 
                 OnPropertyChanged(nameof(Language));
             }
-        } 
+        }
+
+        #endregion
+
+        #region Change theme
+
+        private string? theme;
+        public string Theme
+        {
+            get
+            {
+                return theme;
+            }
+            set
+            {
+                theme = new String(value.Skip(38).ToArray());
+                ChangeTheme();
+                SaveThemeChanges();
+
+                OnPropertyChanged(nameof(Theme));
+            }
+        }
 
         #endregion
 
         #region Selected Item For Persons Database
 
-        private Person selectedItemForPersonsDB;
+        private Person? selectedItemForPersonsDB;
         public Person SelectedItemForPersonsDB
         {
             get
@@ -80,7 +103,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Selected Item For Products Database
 
-        private Product selectedItemForProductsDB;
+        private Product? selectedItemForProductsDB;
         public Product SelectedItemForProductsDB
         {
             get
@@ -248,19 +271,80 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
+        #region Create new news
+
+        private News news = new News();
+
+        public string NewsTitle
+        {
+            get
+            {
+                return news.Title;
+            }
+            set
+            {
+                news.Title = value;
+                OnPropertyChanged(nameof(News));
+            }
+        }
+
+        public string NewsImg
+        {
+            get
+            {
+                return news.Img;
+            }
+            set
+            {
+                news.Img = value;
+                OnPropertyChanged(nameof(News));
+            }
+        }
+
+        public string NewsContent
+        {
+            get
+            {
+                return news.Content;
+            }
+            set
+            {
+                news.Content = value;
+                OnPropertyChanged(nameof(News));
+            }
+        }
+
+        public string NewsDate
+        {
+            get
+            {
+                return news.Date.ToString();
+            }
+            set
+            {
+                news.Date = DateTime.Parse(value);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Methods
 
         private void GetDataFromDatabase()
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Products.ToList().ForEach(x => Products?.Add(x));
-                db.Persons.ToList().ForEach(x => Persons?.Add(x));
-                
-                Products?.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]);
-            }
+            //using (ApplicationContext db = ApplicationContext.GetContext())
+            //{
+            //    db.Products.ToList().ForEach(x => Products?.Add(x));
+            //    db.Persons.ToList().ForEach(x => Persons?.Add(x));
+
+            //    Products?.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]);
+            //}
+            db.GetProductList().ToList().ForEach(x => Products?.Add(x));
+            db.GetPersonList().ToList().ForEach(x => Persons?.Add(x));
+
+            Products?.ToList().ForEach(x => x.Description = db.GetDescriptionList().ToList()[x.Id - 1]);
         }
 
         private void ChangeLanguage()
@@ -276,9 +360,26 @@ namespace Coffee_Shop.ViewModels
             );
         }
 
+        private void ChangeTheme()
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(
+                        String.Format($"StaticFiles/Themes/{Theme}.xaml"),
+                        UriKind.Relative
+                    )
+                }
+            );
+        }
+
         private void SaveCultureChanges()
         {
             File.WriteAllText(@"../../../StaticFiles/CultureSettings.txt", Language);
+        }
+        private void SaveThemeChanges()
+        {
+            File.WriteAllText(@"../../../StaticFiles/ThemeSettings.txt", Theme);
         }
 
         #endregion
@@ -309,11 +410,12 @@ namespace Coffee_Shop.ViewModels
             }
             else
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    db.Persons.Remove(selectedItemForPersonsDB);
-                    db.SaveChanges();
-                }
+                //using (ApplicationContext db = ApplicationContext.GetContext())
+                //{
+                //    db.Persons.Remove(selectedItemForPersonsDB);
+                //    db.SaveChanges();
+                //}
+                db.DeletePerson(selectedItemForPersonsDB.Id);
                 MessageBox.Show("The item was successfully deleted.");
             }
         }
@@ -343,11 +445,12 @@ namespace Coffee_Shop.ViewModels
             }
             else
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    db.Products.Remove(SelectedItemForProductsDB);
-                    db.SaveChanges();
-                }
+                //using (ApplicationContext db = ApplicationContext.GetContext())
+                //{
+                //    db.Products.Remove(SelectedItemForProductsDB);
+                //    db.SaveChanges();
+                //}
+                db.DeleteProduct(SelectedItemForProductsDB.Id);
                 MessageBox.Show("The item was successfully deleted.");
             }
         }
@@ -372,14 +475,44 @@ namespace Coffee_Shop.ViewModels
 
         private void AddNewProduct()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            //using (ApplicationContext db = ApplicationContext.GetContext())
+            //{
+            //    product.Id = db.Products.Count() + 1;
+            //    db.Products.AddRange(product);
+            //    db.SaveChanges();
+            //}
+            product.Id = db.GetProductList().Count() + 1;
+            db.CreateProduct(product);
+            db.Save();
+            MessageBox.Show("The product was successfully added to the database.");
+        }
+
+        #endregion
+
+        #region Add New News
+
+        private DelegateCommand? addNewNewsCommand;
+
+        public ICommand AddNewNewsCommand
+        {
+            get
             {
-                product.Id = db.Products.Count() + 1;
-                db.Products.AddRange(product);
-                db.SaveChanges();
-                MessageBox.Show("The product was successfully added to the database.");
+                if (addNewNewsCommand == null)
+                {
+                    addNewNewsCommand = new DelegateCommand(AddNewNews);
+                }
+                return addNewNewsCommand;
             }
         }
+
+        private void AddNewNews()
+        {
+            news.Id = db.GetNewsList().Count() + 1;
+            db.CreateNews(news);
+            db.Save();
+            MessageBox.Show("The news was successfully added to the database.");
+        }
+
         #endregion
 
         private DockPanel current;

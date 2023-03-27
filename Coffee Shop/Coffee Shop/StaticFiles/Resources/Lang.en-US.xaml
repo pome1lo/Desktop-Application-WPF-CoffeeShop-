@@ -35,7 +35,7 @@
     <v:String x:Key="Admin_ProdProtein">Protein</v:String>
     <v:String x:Key="Admin_ProdCaffeine">Caffeine</v:String>
     <v:String x:Key="Admin_AddButton">Add new Product</v:String>
-    
+    <v:String x:Key="Admin_TextTheme">Сhange the application theme</v:String>
     
     <!-- LogIOView.xaml -->
     <v:String x:Key="Log_UserName">User Name</v:String>

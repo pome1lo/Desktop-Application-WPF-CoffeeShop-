@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeShop.Data.Models
 {
-    class Description
+    public class Description
     {
         public int Id { get; set; }
         public ushort TotalFat { get; set; }
