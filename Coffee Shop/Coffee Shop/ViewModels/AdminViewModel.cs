@@ -1,48 +1,99 @@
-﻿using CoffeeShop.Commands;
+﻿using Coffee_Shop.Models;
+using Coffee_Shop.Models.Entities;
+using Coffee_Shop.Views;
+using CoffeeShop.Commands;
+using CoffeeShop.Data.Models;
+using CoffeShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows;
-using CoffeeShop.Data.Models;
-using System.Text.RegularExpressions;
-using System.IO;
-using CoffeShop.Models;
-using CoffeShop.Data;
-using System.Collections.ObjectModel;
-using Coffee_Shop.Models;
-using System.Windows.Controls;
-using Coffee_Shop.Database;
+using System.Windows.Input;
 
 namespace Coffee_Shop.ViewModels
 {
     internal class AdminViewModel : ViewModelBase
     {
-        public ObservableCollection<Person>? Persons { get; set; } = new();
-        public ObservableCollection<Product>? Products { get; set; } = new();
-        private ControlsForAdmin controls { get; set; }
-        
-        #region Constructor
+        #region Constructors
 
-        public AdminViewModel(ControlsForAdmin controlsForAdmin)
+        public AdminViewModel() { }
+
+        public AdminViewModel(string lang, string theme)
         {
-            this.controls = controlsForAdmin;
-            this.language = controlsForAdmin.CultureName;
-            this.theme = controlsForAdmin.Theme;
-            this.current = controlsForAdmin.PanelAddNewProduct;
-
-            GetDataFromDatabase();
+            this.language = lang;
+            this.theme = theme;
         }
+
+        #endregion
+
+        #region Fields
+
+        private List<News> news = Db.GetNewsList().ToList();
+        private List<User> users = Db.GetUserList().ToList();
+        private List<Product> products = Db.GetProductList().ToList();
+
+        private string language;
+        private string theme;
+
+        private News selectedItemForNewsDB;
+        private User selectedItemForUsersDB;
+        private Product selectedItemForProductsDB;
+
+        private DelegateCommand? showAddNewProductCommand;
+        private DelegateCommand? showAddNewNewsCommand;
+        private DelegateCommand? showAddNewUserCommand;
+        private DelegateCommand? deleteProductCommand;
+        private DelegateCommand? deleteNewsCommand;
+        private DelegateCommand? deleteUserCommand;
 
         #endregion
 
         #region Property
 
+        #region Products list
+
+        public List<Product> Products
+        {
+            get => products;
+            set
+            {
+                products = value;
+                OnPropertyChanged(nameof(Products));
+            }
+        }
+
+        #endregion
+
+        #region Users list
+
+        public List<User> Users
+        {
+            get => users;
+            set
+            {
+                users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
+
+        #endregion
+        
+        #region News list
+
+        public List<News> News
+        {
+            get => news;
+            set
+            {
+                news = value;
+                OnPropertyChanged(nameof(News));
+            }
+        }
+
+        #endregion
+
         #region Change language
 
-        private string? language;
         public string Language
         {
             get
@@ -54,8 +105,6 @@ namespace Coffee_Shop.ViewModels
                 language = new String(value.Skip(38).ToArray());
 
                 ChangeLanguage();
-                SaveCultureChanges();
-
                 OnPropertyChanged(nameof(Language));
             }
         }
@@ -64,7 +113,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Change theme
 
-        private string? theme;
         public string Theme
         {
             get
@@ -74,42 +122,47 @@ namespace Coffee_Shop.ViewModels
             set
             {
                 theme = new String(value.Skip(38).ToArray());
-                ChangeTheme();
-                SaveThemeChanges();
 
+                ChangeTheme();
                 OnPropertyChanged(nameof(Theme));
             }
         }
 
         #endregion
 
-        #region Selected Item For Persons Database
+        #region Selected Item For Users Database
 
-        private Person? selectedItemForPersonsDB;
-        public Person SelectedItemForPersonsDB
+        public User SelectedItemForUsersDB
         {
-            get
-            {
-                return selectedItemForPersonsDB;
-            }
+            get => selectedItemForUsersDB;
             set
             {
-                selectedItemForPersonsDB = value;
-                OnPropertyChanged(nameof(SelectedItemForPersonsDB));
+                selectedItemForUsersDB = value;
+                OnPropertyChanged(nameof(SelectedItemForUsersDB));
             }
         }
 
         #endregion
 
+        #region Selected Item For news Database
+
+        public News SelectedItemForNewsDB
+        {
+            get => selectedItemForNewsDB;
+            set
+            {
+                selectedItemForNewsDB = value;
+                OnPropertyChanged(nameof(SelectedItemForNewsDB));
+            }
+        }
+
+        #endregion
+        
         #region Selected Item For Products Database
 
-        private Product? selectedItemForProductsDB;
         public Product SelectedItemForProductsDB
         {
-            get
-            {
-                return selectedItemForProductsDB;
-            }
+            get => selectedItemForProductsDB;
             set
             {
                 selectedItemForProductsDB = value;
@@ -119,233 +172,9 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-        #region Create new product
-
-        private Product product = new Product();
-
-        public string ProductName
-        {
-            get
-            {
-                return product.Name;
-            }
-            set
-            {
-                product.Name = value;
-                OnPropertyChanged(nameof(ProductName));
-            }
-        }
-        public decimal ProductPrice
-        {
-            get
-            {
-                return product.Price;
-            }
-            set
-            {
-                product.Price = value;
-                OnPropertyChanged(nameof(ProductPrice));
-            }
-        }
-        public string ProductImg
-        {
-            get
-            {
-                return product.Img;
-            }
-            set
-            {
-                product.Img = value;
-                OnPropertyChanged(nameof(ProductImg));
-            }
-        }
-        public ushort ProductCalories
-        {
-            get
-            {
-                return product.Calories;
-            }
-            set
-            {
-                product.Calories = value;
-                OnPropertyChanged(nameof(ProductCalories));
-            }
-        }
-        public ushort ProductTotalFat
-        {
-            get
-            {
-                return product.Description.TotalFat;
-            }
-            set
-            {
-                product.Description.TotalFat = value;
-                OnPropertyChanged(nameof(ProductTotalFat));
-            }
-        }
-        public ushort ProductSaturatedFat
-        {
-            get
-            {
-                return product.Description.SaturatedFat;
-            }
-            set
-            {
-                product.Description.SaturatedFat = value;
-                OnPropertyChanged(nameof(ProductSaturatedFat));
-            }
-        }
-        public ushort ProductTransFat
-        {
-            get
-            {
-                return product.Description.TransFat;
-            }
-            set
-            {
-                product.Description.TransFat = value;
-                OnPropertyChanged(nameof(ProductTransFat));
-            }
-        }
-        public ushort ProductCholesterol
-        {
-            get
-            {
-                return product.Description.Cholesterol;
-            }
-            set
-            {
-                product.Description.Cholesterol = value;
-                OnPropertyChanged(nameof(ProductCholesterol));
-            }
-        }
-        public ushort ProductSodium
-        {
-            get
-            {
-                return product.Description.Sodium;
-            }
-            set
-            {
-                product.Description.Sodium = value;
-                OnPropertyChanged(nameof(ProductSodium));
-            }
-        }
-        public ushort ProductTotalCarbohydrates
-        {
-            get
-            {
-                return product.Description.TotalCarbohydrates;
-            }
-            set
-            {
-                product.Description.TotalCarbohydrates = value;
-                OnPropertyChanged(nameof(ProductTotalCarbohydrates));
-            }
-        }
-        public ushort ProductProtein
-        {
-            get
-            {
-                return product.Description.Protein;
-            }
-            set
-            {
-                product.Description.Protein = value;
-                OnPropertyChanged(nameof(ProductProtein));
-            }
-        }
-        public ushort ProductCaffeine
-        {
-            get
-            {
-                return product.Description.Caffeine;
-            }
-            set
-            {
-                product.Description.Caffeine = value;
-                OnPropertyChanged(nameof(ProductCaffeine));
-            }
-        }
-
-
-        #endregion
-
-        #region Create new news
-
-        private News news = new News();
-
-        public string NewsTitle
-        {
-            get
-            {
-                return news.Title;
-            }
-            set
-            {
-                news.Title = value;
-                OnPropertyChanged(nameof(News));
-            }
-        }
-
-        public string NewsImg
-        {
-            get
-            {
-                return news.Img;
-            }
-            set
-            {
-                news.Img = value;
-                OnPropertyChanged(nameof(News));
-            }
-        }
-
-        public string NewsContent
-        {
-            get
-            {
-                return news.Content;
-            }
-            set
-            {
-                news.Content = value;
-                OnPropertyChanged(nameof(News));
-            }
-        }
-
-        public string NewsDate
-        {
-            get
-            {
-                return news.Date.ToString();
-            }
-            set
-            {
-                news.Date = DateTime.Parse(value);
-            }
-        }
-
-        #endregion
-
         #endregion
 
         #region Methods
-
-        private void GetDataFromDatabase()
-        {
-            //using (ApplicationContext db = ApplicationContext.GetContext())
-            //{
-            //    db.Products.ToList().ForEach(x => Products?.Add(x));
-            //    db.Persons.ToList().ForEach(x => Persons?.Add(x));
-
-            //    Products?.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]);
-            //}
-            db.GetProductList().ToList().ForEach(x => Products?.Add(x));
-            db.GetPersonList().ToList().ForEach(x => Persons?.Add(x));
-
-            Products?.ToList().ForEach(x => x.Description = db.GetDescriptionList().ToList()[x.Id - 1]);
-        }
 
         private void ChangeLanguage()
         {
@@ -373,206 +202,16 @@ namespace Coffee_Shop.ViewModels
             );
         }
 
-        private void SaveCultureChanges()
+        private void ShowPageCreateElementView(TypeOfObjectBeingCreated product)
         {
-            File.WriteAllText(@"../../../StaticFiles/CultureSettings.txt", Language);
-        }
-        private void SaveThemeChanges()
-        {
-            File.WriteAllText(@"../../../StaticFiles/ThemeSettings.txt", Theme);
+            throw new NotImplementedException();
         }
 
         #endregion
 
         #region Commands
 
-        #region Delete Person
-
-        private DelegateCommand? deletePersonCommand;
-
-        public ICommand DeletePersonCommand
-        {
-            get
-            {
-                if (deletePersonCommand == null)
-                {
-                    deletePersonCommand = new DelegateCommand(DeletePerson);
-                }
-                return deletePersonCommand;
-            }
-        }
-
-        private void DeletePerson()
-        {
-            if(SelectedItemForPersonsDB == null)
-            {
-                MessageBox.Show("First select the item to delete.");
-            }
-            else
-            {
-                //using (ApplicationContext db = ApplicationContext.GetContext())
-                //{
-                //    db.Persons.Remove(selectedItemForPersonsDB);
-                //    db.SaveChanges();
-                //}
-                db.DeletePerson(selectedItemForPersonsDB.Id);
-                MessageBox.Show("The item was successfully deleted.");
-            }
-        }
-        #endregion
-
-        #region Delete Product
-
-        private DelegateCommand? deleteProductCommand;
-
-        public ICommand DeleteProductCommand
-        {
-            get
-            {
-                if (deleteProductCommand == null)
-                {
-                    deleteProductCommand = new DelegateCommand(DeleteProduct);
-                }
-                return deleteProductCommand;
-            }
-        }
-
-        private void DeleteProduct()
-        {
-            if (SelectedItemForProductsDB == null)
-            {
-                MessageBox.Show("First select the item to delete.");
-            }
-            else
-            {
-                //using (ApplicationContext db = ApplicationContext.GetContext())
-                //{
-                //    db.Products.Remove(SelectedItemForProductsDB);
-                //    db.SaveChanges();
-                //}
-                db.DeleteProduct(SelectedItemForProductsDB.Id);
-                MessageBox.Show("The item was successfully deleted.");
-            }
-        }
-
-        #endregion
-
-        #region Add New Product
-
-        private DelegateCommand? addNewProductCommand;
-
-        public ICommand AddNewProductCommand
-        {
-            get
-            {
-                if (addNewProductCommand == null)
-                {
-                    addNewProductCommand = new DelegateCommand(AddNewProduct);
-                }
-                return addNewProductCommand;
-            }
-        }
-
-        private void AddNewProduct()
-        {
-            //using (ApplicationContext db = ApplicationContext.GetContext())
-            //{
-            //    product.Id = db.Products.Count() + 1;
-            //    db.Products.AddRange(product);
-            //    db.SaveChanges();
-            //}
-            product.Id = db.GetProductList().Count() + 1;
-            db.CreateProduct(product);
-            db.Save();
-            MessageBox.Show("The product was successfully added to the database.");
-        }
-
-        #endregion
-
-        #region Add New News
-
-        private DelegateCommand? addNewNewsCommand;
-
-        public ICommand AddNewNewsCommand
-        {
-            get
-            {
-                if (addNewNewsCommand == null)
-                {
-                    addNewNewsCommand = new DelegateCommand(AddNewNews);
-                }
-                return addNewNewsCommand;
-            }
-        }
-
-        private void AddNewNews()
-        {
-            news.Id = db.GetNewsList().Count() + 1;
-            db.CreateNews(news);
-            db.Save();
-            MessageBox.Show("The news was successfully added to the database.");
-        }
-
-        #endregion
-
-        private DockPanel current;
-
-        #region Show User DataBase
-
-        private DelegateCommand? showUserDataBaseCommand;
-
-        public ICommand ShowUserDataBaseCommand
-        {
-            get
-            {
-                if (showUserDataBaseCommand == null)
-                {
-                    showUserDataBaseCommand = new DelegateCommand(ShowUserDataBase);
-                }
-                return showUserDataBaseCommand;
-            }
-        }
-
-        private void ShowUserDataBase()
-        {
-            ChangeCurrentDockPanelFor(controls.PanelPersonDataBase);
-        }
-
-        private void ChangeCurrentDockPanelFor(DockPanel dockPanel)
-        {
-            current.Visibility = Visibility.Collapsed;
-            dockPanel.Visibility = Visibility.Visible;
-            current = dockPanel;
-        }
-
-        #endregion
-
-        #region Show Product DataBase
-
-        private DelegateCommand? showProductDataBaseCommand;
-
-        public ICommand ShowProductDataBaseCommand
-        {
-            get
-            {
-                if (showProductDataBaseCommand == null)
-                {
-                    showProductDataBaseCommand = new DelegateCommand(ShowProductDataBase);
-                }
-                return showProductDataBaseCommand;
-            }
-        }
-
-        private void ShowProductDataBase()
-        {
-            ChangeCurrentDockPanelFor(controls.PanelProductDataBase);
-        }
-
-        #endregion
-
         #region Show Add New Product DataBase
-
-        private DelegateCommand? showAddNewProductCommand;
 
         public ICommand ShowAddNewProductCommand
         {
@@ -580,41 +219,155 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showAddNewProductCommand == null)
                 {
-                    showAddNewProductCommand = new DelegateCommand(ShowAddNewProduct);
+                    showAddNewProductCommand = new DelegateCommand(() =>
+                    {
+                        CreateElement view = new CreateElement();
+                        view.NewProduct.Visibility = Visibility.Visible;
+                        //MainView.IsEnabled = false;удалить
+                        //MainView.Opacity = 0.5;
+                        view.ShowDialog();
+                    });
                 }
                 return showAddNewProductCommand;
             }
         }
 
-        private void ShowAddNewProduct()
-        {
-            ChangeCurrentDockPanelFor(controls.PanelAddNewProduct);
-        }
+      
 
         #endregion
 
-        #region Show Add New Product DataBase
+        #region Show Add New News DataBase
 
-        private DelegateCommand? showOtherParamerersCommand;
-
-        public ICommand ShowOtherParamerersCommand
+        public ICommand ShowAddNewNewsCommand
         {
             get
             {
-                if (showOtherParamerersCommand == null)
+                if (showAddNewNewsCommand == null)
                 {
-                    showOtherParamerersCommand = new DelegateCommand(ShowOtherParamerers);
+                    showAddNewNewsCommand = new DelegateCommand(() =>
+                    {
+                        CreateElement view = new CreateElement();
+                        view.NewNews.Visibility = Visibility.Visible;
+                        //MainView.IsEnabled = false;удалить
+                        //MainView.Opacity = 0.5;
+                        view.ShowDialog();
+                    });
                 }
-                return showOtherParamerersCommand;
+                return showAddNewNewsCommand;
             }
         }
 
-        private void ShowOtherParamerers()
+        #endregion
+
+        #region Show Add New User DataBase
+
+        public ICommand ShowAddNewUserCommand
         {
-            ChangeCurrentDockPanelFor(controls.PanelOtherParameters);
+            get
+            {
+                if (showAddNewUserCommand == null)
+                {
+                    showAddNewUserCommand = new DelegateCommand(() =>
+                    {
+                        CreateElement view = new CreateElement();
+                        view.NewUser.Visibility = Visibility.Visible;
+                        //MainView.IsEnabled = false;удалить
+                        //MainView.Opacity = 0.5;
+                        view.ShowDialog();
+                    });
+                }
+                return showAddNewUserCommand;
+            }
         }
 
         #endregion
+        
+        #region Delete product
+
+        public ICommand DeleteProductCommand
+        {
+            get
+            {
+                if (deleteProductCommand == null)
+                {
+                    deleteProductCommand = new DelegateCommand(() => 
+                    {
+                        if (SelectedItemForProductsDB == null)
+                        {
+                            SendToModalWindow("First select the item to delete.");
+                        }
+                        else
+                        {
+                            Db.DeleteProduct(SelectedItemForProductsDB.Id);
+                            Db.Save();
+                            Products = Db.GetProductList().ToList();
+                            SendToModalWindow("The item was successfully deleted.");
+                        }
+                    });
+                }
+                return deleteProductCommand;
+            }
+        } 
+
+        #endregion
+
+        #region Delete user
+
+        public ICommand DeleteUserCommand
+        {
+            get
+            {
+                if (deleteUserCommand == null)
+                {
+                    deleteUserCommand = new DelegateCommand(() =>
+                    {
+                        if (SelectedItemForUsersDB == null)
+                        {
+                            SendToModalWindow("First select the item to delete.");
+                        }
+                        else
+                        {
+                            Db?.DeleteUser(selectedItemForUsersDB.Id);
+                            Db?.Save();
+                            Users = Db.GetUserList().ToList();
+                            SendToModalWindow("The item was successfully deleted.");
+                        }
+                    });
+                }
+                return deleteUserCommand;
+            }
+        } 
+
+        #endregion
+
+        #region Delete news
+
+        public ICommand DeleteNewsCommand
+        {
+            get
+            {
+                if (deleteNewsCommand == null)
+                {
+                    deleteNewsCommand = new DelegateCommand(() => 
+                    {
+                        if (SelectedItemForNewsDB == null)
+                        {
+                            SendToModalWindow("First select the item to delete.");
+                        }
+                        else
+                        {
+                            Db?.DeleteNews(SelectedItemForNewsDB.Id);
+                            Db?.Save();
+                            News = Db.GetNewsList().ToList();
+                            SendToModalWindow("The item was successfully deleted.");
+                        }
+                    });
+                }
+                return deleteNewsCommand;
+            }
+        }
+
+        #endregion 
 
         #endregion
     }

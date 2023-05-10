@@ -1,0 +1,130 @@
+﻿<Window x:Class="Coffee_Shop.Views.OrderView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coffee_Shop.Views"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+        xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Title="OrderView" Height="350" Width="500">
+    <Window.DataContext>
+        <vm:OrderViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="10" BorderThickness="2" Style="{DynamicResource ChengeTheme}">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#363636" Offset="0"/>
+                <GradientStop Color="#CFB73E" Offset="0.75"/>
+                <GradientStop Color="#E1CA52" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <StackPanel>
+            <Button Style="{StaticResource ButtonClose}" Margin="5"
+                    Click="Close" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="20 0 20 20">
+                <TextBlock Text="{DynamicResource Order_Conditions}" 
+                           Margin="10" FontSize="18" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Style="{StaticResource RadioButtonBack}" Width="70" IsChecked="True">
+                        <StackPanel>
+                            <TextBlock Text="Доставка" Margin="7 7 7 0" FontWeight="DemiBold"/>
+                            <TextBlock Text="2 $" Margin="7 0 7 7"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RadioButtonBack}" Width="110">
+                        <StackPanel>
+                            <TextBlock Text="Order to another" Margin="7 7 7 0" FontWeight="DemiBold"/>
+                            <TextBlock Text="2 $" Margin="7 0 7 7"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <custom:InputBox Width="65" TextName="{DynamicResource Order_Flat}"
+                                     TextInput="{Binding Flat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     ErrorMessage="{Binding ErrorFlat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <custom:InputBox Width="65" TextName="{DynamicResource Order_Intercom}"
+                                     TextInput="{Binding Intercom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     ErrorMessage="{Binding ErrorIntercom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <custom:InputBox Width="65" TextName="{DynamicResource Order_Entrance}"
+                                     TextInput="{Binding Entrance, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     ErrorMessage="{Binding ErrorEntrance, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <custom:InputBox Width="65" TextName="{DynamicResource Order_Floor}"
+                                     TextInput="{Binding Floor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     ErrorMessage="{Binding ErrorFloor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <custom:InputBox TextName="{DynamicResource Order_Comment}" Width="130"/>
+                </StackPanel>
+
+                <TextBlock Text="{DynamicResource Order_DeliveryTime}" Margin="10" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource Order_DelCurTime}" Margin="10 0 0 0"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="20 0 20 20">
+                <TextBlock Text="{DynamicResource Order_Payment}" Margin="5 10 10 10" FontSize="18" FontWeight="Bold"/>
+                <Border BorderThickness="0 0 0 1" BorderBrush="#CFB73E" Padding="0 0 0 10" Margin="5 0 0 0">
+                    <DockPanel>
+                        <TextBlock Text="****" Padding="35 7 5 0">
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="/StaticFiles/Img/Card.png" Stretch="Uniform" AlignmentX="Left"/>
+                            </TextBlock.Background>
+                        </TextBlock>
+                        <Button Content="{DynamicResource Order_Change}"
+                                Style="{StaticResource SmallButton}"
+                                Command="{Binding ChangeBankCard}"
+                                Width="100"
+                                HorizontalAlignment="Right">
+                        </Button>
+                    </DockPanel>
+                </Border>
+                <TextBlock Text="{DynamicResource Basket_Total}" Margin="5 10 0 10" FontSize="15" FontWeight="Bold"/>
+
+                <StackPanel Grid.Column="1" Width="200">
+                    <ListView ItemsSource="{Binding Products}" Background="Transparent" Width="200" BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Grid Width="185">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Product.Name}"/>
+                                        <TextBlock Text="{Binding Quantity, StringFormat={}{0}x}" Grid.Column="1" HorizontalAlignment="Right"/>
+                                        <TextBlock Text="{Binding Product.Price, StringFormat={}{0:C2}}" Grid.Column="2" TextAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBlock Text="{StaticResource Basket_SymbTotal}"/>
+                </StackPanel>
+
+                <custom:InputBox TextName="I have a promo code "/>
+                <StackPanel Orientation="Horizontal" Margin="5 0 0 0">
+                    <Button Style="{StaticResource ButtonBlack}"
+                            Command="{Binding PayCommand}"
+                            Content="{DynamicResource Order_Pay}"
+                            Width="100"/>
+                    <TextBlock Text="{Binding Total, StringFormat={}{0:C2}}" 
+                               VerticalAlignment="Center" Margin="15 0 0 0" 
+                               FontSize="18" FontWeight="Bold"/>
+                </StackPanel>   
+            </StackPanel>
+        </Grid>
+        </StackPanel>
+    </Border>
+</Window>

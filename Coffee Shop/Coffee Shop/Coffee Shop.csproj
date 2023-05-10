@@ -20,6 +20,8 @@
     <None Remove="StaticFiles\Img\bg.png" />
     <None Remove="StaticFiles\Img\CaffeMisto.png" />
     <None Remove="StaticFiles\Img\CaramelMacchiato.png" />
+    <None Remove="StaticFiles\Img\Card.png" />
+    <None Remove="StaticFiles\Img\ChangePassword.png" />
     <None Remove="StaticFiles\Img\ChestnutLatte.png" />
     <None Remove="StaticFiles\Img\ChocolateEspresso.png" />
     <None Remove="StaticFiles\Img\CinnamonLatte.png" />
@@ -27,8 +29,10 @@
     <None Remove="StaticFiles\Img\DragonDrink.png" />
     <None Remove="StaticFiles\Img\Exit.png" />
     <None Remove="StaticFiles\Img\Favicon.ico" />
+    <None Remove="StaticFiles\Img\instagram_logo.png" />
     <None Remove="StaticFiles\Img\key-icon.png" />
     <None Remove="StaticFiles\Img\KiwiStarfruit.png" />
+    <None Remove="StaticFiles\Img\Load.gif" />
     <None Remove="StaticFiles\Img\Logo.png" />
     <None Remove="StaticFiles\Img\LogoImg.png" />
     <None Remove="StaticFiles\Img\LogoText.png" />
@@ -43,15 +47,21 @@
     <None Remove="StaticFiles\Img\pointer.cur" />
     <None Remove="StaticFiles\Img\Products.png" />
     <None Remove="StaticFiles\Img\Profile.png" />
+    <None Remove="StaticFiles\Img\ProfileDefault.jpg" />
     <None Remove="StaticFiles\Img\Question.png" />
     <None Remove="StaticFiles\Img\Settings.png" />
     <None Remove="StaticFiles\Img\StarDrink.png" />
     <None Remove="StaticFiles\Img\StrawberryAcai.png" />
+    <None Remove="StaticFiles\Img\telegram_logo.png" />
     <None Remove="StaticFiles\Img\user-icon.png" />
     <None Remove="StaticFiles\Img\Users.png" />
     <None Remove="StaticFiles\Img\VanillaSweet.png" />
     <None Remove="StaticFiles\Img\VerandaBlend.png" />
+    <None Remove="StaticFiles\Img\vk_logo.png" />
     <None Remove="StaticFiles\Img\WhiteChocolate.png" />
+    <None Remove="StaticFiles\Videos\background.avi" />
+    <None Remove="StaticFiles\Videos\background.mp4" />
+    <None Remove="StaticFiles\Videos\background.wmv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +69,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="StaticFiles\Img\Card.png" />
+    <Resource Include="StaticFiles\Img\ChangePassword.png" />
+    <Resource Include="StaticFiles\Img\instagram_logo.png" />
     <Resource Include="StaticFiles\Img\news1.jpeg" />
   </ItemGroup>
 
@@ -72,7 +85,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.6.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\APIForEmail\APIForEmail.csproj" />
+    <ProjectReference Include="..\CustomControl\CustomControl.csproj" />
+    <ProjectReference Include="..\DataEncryption\DataEncryption.csproj" />
+    <ProjectReference Include="..\DataValidation\DataValidation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,15 +130,25 @@
     <Resource Include="StaticFiles\Img\pointer.cur" />
     <Resource Include="StaticFiles\Img\Products.png" />
     <Resource Include="StaticFiles\Img\Profile.png" />
+    <Resource Include="StaticFiles\Img\ProfileDefault.jpg" />
     <Resource Include="StaticFiles\Img\Question.png" />
     <Resource Include="StaticFiles\Img\Settings.png" />
     <Resource Include="StaticFiles\Img\StarDrink.png" />
     <Resource Include="StaticFiles\Img\StrawberryAcai.png" />
+    <Resource Include="StaticFiles\Img\telegram_logo.png" />
     <Resource Include="StaticFiles\Img\user-icon.png" />
     <Resource Include="StaticFiles\Img\Users.png" />
     <Resource Include="StaticFiles\Img\VanillaSweet.png" />
     <Resource Include="StaticFiles\Img\VerandaBlend.png" />
+    <Resource Include="StaticFiles\Img\vk_logo.png" />
     <Resource Include="StaticFiles\Img\WhiteChocolate.png" />
+    <Resource Include="StaticFiles\Videos\background.avi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="StaticFiles\Img\Load.gif" />
   </ItemGroup>
 
 </Project>

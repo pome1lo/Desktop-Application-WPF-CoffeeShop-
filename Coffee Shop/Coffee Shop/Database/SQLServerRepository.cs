@@ -1,4 +1,5 @@
 ﻿using Coffee_Shop.Models;
+using Coffee_Shop.Models.Entities;
 using CoffeeShop.Data.Models;
 using CoffeShop.Data.Models;
 using CoffeShop.Models;
@@ -24,32 +25,32 @@ namespace Coffee_Shop.Database
             db.SaveChanges();
         }
 
-        #region Person Methods
-        public IEnumerable<Person> GetPersonList()
+        #region User Methods
+        public IEnumerable<User> GetUserList()
         {
-            return db.Persons;
+            return db.Users;
         }
-        public Person? GetPerson(int id)
+        public User? GetUser(int id)
         {
-            return db.Persons.Find(id);
+            return db.Users.Find(id);
         }
-        public void CreatePerson(Person person)
+        public void CreateUser(User item)
         {
-            db.Persons.Add(person);
-        }
-
-        public void UpdatePerson(Person person)
-        {
-            db.Entry(person).State = EntityState.Modified;
+            db.Users.Add(item);
         }
 
-        public void DeletePerson(int id)
+        public void UpdateUser(User item)
         {
-            Person? person = db.Persons.Find(id);
+            db.Entry(item).State = EntityState.Modified;
+        }
 
-            if (person != null)
+        public void DeleteUser(int id)
+        {
+            User? user = db.Users.Find(id);
+
+            if (user != null)
             {
-                db.Persons.Remove(person);
+                db.Users.Remove(user);
             }
         }
 
@@ -134,6 +135,85 @@ namespace Coffee_Shop.Database
         }
 
         #endregion
+
+        #region Product From Basket
+
+        public IEnumerable<ProductFromBasket> GetProductFromBasketList()
+        {
+            return db.ProductsFromBasket;
+        }
+
+        public ProductFromBasket? GetProductFromBasket(int id)
+        {
+            return db.ProductsFromBasket.Find(id);
+        }
+
+        public void CreateProductFromBasket(ProductFromBasket item)
+        {
+            db.ProductsFromBasket.Add(item);
+        }
+
+        public void UpdateProductFromBasket(ProductFromBasket item)
+        {
+            db.Entry(item).State = EntityState.Modified;
+        }
+
+        public void DeleteProductFromBasket(int id)
+        {
+            ProductFromBasket? productFromBasket = db.ProductsFromBasket.Find(id);
+
+            if (productFromBasket != null)
+            {
+                db.ProductsFromBasket.Remove(productFromBasket);
+            }
+        }
+
+        #endregion
+
+        #region Bank Card
+
+        public IEnumerable<BankCard> GetBankCardList()
+        {
+            return db.BankCards;
+        }
+
+        public BankCard? GetBankCard(int id)
+        {
+            return db.BankCards.Find(id);
+        }
+
+        public void CreateBankCard(BankCard item)
+        {
+            db.BankCards.Add(item);
+        }
+
+        public void UpdateBankCard(BankCard item)
+        {
+            db.Entry(item).State = EntityState.Modified;
+        }
+
+
+        public void DeleteBankCard(int id)
+        {
+            BankCard? bankCard = db.BankCards.Find(id);
+
+            if (bankCard != null)
+            {
+                db.BankCards.Remove(bankCard);
+            }
+        }
+
+        #endregion
+
+        public ProductType GetProductType(string Name)
+        {
+            if (!db.ProductTypes.ToList().Any(x => x.Name == Name))
+            {
+                db.ProductTypes.Add(new ProductType() { Name = Name });
+                db.SaveChanges();
+            }
+            return db.ProductTypes.First(x => x.Name == Name);
+        }
 
         #region Dispose
 

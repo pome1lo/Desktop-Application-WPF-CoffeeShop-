@@ -1,9 +1,4 @@
-﻿using Coffee_Shop;
-using CoffeeShop.Data.Models;
-using CoffeShop.Data;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace CoffeeShop.Views
 {
@@ -20,6 +15,14 @@ namespace CoffeeShop.Views
         private void RollUp(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void logViewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

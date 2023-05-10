@@ -1,27 +1,72 @@
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.csproj.AssemblyReference.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.en-US.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.ru-RU.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\CommonStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Dark.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Light.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\CreateElementView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\ModalWindow.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\App.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_Content.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_MarkupCompile.cache
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_MarkupCompile.lref
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.exe
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll.config
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.deps.json
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.runtimeconfig.json
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Humanizer.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\MailKit.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\MimeKit.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Mono.TextTemplating.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Npgsql.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Json.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.pdb
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\App.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\MainStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\CreateElementView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\ModalWindow.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.g.resources
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.GeneratedMSBuildEditorConfig.editorconfig
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.AssemblyInfoInputs.cache
@@ -33,30 +78,159 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.pdb
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.genruntimeconfig.cache
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\ref\Coffee Shop.dll
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_Content.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Components\BindablePasswordBox.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\APIForEmail.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\APIForEmail.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Runtime.WindowsRuntime.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp3.0\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MapView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MapView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProfileView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProfileView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\DataEncryption.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\DataEncryption.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\BankCardView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\BankCardView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Components\BindablePasswordBox.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.ru-RU.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.en-US.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Dark.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Light.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\MainStyles.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll.config
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\CommonStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\DataValidation.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\DataValidation.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\CommonServiceLocator.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Extras.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Platform.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\debian-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\fedora-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\opensuse-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\osx\native\libuv.dylib
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\rhel-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-arm\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-x64\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-x86\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.exe
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll.config
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.deps.json
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.runtimeconfig.json
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Coffee Shop.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\CommonServiceLocator.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Humanizer.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\MailKit.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\MimeKit.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Mono.TextTemplating.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Extras.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Platform.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Npgsql.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\System.Runtime.WindowsRuntime.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\System.Text.Json.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\debian-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\fedora-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\opensuse-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\osx\native\libuv.dylib
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\rhel-x64\native\libuv.so
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-arm\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-x64\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win7-x86\native\libuv.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp3.0\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\APIForEmail.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\DataEncryption.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\DataValidation.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\APIForEmail.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\DataEncryption.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\bin\Debug\net6.0-windows\DataValidation.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.csproj.AssemblyReference.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.en-US.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Resources\Lang.ru-RU.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\CommonStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Dark.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Themes\Light.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\BankCardView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\CreateElementView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\ModalWindow.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MapView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProfileView.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\App.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_Content.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_MarkupCompile.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop_MarkupCompile.lref
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\App.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\MainStyles.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\BankCardView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\CreateElementView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\ModalWindow.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MapView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProfileView.baml
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.g.resources
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.GeneratedMSBuildEditorConfig.editorconfig
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.AssemblyInfoInputs.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.AssemblyInfo.cs
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.csproj.CoreCompileInputs.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.csproj.CopyComplete
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\refint\Coffee Shop.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.pdb
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.genruntimeconfig.cache
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\ref\Coffee Shop.dll

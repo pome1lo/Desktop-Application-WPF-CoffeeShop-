@@ -1,14 +1,49 @@
-﻿<Page x:Class="Coffee_Shop.Views.Pages.AboutView"
+﻿<Page x:Name="page" x:Class="Coffee_Shop.Views.Pages.AboutView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coffee_Shop.Views.Pages"
+      xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="370" d:DesignWidth="880"
-      Title="AboutView">
-    <ScrollViewer VerticalScrollBarVisibility="Hidden" Style="{StaticResource ChangeThemeScrollViewer}">
-        <StackPanel Width="500" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+      Title="AboutView"
+      Style="{StaticResource PageMarginTop}" RenderTransformOrigin="0.5,0.5">
+    <Page.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    <Page.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </Page.RenderTransform>
+    <ScrollViewer Height="800" VerticalScrollBarVisibility="Hidden">
+        <StackPanel>
             <TextBlock Style="{StaticResource TextBlockAbout}" Text="{DynamicResource About_Title}" FontSize="20" FontWeight="Bold"/>
             <TextBlock Style="{StaticResource TextBlockAbout}" Text="{DynamicResource About_SubtitleHeritage}" FontSize="15" FontWeight="DemiBold"/>
             <TextBlock Style="{StaticResource TextBlockAbout}" Text="{DynamicResource About_TextHeritage1}"/>

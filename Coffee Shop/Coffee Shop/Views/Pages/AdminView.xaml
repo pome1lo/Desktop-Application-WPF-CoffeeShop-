@@ -4,71 +4,459 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coffee_Shop.Views.Pages"
+      xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+      xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminView">
+      Title="AdminView" Name="page"
+      Style="{StaticResource PageMarginTop}">
+    <Page.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioUsers" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioProducts" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioNews" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.7000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.9000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioOther" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.1000000" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioUsers" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioProducts" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioNews" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.7000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.9000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="radioOther" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="50">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:01.1000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
-    <Border>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <Button Command="{Binding ShowUserDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/StaticFiles/Img/Users.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="User database"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/Products.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Product database"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/News.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="News database"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/AddUser.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new user"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/AddProduct.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new product"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/AddNews.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Add new news"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding ShowProductDataBaseCommand}"
-                            Style="{StaticResource AdminMenuButton}">
-                        <DockPanel>
-                            <Image Source="/StaticFiles/Img/Other.png" Width="25" Margin="10 0"/>
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="Other parameters"/>
-                        </DockPanel>
-                    </Button>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    <Page.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </Page.RenderTransform>
+    <Page.DataContext>
+        <vm:AdminViewModel/>
+    </Page.DataContext>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="20">
+            <StackPanel.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </StackPanel.Resources>
+            <StackPanel Orientation="Vertical">
+
+                <custom:AdminButton ImgSource="/StaticFiles/Img/Users.png"
+                                    x:Name="radioUsers"
+                                    Text="{DynamicResource Admin_ButUserDatabase}" RenderTransformOrigin="0.5,0.5">
+                    <custom:AdminButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </custom:AdminButton.RenderTransform>
+                </custom:AdminButton>
+                <custom:AdminButton ImgSource="/StaticFiles/Img/Products.png"
+                                    x:Name="radioProducts"
+                                    Text="{DynamicResource Admin_ButProductDatabase}" RenderTransformOrigin="0.5,0.5">
+                    <custom:AdminButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </custom:AdminButton.RenderTransform>
+                </custom:AdminButton>
+                <custom:AdminButton ImgSource="/StaticFiles/Img/News.png"
+                                    x:Name="radioNews"
+                                    Text="{DynamicResource Admin_ButNewsDatabase}" RenderTransformOrigin="0.5,0.5">
+                    <custom:AdminButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </custom:AdminButton.RenderTransform>
+                </custom:AdminButton>
+
+                <Button x:Name="button" Command="{Binding ShowAddNewUserCommand}"
+                            Style="{StaticResource AdminMenuButton}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <DockPanel>
+                        <Image Source="/StaticFiles/Img/AddUser.png" Width="25" Margin="10 0"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{DynamicResource Admin_ButAddNewUser}"/>
+                    </DockPanel>
+                </Button>
+                <Button x:Name="button1" Command="{Binding ShowAddNewProductCommand}"
+                            Style="{StaticResource AdminMenuButton}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <DockPanel>
+                        <Image Source="/StaticFiles/Img/AddProduct.png" Width="25" Margin="10 0"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{DynamicResource Admin_ButAddNewProduct}"/>
+                    </DockPanel>
+                </Button>
+                <Button x:Name="button2" Command="{Binding ShowAddNewNewsCommand}"
+                            Style="{StaticResource AdminMenuButton}" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <DockPanel>
+                        <Image Source="/StaticFiles/Img/AddNews.png" Width="25" Margin="10 0"/>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{DynamicResource Admin_ButAddNewNews}"/>
+                    </DockPanel>
+                </Button>
+
+                <custom:AdminButton ImgSource="/StaticFiles/Img/Other.png"
+                                    x:Name="radioOther"
+                                    Text="{DynamicResource Admin_ButOther}" RenderTransformOrigin="0.5,0.5">
+                    <custom:AdminButton.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </custom:AdminButton.RenderTransform>
+                </custom:AdminButton>
             </StackPanel>
-            <DockPanel Name="PanelProductDataBase" Visibility="Collapsed" Grid.Column="1" HorizontalAlignment="Center">
-                <Button Command="{Binding DeleteProductCommand}" Content="Delete Product" DockPanel.Dock="Top"/>
-                <DataGrid ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItemForProductsDB}" Width="auto" DockPanel.Dock="Bottom"/>
-            </DockPanel>
-        </Grid>
-    </Border>
+
+            <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenUsers}">
+                <Button Command="{Binding DeleteUserCommand}" 
+                        Content="{DynamicResource Admin_DeleteUser}"
+                        Style="{StaticResource ButtonBlack}"
+                        Width="200"/>
+                <DataGrid Background="Transparent" Foreground="White" 
+                          ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedItemForUsersDB}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenProducts}">
+                <Button Command="{Binding DeleteProductCommand}"
+                        Content="{DynamicResource Admin_DeleteProduct}" 
+                        Style="{StaticResource ButtonBlack}"
+                        Width="200"/>
+                <DataGrid Background="Transparent" Foreground="White" 
+                          ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" 
+                          SelectedItem="{Binding SelectedItemForProductsDB}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenNews}">
+                <Button Command="{Binding DeleteNewsCommand}"
+                        Content="{DynamicResource Admin_DeleteNews}"
+                        Style="{StaticResource ButtonBlack}"
+                        Width="200"/>
+                <DataGrid  Background="Transparent"
+                           ItemsSource="{Binding News, UpdateSourceTrigger=PropertyChanged}" 
+                           SelectedItem="{Binding SelectedItemForNewsDB}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Foreground" Value="White" />
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Margin="20 0 0 0" Style="{StaticResource Visible/HidenOther}">
+
+                <!--<RadioButton Content=".en-US"/>
+                <RadioButton Content=".ru-RU"/>-->
+
+
+                <!--<RadioButton Content="Dark"/>
+                <RadioButton Content="Light"/>-->
+
+                <TextBlock Text="{DynamicResource Admin_TextLanguage}"
+                           Style="{StaticResource TextBlockAbout}"
+                           HorizontalAlignment="Left"/>
+
+                <ComboBox SelectedItem="{Binding Language, UpdateSourceTrigger=PropertyChanged}"
+                          Style="{DynamicResource MaterialDesignComboBox}"
+                          Background="Transparent">
+                    <ComboBoxItem Content=".en-US" Background="Transparent"/>
+                    <ComboBoxItem Content=".ru-RU" Background="Transparent"/>
+                </ComboBox>
+
+                <TextBlock Text="{DynamicResource Admin_TextTheme}" 
+                           Style="{StaticResource TextBlockAbout}"
+                           HorizontalAlignment="Left"/>
+                <ComboBox SelectedItem="{Binding Theme, UpdateSourceTrigger=PropertyChanged}"
+                          Background="Transparent">
+                    <ComboBoxItem Content="Dark"/>
+                    <ComboBoxItem Content="Light"/>
+                </ComboBox>
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Page>

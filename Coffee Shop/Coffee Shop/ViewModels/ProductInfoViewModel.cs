@@ -1,5 +1,6 @@
 ﻿using Coffee_Shop.Models;
 using Coffee_Shop.Models.Entities;
+using CoffeeShop.Commands;
 using CoffeShop.Data.Models;
 using CoffeShop.Models;
 using System;
@@ -9,24 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Media3D.Converters;
 
 namespace Coffee_Shop.ViewModels
 {
     internal class ProductInfoViewModel : ViewModelBase
     {
-        private ProductFromBasket product { get; set; }
-        public ProductFromBasket Product
-        {
-            get
-            {
-                return product;
-            }
-            set
-            {
-                product = value;
-                OnPropertyChanged(nameof(Product));
-            }
-        }
 
         /*
          * короче передаем сюда продукт и на его основе показываем все данные
@@ -35,23 +25,43 @@ namespace Coffee_Shop.ViewModels
          * при плюсике кнопку делать активной. сделать всплывающую кнопку добавления в коризну типа все ок добавилось лайк
         */
 
-        public ProductInfoViewModel(Product product)
+        #region Constructor
+
+        public ProductInfoViewModel(Product? product)
         {
             this.Product = new ProductFromBasket()
             {
                 Product = product,
             };
-            DescriptionList = new ObservableCollection<ItemDetailedProductDescription>(ItemDetailedProductDescription.GetItemDetailedProductDescription(product));
+            DescriptionList = new List<ItemDetailedProductDescription>(
+                ItemDetailedProductDescription.GetItemDetailedProductDescription(product));
         }
 
-        private ObservableCollection<ItemDetailedProductDescription>? descriptionList { get; set; }
+        #endregion
 
-        public ObservableCollection<ItemDetailedProductDescription>? DescriptionList
+        #region Fields
+
+        private ProductFromBasket? product;
+        private DelegateCommand? addToBasketCommand;
+        private List<ItemDetailedProductDescription>? descriptionList;
+
+        #endregion
+
+        #region Property
+
+        public ProductFromBasket? Product
         {
-            get
+            get => product;
+            set
             {
-                return descriptionList;
+                product = value;
+                OnPropertyChanged(nameof(Product));
             }
+        }
+
+        public List<ItemDetailedProductDescription>? DescriptionList
+        {
+            get => descriptionList;
             set
             {
                 descriptionList = value;
@@ -59,11 +69,40 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-        /*
-         
-        * выгести класс тест в Models.Entity пееремименовать 
-         
-         */
+        #endregion
 
+        #region Command
+
+        #region Add to basket 
+
+        public ICommand AddToBasketCommand
+        {
+            get
+            {
+                if (addToBasketCommand == null)
+                {
+                    addToBasketCommand = new DelegateCommand(() => 
+                    {
+                        if (CurrentUser.ProductsFromBasket.Any(x => x.Product == Product?.Product))
+                        {
+                            CurrentUser.ProductsFromBasket.First(x => x.Product == product?.Product).Quantity += 1;
+                            //product.Id = Db.GetProductFromBasketList().First(x => x.Product == Product.Product).Id;
+                            //(Db.GetProductFromBasket(product.Id) ?? new ProductFromBasket()).Quantity += 1;
+                        }
+                        else
+                        {
+                            CurrentUser.ProductsFromBasket.Add(Product);
+                            //Db.CreateProductFromBasket(Product);
+                        }
+                        Db.Save();
+                    });
+                }
+                return addToBasketCommand;
+            }
+        }
+
+        #endregion
+
+        #endregion
     }
 }

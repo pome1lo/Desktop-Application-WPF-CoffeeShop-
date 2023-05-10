@@ -2,24 +2,119 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
-    <!-- < Название окна .xaml > -->
-    <v:Double x:Key="m_Number">20.15</v:Double>
-        <!--
-        ** СНАЧАЛА ВВЕСТИ ВСЕ ДАННЫЕ ДЛЯ ЭЛЕМЕНТОВ В Lang.xaml
-        ** ПОСЛЕ СКОПИРОВАТЬ ЕГО И ПОМЕНЯТЬ НА ТЕКУЩЕЕ НАЗВАНИЕ КУЛЬУТРЫ
-        ** CultureName ( ru-RU )
+    <!-- HomeView.xaml -->
+    <v:String x:Key="Home_GetInsoired">GET INSPIRED</v:String>
+    <v:String x:Key="Home_SweetWorld">Explore the Sweet World of Syrups</v:String>
+    <v:String x:Key="Home_Quote">
+        Homemade syrups bring more than a touch of sweetness
+        to your coffee: They're an easy way to add flavor.
+    </v:String>
+    <v:String x:Key="Home_Button">Try Our Recipes</v:String>
+    <v:String x:Key="Home_News">News</v:String>
     
-        ** Для того чтобы использовать пишем у тега например:
-        
-        <Label Content="{DynamicResource m_Title}"/>
-    
-    
-        // https://habr.com/ru/post/256193/
-    -->
-    
+    <!-- ProfileView.xaml -->
+    <v:String x:Key="Profile_EditData">Edit profile data</v:String>
+    <v:String x:Key="Profile_Save">Save changes</v:String>
+    <v:String x:Key="Profile_VK">Vkontakte</v:String>
+    <v:String x:Key="Profile_Inst">Instagram</v:String>
+    <v:String x:Key="Profile_Telegram">Telegram</v:String>
+    <v:String x:Key="Profile_Female">Female</v:String>
+    <v:String x:Key="Profile_Male">Male</v:String>
+    <v:String x:Key="Profile_ChangePassword">Change Password</v:String>
+    <v:String x:Key="Profile_Notifications">Notifications</v:String>
+    <v:String x:Key="Profile_Profile">Profile</v:String>
+    <v:String x:Key="Profile_NewPassword">New password</v:String>
+    <v:String x:Key="Profile_PasswordConfirm">Password confirmation</v:String>
+    <v:String x:Key="Profile_ChangingThePassword">Changing the password</v:String>
+    <v:String x:Key="Profile_CurrentPassword">Current password</v:String>
+    <v:String x:Key="Profile_Recommendations">Recommendations</v:String>
+    <v:String x:Key="Profile_PasswordExample">
+        The password must contain at least 5 characters (case sensitive).
+        Password example: @sr51(SAp*
+    </v:String>
+    <v:String x:Key="Profile_RecommendationsText">
+        If the password contains capital letters, they should
+        be entered the same way every time you log in.
+    </v:String>
 
-    <!-- .xaml -->
+    <!-- OrderView.xaml -->
+    <v:String x:Key="Order_Conditions">Terms of delivery</v:String>
+    <v:String x:Key="Order_Flat">Flat</v:String>
+    <v:String x:Key="Order_Intercom">Intercom</v:String>
+    <v:String x:Key="Order_Entrance">Entrance</v:String>
+    <v:String x:Key="Order_Floor">Floor</v:String>
+    <v:String x:Key="Order_Comment">Comment</v:String>
+    <v:String x:Key="Order_DeliveryTime">Delivery time</v:String>
+    <v:String x:Key="Order_DelCurTime">Today (~ 30-40 min.)</v:String>
+    <v:String x:Key="Order_Payment">Payment method</v:String>
+    <v:String x:Key="Order_Change">To change</v:String>
+    <v:String x:Key="Order_Pay">To pay</v:String>
+
+    <!-- ProductInfoView.xaml -->
+    <v:String x:Key="ProdInfo_Allergens">Allergens</v:String>
+    <v:String x:Key="ProdInfo_FirstTextAllergens">
+        We cannot guarantee that any unpackaged products served in our stores are allergen-free because we use shared equipment 
+        to store, prepare, and serve them. Customers with allergies can find ingredient information for products on the labels 
+        of our packaged products or online at Coffeeshop.com/menu.
+    </v:String>
+    <v:String x:Key="ProdInfo_SecondTextAllergens">
+        * 2,000 calories a day is used for general nutrition advice, but calorie needs vary.
+    </v:String>
+    <v:String x:Key="ProdInfo_Components">Components</v:String>
+    <v:String x:Key="ProdInfo_Nutrition">Nutrition</v:String>
+    <v:String x:Key="ProdInfo_available">Not available for this item</v:String>
+    <v:String x:Key="ProdInfo_TextNutrition">
+        Nutrition information is calculated based on our standard recipes. Only changing 
+        drink size will update this information. Other customizations will not.
+    </v:String>
+    <v:String x:Key="ProdInfo_AddToCart">Add to Cart</v:String>
+    <v:String x:Key="ProdInfo_AddToFavorites">Add to Favorites</v:String>
+    
+    <!-- MenuView.xaml -->
+    <v:String x:Key="Menu_PriceRange">By price range:</v:String>
+    <v:String x:Key="Menu_Calories">By calories:</v:String>
+    <v:String x:Key="Menu_ProductType">By product type:</v:String>
+    <v:String x:Key="Menu_Find">Find</v:String>
+    <v:String x:Key="Menu_From">From</v:String>
+    <v:String x:Key="Menu_To">To</v:String>
+    <v:String x:Key="Menu_Drinks">Drinks</v:String>
+    <v:String x:Key="Menu_Coffee">Coffee</v:String>
+    <v:String x:Key="Menu_Meal">Meal</v:String>
+    <v:String x:Key="Menu_Reset">Reset</v:String>
+    
+    <!-- BasketView.xaml -->
+    <v:String x:Key="Basket_Price">Price</v:String>
+    <v:String x:Key="Basket_Quanity">Quanity</v:String>
+    <v:String x:Key="Basket_Order">Your order:</v:String>
+    <v:String x:Key="Basket_Total">Total:</v:String>
+    <v:String x:Key="Basket_CardNumber">Card number:</v:String>
+    <v:String x:Key="Basket_CardHolder">Holder name:</v:String>
+    <v:String x:Key="Basket_CardCVV">CVV code:</v:String>
+    <v:String x:Key="Basket_CardPeriod">Validity period:</v:String>
+    <v:String x:Key="Basket_SymbTotal">******************************************</v:String>
+    <v:String x:Key="Basket_Checkout">Go to the checkout</v:String>
+
+
     <!-- AdminView.xaml -->
+    <v:String x:Key="Admin_NewNewsTitle">Title</v:String>
+    <v:String x:Key="Admin_NewNewsDate">Date</v:String>
+    <v:String x:Key="Admin_NewNewsContent">Content</v:String>
+    <v:String x:Key="Admin_NewNewsImg">Image</v:String>
+    <v:String x:Key="Admin_newsletter">Whether to send a newsletter</v:String>
+    
+    
+    <v:String x:Key="Admin_ButUserDatabase">User database</v:String>
+    <v:String x:Key="Admin_ButProductDatabase">Product database</v:String>
+    <v:String x:Key="Admin_ButNewsDatabase">News database</v:String>
+    <v:String x:Key="Admin_ButAddNewUser">Add new user</v:String>
+    <v:String x:Key="Admin_ButAddNewProduct">Add new product</v:String>
+    <v:String x:Key="Admin_ButAddNewNews">Add new news</v:String>
+    <v:String x:Key="Admin_ButOther">Other parameters</v:String>
+
+    <v:String x:Key="Admin_DeleteUser">Delete User</v:String>
+    <v:String x:Key="Admin_DeleteNews">Delete News</v:String>
+    <v:String x:Key="Admin_DeleteProduct">Delete Product</v:String>
+
     <v:String x:Key="Admin_TextLanguage">Сhange the application language</v:String>
     <v:String x:Key="Admin_NewProduct">Add a new product</v:String>
     <v:String x:Key="Admin_ProdName">Name</v:String>
@@ -41,11 +136,16 @@
     <v:String x:Key="Log_UserName">User Name</v:String>
     <v:String x:Key="Log_Password">Password</v:String>
     <v:String x:Key="Log_Clear">Clear</v:String>
-    <v:String x:Key="Log_SignIn">Sign in</v:String>
+    <v:String x:Key="Log_LogIn">LOG IN</v:String>
     <v:String x:Key="Log_ConfirmPassword">Confirm Password</v:String>
     <v:String x:Key="Log_Join">Join</v:String>
-    
-    
+    <v:String x:Key="Log_Desc">Let's warm up your morning! The best stories are told over a cup of coffee...</v:String>
+    <v:String x:Key="Log_FargotPassword">Forgot Password?</v:String>
+    <v:String x:Key="Log_Reset">Join</v:String>
+    <v:String x:Key="Log_Mail">Email</v:String>
+    <v:String x:Key="Log_Sign">Sign in</v:String>
+
+
     <!-- About.xaml -->
     <v:String x:Key="About_Title">Our Company</v:String>
     <v:String x:Key="About_SubtitleHeritage">Our Heritage</v:String>

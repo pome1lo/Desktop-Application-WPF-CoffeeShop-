@@ -10,24 +10,36 @@ namespace Coffee_Shop.ViewModels
 {
     internal class HomeViewModel : ViewModelBase
     {
+		#region Constructor
+
+		public HomeViewModel()
+		{
+			News = Db.GetNewsList().ToList();
+        }
+
+		#endregion
+
+		#region Fields
+
 		private List<News>? news;
+
+		#endregion
+
+		#region Properties
 
 		public List<News>? News
 		{
-			get 
-			{ 
-				return news; 
+			get
+			{
+				return news;
 			}
-			set 
-			{ 
+			set
+			{
 				news = value;
 				OnPropertyChanged(nameof(news));
 			}
 		}
 
-		public HomeViewModel()
-		{
-			News = db.GetNewsList().ToList();
-        }
+		#endregion
 	}
 }

@@ -1,146 +1,187 @@
-﻿using Coffee_Shop.Database;
-using Coffee_Shop.Views.Pages;
-using CoffeeShop.Commands;
+﻿using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
 using CoffeeShop.Views;
-using CoffeShop.Data;
-using CoffeShop.Models;
-using Microsoft.EntityFrameworkCore.Internal;
-using System;
+using DataEncryption;
+using DataValidation;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
+using static DataValidation.Validator;
 
 namespace Coffee_Shop.ViewModels
 {
     internal class LogIOViewModel : ViewModelBase
     {
-        public Person person { get; set; } = new();
-        private static List<Person> persons { get; set; } = new();
-        private string passwordConfirmation { get; set; } = string.Empty;
+        #region Constructors
 
-
-        private LogIOView? IOView;
-
-        public LogIOViewModel(ref LogIOView logIOView)
+        public LogIOViewModel()
         {
-            this.IOView = logIOView;
-
-            persons = InitializePersonsCollection();
+            this.users = Db.GetUserList().ToList();
+            this.validator = new Validator(this);
         }
 
-        private static List<Person> InitializePersonsCollection()
+        #endregion
+
+        #region Methods
+
+        private void GoToTheMainPage(object objView)
         {
-            var temp = new List<Person>();
-            db?.GetPersonList().ToList().ForEach(x => temp.Add(x));
-            return temp;
+            ViewModelBase.CurrentUser = users.Find(x => x.UserName == user.UserName) ?? user;
+            ShowMainWindow();
+
+            (objView as LogIOView)?.Close();
         }
+
+        #endregion
+
+        #region Fields
+
+        private List<User> users { get; } = new();
+        private User user = new();
+        private Validator validator;
+        private string errorPasswordMessage = string.Empty;
+        private string errorUserNameMessage = string.Empty;
+        private string errorEmailMessage = string.Empty;
+
+        #endregion
 
         #region Property
-        public string UserName
-        {
-            get
-            {
-                return person.UserName;
-            }
-            set
-            {
-                person.UserName = value;
-                OnPropertyChanged(nameof(UserName));
-            }
-        }
 
         public string Password
         {
             get
             {
-                return person.Password;
+                return user.Password;
             }
             set
             {
-                person.Password = value;
+                user.Password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
 
-        public string PasswordConfirmation
+        public string UserName
         {
             get
             {
-                return passwordConfirmation;
+                return user.UserName;
             }
             set
             {
-                passwordConfirmation = value;
-                OnPropertyChanged(nameof(PasswordConfirmation));
+                user.UserName = value;
+                OnPropertyChanged(nameof(UserName));
             }
-        } 
+        }
+
+        public string Email
+        {
+            get
+            {
+                return user.Email;
+            }
+            set
+            {
+                user.Email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        #region Errors
+
+        public string ErrorEmailMessage
+        {
+            get
+            {
+                return errorEmailMessage;
+            }
+            set
+            {
+                errorEmailMessage = value;
+                OnPropertyChanged(nameof(ErrorEmailMessage));
+            }
+        }
+
+        public string ErrorPasswordMessage
+        {
+            get
+            {
+                return errorPasswordMessage;
+            }
+            set
+            {
+                errorPasswordMessage = value;
+                OnPropertyChanged(nameof(ErrorPasswordMessage));
+            }
+        }
+
+        public string ErrorUserNameMessage
+        {
+            get
+            {
+                return errorUserNameMessage;
+            }
+            set
+            {
+                errorUserNameMessage = value;
+                OnPropertyChanged(nameof(ErrorUserNameMessage));
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
 
-        #region Sign In
+        #region Log in
 
-        private DelegateCommand? signInCommand;
+        private DelegateCommand<object>? logInCommand;
 
-        public ICommand SignInCommand
+        public ICommand LogInCommand
         {
             get
             {
-                if (signInCommand == null)
+                if (logInCommand == null)
                 {
-                    signInCommand = new DelegateCommand(SignIn);
+                    logInCommand = new DelegateCommand<object>(LogIn);
                 }
-                return signInCommand;
+                return logInCommand;
             }
         }
 
-        private void SignIn()
+        private void LogIn(object objView)
         {
-            using (ApplicationContext db = ApplicationContext.GetContext())
+            if (IsTheUserDataCorrect())
             {
-                if (persons.Any(x => x.UserName == person.UserName && x.Password == person.Password))
+                if (users.Any(x => x.UserName == user.UserName && CryptographerBuilder.Decrypt(x.Password) == user.Password))
                 {
-                    person = persons.First(x => x.UserName == person.UserName);
-
-                    InitializingTheUserType();
-
-                    App.ConnectionTheMainView(UserType);
-                    this.IOView?.Close();
+                    GoToTheMainPage(objView);
                 }
                 else
                 {
-                    MessageBox.Show("Данные введены неверно.");
+                    SendToModalWindow("There is no such user.");
                 }
             }
         }
-        private string UserType = string.Empty; // стрем переделать
 
-        private void InitializingTheUserType()
+        private bool IsTheUserDataCorrect()
         {
-            if(person.IsAdmin)
-            {
-                UserType = "Admin";
-            }    
-            else
-            {
-                UserType = "User";
-            }
+            return validator.Verify(ValidationBased.Password, Password, nameof(ErrorPasswordMessage)) &
+                validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserNameMessage));
+            
+            //return validator.CheckingForPasswordLength(Password, nameof(ErrorPasswordMessage)) &
+            //    validator.ValidationOfPlainText(UserName, nameof(ErrorUserNameMessage));
         }
-
-
+        private bool IsTheNewUserDataCorrect()
+        {
+            return IsTheUserDataCorrect() & validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmailMessage)); //validator.ValidationOfEmail(Email, nameof(ErrorEmailMessage));
+        }
 
         #endregion
 
         #region Join
 
-        private DelegateCommand? joinCommand;
+        private DelegateCommand<object>? joinCommand;
 
         public ICommand JoinCommand
         {
@@ -148,24 +189,28 @@ namespace Coffee_Shop.ViewModels
             {
                 if (joinCommand == null)
                 {
-                    joinCommand = new DelegateCommand(Join);
+                    joinCommand = new DelegateCommand<object>(Join);
                 }
                 return joinCommand;
             }
         }
 
-        private void Join()
+        private void Join(object objView)
         {
-            if (person.Password == PasswordConfirmation)
+            if (IsTheNewUserDataCorrect())
             {
-                person.Id = db.GetPersonList().Count() + 1;
-                db.CreatePerson(person);
-                db.Save();
-                //person.Id = db.Persons.Count() + 1;
-                //db.Persons.AddRange(person);
-                //db.SaveChanges();
-                
-                new MainView().Show();
+                if (!users.Any(x => x.UserName == user.UserName && x.Password == user.Password))
+                {
+                    user.Password = CryptographerBuilder.Encrypt(user.Password);
+
+                    Db.CreateUser(user);
+                    Db.Save();
+                    GoToTheMainPage(objView);
+                }
+                else
+                {
+                    SendToModalWindow("A user with this name already exists.");
+                }
             }
         }
 
@@ -193,34 +238,6 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
-
-        // добавить
-        #region Clear
-
-        private DelegateCommand? clearCommand;
-
-        public ICommand ClearCommand
-        {
-            get
-            {
-                if (clearCommand == null)
-                {
-                    clearCommand = new DelegateCommand(Clear);
-                }
-                return clearCommand;
-            }
-        }
-
-        private void Clear()
-        {
-            person.Id = 0;
-            person.UserName = string.Empty;
-            person.Password = string.Empty;
-            passwordConfirmation = string.Empty;
-        }
-
-
-        #endregion// 
 
         #endregion
     }

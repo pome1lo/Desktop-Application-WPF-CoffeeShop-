@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\
 Coffee_Shop
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\App.xaml
-15-176083521
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\App.xaml
+20634980835
 1-1290373873
-44-485523198
-208-1918525143
-Components\BindablePasswordBox.xaml;StaticFiles\Resources\Lang.en-US.xaml;StaticFiles\Resources\Lang.ru-RU.xaml;StaticFiles\Styles\CommonStyles.xaml;StaticFiles\Styles\MainStyles.xaml;StaticFiles\Themes\Dark.xaml;StaticFiles\Themes\Light.xaml;Views\LogIOView.xaml;Views\MainView.xaml;Views\Pages\AboutView.xaml;Views\Pages\AdminView.xaml;Views\Pages\BasketView.xaml;Views\Pages\HomeView.xaml;Views\Pages\MenuView.xaml;Views\Pages\ProductInfoView.xaml;
-
-False
+53-1488130479
+2281184211534
+StaticFiles\Resources\Lang.en-US.xaml;StaticFiles\Resources\Lang.ru-RU.xaml;StaticFiles\Styles\CommonStyles.xaml;StaticFiles\Styles\MainStyles.xaml;StaticFiles\Themes\Dark.xaml;StaticFiles\Themes\Light.xaml;Views\BankCardView.xaml;Views\CreateElementView.xaml;Views\LogIOView.xaml;Views\MainView.xaml;Views\ModalWindow.xaml;Views\OrderView.xaml;Views\Pages\AboutView.xaml;Views\Pages\AdminView.xaml;Views\Pages\BasketView.xaml;Views\Pages\HomeView.xaml;Views\Pages\MapView.xaml;Views\Pages\MenuView.xaml;Views\Pages\ProductInfoView.xaml;Views\Pages\ProfileView.xaml;
+staticfiles\img\load.gif
+True
 

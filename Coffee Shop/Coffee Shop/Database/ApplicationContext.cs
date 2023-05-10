@@ -4,23 +4,20 @@ using CoffeeShop.Data.Models;
 using CoffeShop.Data.Models;
 using CoffeShop.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Coffee_Shop.Database
 {
     internal class ApplicationContext : DbContext
     {
-        public DbSet<ProductFromBasket> ProductFromBasket { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<News> News { get; set; }
-        public DbSet<Description> Descriptions { get; set; }
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<BankCard> BankCards { get; set; } = null!;
+        public DbSet<ProductFromBasket> ProductsFromBasket { get; set; } = null!;
+        public DbSet<Product> Products { get; set; } = null!;
+        public DbSet<News> News { get; set; } = null!;
+        public DbSet<Description> Descriptions { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<SocialNetworks> SocialNetworks { get; set; } = null!;
+        public DbSet<ProductType> ProductTypes { get; set; } = null!;
 
         private static string ConnectionString { get; set; } = string.Empty;
         private static IRepository? database { get; set; }
@@ -68,7 +65,8 @@ namespace Coffee_Shop.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(ConnectionString);
+            //optionsBuilder.UseNpgsql(ConnectionString);
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=COFFEE_SHOP;Username=postgres;Password=@2o!&69");
         }
     }
 }

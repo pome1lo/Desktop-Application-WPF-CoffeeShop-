@@ -17,7 +17,7 @@ namespace Coffee_Shop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
+                .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -70,7 +70,7 @@ namespace Coffee_Shop.Migrations
                     b.Property<int>("Calories")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("DescriptionId")
+                    b.Property<int>("DescriptionId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Img")
@@ -84,20 +84,32 @@ namespace Coffee_Shop.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DescriptionId");
 
+                    b.HasIndex("ProductTypeId");
+
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CoffeeShop.Data.Models.Person", b =>
+            modelBuilder.Entity("CoffeeShop.Data.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BankCardId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
@@ -106,13 +118,70 @@ namespace Coffee_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SocialNetworksId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.HasIndex("BankCardId");
+
+                    b.HasIndex("SocialNetworksId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Coffee_Shop.Models.BankCard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardPeriod")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("HolderName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BankCards");
+                });
+
+            modelBuilder.Entity("Coffee_Shop.Models.Entities.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("Coffee_Shop.Models.News", b =>
@@ -132,7 +201,7 @@ namespace Coffee_Shop.Migrations
                     b.Property<string>("Img")
                         .HasColumnType("text");
 
-                    b.Property<string>("Ttile")
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -157,20 +226,79 @@ namespace Coffee_Shop.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFromBasket");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductsFromBasket");
+                });
+
+            modelBuilder.Entity("Coffee_Shop.Models.SocialNetworks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Instagram")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telegram")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Vkontakte")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialNetworks");
                 });
 
             modelBuilder.Entity("CoffeShop.Models.Product", b =>
                 {
                     b.HasOne("CoffeShop.Data.Models.Description", "Description")
                         .WithMany()
-                        .HasForeignKey("DescriptionId");
+                        .HasForeignKey("DescriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Coffee_Shop.Models.Entities.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Description");
+
+                    b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("CoffeeShop.Data.Models.User", b =>
+                {
+                    b.HasOne("Coffee_Shop.Models.BankCard", "BankCard")
+                        .WithMany()
+                        .HasForeignKey("BankCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Coffee_Shop.Models.SocialNetworks", "SocialNetworks")
+                        .WithMany()
+                        .HasForeignKey("SocialNetworksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BankCard");
+
+                    b.Navigation("SocialNetworks");
                 });
 
             modelBuilder.Entity("Coffee_Shop.Models.ProductFromBasket", b =>
@@ -179,7 +307,16 @@ namespace Coffee_Shop.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId");
 
+                    b.HasOne("CoffeeShop.Data.Models.User", null)
+                        .WithMany("ProductsFromBasket")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("CoffeeShop.Data.Models.User", b =>
+                {
+                    b.Navigation("ProductsFromBasket");
                 });
 #pragma warning restore 612, 618
         }

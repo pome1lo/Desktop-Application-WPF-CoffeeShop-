@@ -347,7 +347,7 @@ namespace CoffeeShop.Commands
                 for (int i = handlers.Count - 1; i >= 0; i--)
                 {
                     WeakReference reference = handlers[i];
-                    EventHandler handler = reference.Target as EventHandler;
+                    EventHandler? handler = reference.Target as EventHandler;
                     if (handler == null)
                     {
                         // Clean up old handlers that have been collected
@@ -375,7 +375,7 @@ namespace CoffeeShop.Commands
             {
                 foreach (WeakReference handlerRef in handlers)
                 {
-                    EventHandler handler = handlerRef.Target as EventHandler;
+                    EventHandler? handler = handlerRef.Target as EventHandler;
                     if (handler != null)
                     {
                         CommandManager.RequerySuggested += handler;
@@ -390,7 +390,7 @@ namespace CoffeeShop.Commands
             {
                 foreach (WeakReference handlerRef in handlers)
                 {
-                    EventHandler handler = handlerRef.Target as EventHandler;
+                    EventHandler? handler = handlerRef.Target as EventHandler;
                     if (handler != null)
                     {
                         CommandManager.RequerySuggested -= handler;
@@ -421,7 +421,7 @@ namespace CoffeeShop.Commands
                 for (int i = handlers.Count - 1; i >= 0; i--)
                 {
                     WeakReference reference = handlers[i];
-                    EventHandler existingHandler = reference.Target as EventHandler;
+                    EventHandler? existingHandler = reference.Target as EventHandler;
                     if ((existingHandler == null) || (existingHandler == handler))
                     {
                         // Clean up old handlers that have been collected

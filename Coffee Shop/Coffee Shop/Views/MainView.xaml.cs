@@ -28,5 +28,13 @@ namespace Coffee_Shop
         {
             WindowState = WindowState.Minimized;
         }
+
+        private void GridMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

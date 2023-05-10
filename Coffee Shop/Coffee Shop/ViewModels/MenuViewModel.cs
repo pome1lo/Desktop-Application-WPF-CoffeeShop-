@@ -1,26 +1,60 @@
 ﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
+using Coffee_Shop.Models.Entities;
+using Coffee_Shop.Views;
 using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
-using CoffeeShop.Data.Models;
-using CoffeShop.Data;
 using CoffeShop.Models;
+using DataValidation;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static DataValidation.Validator;
 
 namespace Coffee_Shop.ViewModels
 {
     internal class MenuViewModel : ViewModelBase
     {
-        private ObservableCollection<Product> products { get; set; } = GetProductsFromTheDatabase();
+        #region Constructor
 
-        public ObservableCollection<Product> Products
+        public MenuViewModel()
+        {
+            Products = Db.GetProductList().ToList();
+            validator = new Validator(this);
+        }
+
+        #endregion
+
+        #region Fields
+
+        private string categoryItem = string.Empty;
+
+        private List<Product>? products;
+        private Product? selectedItemForListProducts;
+        private Validator validator;
+
+        private string errorRangeFrom = string.Empty;
+        private string errorRangeTo = string.Empty;
+        private string searchString = string.Empty;
+        private string rangeFrom = string.Empty;
+        private string rangeTo = string.Empty;
+        private int sliderValue = -1;
+
+        private DelegateCommand<object>? plusItemCardCommand;
+        private DelegateCommand<object>? minusItemCardCommand;
+        private DelegateCommand<object>? closeItemCardCommand;
+        private DelegateCommand<object>? addToBasketCommand;
+
+        #endregion
+
+        #region Property
+
+        #region Main List Product
+
+        public List<Product>? Products
         {
             get
             {
@@ -33,29 +67,27 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-        private static ObservableCollection<Product> GetProductsFromTheDatabase()
+        #endregion
+
+        #region List Product From Basket
+
+        public List<ProductFromBasket> ProductsFromBasket
         {
-            var Products = new ObservableCollection<Product>();
-            //using (ApplicationContext db = ApplicationContext.GetContext())
-            //{
-            //    db.Products.ToList().ForEach(x => Products.Add(x));
-            //    Products.ToList().ForEach(x => x.Description = db.Descriptions.ToList()[x.Id - 1]); 
-            //}
-            db.GetProductList().ToList().ForEach(x => Products.Add(x));
-            Products.ToList().ForEach(x => x.Description = db.GetDescriptionList().ToList()[x.Id - 1]);
-            return Products;
+            get => CurrentUser.ProductsFromBasket;
+            set
+            {
+                CurrentUser.ProductsFromBasket = value;
+                OnPropertyChanged(nameof(ProductsFromBasket));
+            }
         }
 
-        #region Property
+        #endregion
 
         #region Search
-        private string searchString;
+
         public string SearchString
         {
-            get
-            {
-                return searchString;
-            }
+            get => searchString;
             set
             {
                 searchString = value;
@@ -63,50 +95,66 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(SearchString));
             }
         }
+
         #endregion
 
         #region From/To
 
-        private string rangeFrom = "From";
         public string RangeFrom
         {
-            get
-            {
-                return rangeFrom;
-            }
+            get => rangeFrom;
             set
             {
                 rangeFrom = value;
+                validator.Verify(ValidationBased.OrdinaryDigits, RangeFrom, nameof(ErrorRangeFrom));
                 OnPropertyChanged(nameof(RangeFrom));
             }
         }
 
-        private string rangeTo = "To";
         public string RangeTo
         {
-            get
-            {
-                return rangeTo;
-            }
+            get => rangeTo;
             set
             {
                 rangeTo = value;
-                MessageBox.Show(rangeTo);
+                validator.Verify(ValidationBased.OrdinaryDigits, RangeTo, nameof(ErrorRangeTo));
                 OnPropertyChanged(nameof(RangeTo));
             }
         }
+
+        #region Errors
+
+
+        public string ErrorRangeFrom
+        {
+            get => errorRangeFrom;
+            set
+            {
+                errorRangeFrom = value;
+                OnPropertyChanged(nameof(ErrorRangeFrom));
+            }
+        }
+
+        public string ErrorRangeTo
+        {
+            get => errorRangeTo;
+            set
+            {
+                errorRangeTo = value;
+                OnPropertyChanged(nameof(ErrorRangeTo));
+            }
+        }
+
+
+        #endregion
 
         #endregion
 
         #region Category
 
-        private string categoryItem = string.Empty;
         public string CategoryItem
         {
-            get
-            {
-                return categoryItem;
-            }
+            get => categoryItem;
             set
             {
                 categoryItem = value;
@@ -118,15 +166,10 @@ namespace Coffee_Shop.ViewModels
 
         #region SliderValue
 
-        private int sliderValue = -1;
-
         public int SliderValue
         {
-            get 
-            { 
-                return sliderValue; 
-            }
-            set 
+            get => sliderValue;
+            set
             {
                 sliderValue = value;
                 OnPropertyChanged(nameof(SliderValue));
@@ -137,18 +180,33 @@ namespace Coffee_Shop.ViewModels
 
         #region Selected Item For List Products
 
-        private Product? selectedItemForListProducts;
-
         public Product? SelectedItemForListProducts
+        {
+            get => null;
+            set
+            {
+                ShowProductInfoPage(value);
+                OnPropertyChanged(nameof(SelectedItemForListProducts));
+                //App.ConnectionTheProductInfoViewModel(SelectedItemForListProducts);
+            }
+        }
+
+        #endregion
+
+        #region Selected item name for basket list products
+
+        private string prodNameFroItemCard;
+
+        public string ProdNameFroItemCard
         {
             get
             {
-                return selectedItemForListProducts;
+                return prodNameFroItemCard;
             }
             set
             {
-                selectedItemForListProducts = value;
-                OnPropertyChanged(nameof(SelectedItemForListProducts));
+                prodNameFroItemCard = value;
+                OnPropertyChanged(nameof(ProdNameFroItemCard));
             }
         }
 
@@ -156,26 +214,116 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
+        #region Methods
+
         private void Sort()
         {
-            //using (ApplicationContext db = ApplicationContext.GetContext())
-            //{
-            //    var currentProducts = ApplicationContext.GetContext().Products.ToList();
-            //    currentProducts = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
-            //    Products = new ObservableCollection<Product>(currentProducts);
-            //}
-            var currentProducts = db.GetProductList().ToList();
-            currentProducts = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
-            Products = new ObservableCollection<Product>(currentProducts);
+            var currentProducts = Db.GetProductList().ToList();
+            Products = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
         }
 
+
+        private void RangeFilter()
+        {
+            if (!string.IsNullOrEmpty(RangeTo))
+            {
+                Products = Db.GetProductList().Where(x => x.Price < Decimal.Parse(RangeTo)).ToList();
+            }
+            if (!string.IsNullOrEmpty(RangeFrom))
+            {
+                Products = Db.GetProductList().Where(x => x.Price > Decimal.Parse(RangeFrom)).ToList();
+            }
+        }
+
+        private void SliderFilter()
+        {
+            if (SliderValue != -1)
+            {
+                Products = Db.GetProductList().Where(x => x.Calories < SliderValue).ToList();
+            }
+        }
+
+        #endregion
 
         #region Command
 
 
-        #region Add to basket 
+        #region Buttons for item card 
 
-        private DelegateCommand? addToBasketCommand;
+
+        public ICommand PlusItemCardCommand
+        {
+            get
+            {
+                if (plusItemCardCommand == null)
+                {
+                    plusItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    {
+                        var prod = obj as ProductFromBasket;
+                        CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity++;
+                        Db.Save();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                    });
+                }
+                return plusItemCardCommand;
+            }
+        }
+
+
+        public ICommand MinusItemCardCommand
+        {
+            get
+            {
+                if (minusItemCardCommand == null)
+                {
+                    minusItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    {
+                        var prod = obj as ProductFromBasket;
+                        ProductFromBasket? prodFromDB = CurrentUser.ProductsFromBasket.Find(x => x == prod);
+                        
+                        if (prodFromDB != null)
+                        {
+                            if (prodFromDB.Quantity == 1)
+                            {
+                                Db.DeleteProductFromBasket(prod.Id);
+                                Db.Save();
+                                ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                            }
+                            else
+                            {
+                                CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity--;
+                            }
+                            Db.Save();
+                            ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                        }
+                    });
+                }
+                return minusItemCardCommand; ;
+            }
+        }
+
+
+        public ICommand CloseItemCardCommand
+        {
+            get
+            {
+                if (closeItemCardCommand == null)
+                {
+                    closeItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    {
+                        var prod = obj as ProductFromBasket;
+                        Db.DeleteProductFromBasket(prod.Id);
+                        Db.Save();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                    });
+                }
+                return closeItemCardCommand;
+            }
+        }
+
+        #endregion
+
+        #region Add product from bascket
 
         public ICommand AddToBasketCommand
         {
@@ -183,18 +331,80 @@ namespace Coffee_Shop.ViewModels
             {
                 if (addToBasketCommand == null)
                 {
-                    addToBasketCommand = new DelegateCommand(AddToBasket);
+                    addToBasketCommand = new DelegateCommand<object>((object obj) =>
+                    {
+                        
+                        Product? product = obj as Product;
+                        if (CurrentUser.ProductsFromBasket.Any(x => x.Product == product))
+                        {
+                            CurrentUser.ProductsFromBasket.First(x => x.Product == product).Quantity += 1;
+                            //product.Id = Db.GetProductFromBasketList().First(x => x.Product == Product.Product).Id;
+                            //(Db.GetProductFromBasket(product.Id) ?? new ProductFromBasket()).Quantity += 1;
+                        }
+                        else
+                        {
+                            CurrentUser.ProductsFromBasket.Add(new ProductFromBasket() { Product = product });
+                            //Db.CreateProductFromBasket(Product);
+                        }
+                        Db.Save();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                    });
                 }
                 return addToBasketCommand;
             }
         }
 
-        private void AddToBasket()
+        #endregion
+
+        #region Reset
+
+        private DelegateCommand? resetButtonCommand;
+
+        public ICommand ResetButtonCommand
         {
-            App.ConnectionTheProductInfoViewModel(SelectedItemForListProducts);
+            get
+            {
+                if (resetButtonCommand == null)
+                {
+                    resetButtonCommand = new DelegateCommand(() =>
+                    {
+                        RangeFrom = "";
+                        RangeTo = "";
+                        ErrorRangeFrom = string.Empty;
+                        ErrorRangeTo = string.Empty;
+                        SliderValue = -1;
+                        SearchString = string.Empty;
+                        Products = Db.GetProductList().ToList();
+                    });
+                }
+                return resetButtonCommand;
+            }
         }
 
         #endregion
+
+
+        #region Checked type
+
+        private DelegateCommand<ProdType> checkedTypeCommand;
+        public ICommand CheckedTypeCommand
+        {
+            get
+            {
+                if (checkedTypeCommand == null)
+                {
+                    checkedTypeCommand = new DelegateCommand<ProdType>((ProdType obj) =>
+                    {
+                        Products = Db.GetProductList().ToList().Where(x => x.ProductType.Name == obj.ToString()).ToList();
+                    });
+                }
+                return checkedTypeCommand;
+            }
+        }
+
+        #endregion
+
+        #region Search product
 
 
         private DelegateCommand? findButtonCommand;
@@ -205,39 +415,40 @@ namespace Coffee_Shop.ViewModels
             {
                 if (findButtonCommand == null)
                 {
-                    findButtonCommand = new DelegateCommand(FindButton);
+                    findButtonCommand = new DelegateCommand(() =>
+                    { 
+                        SliderFilter();
+                        RangeFilter();
+                    });
                 }
                 return findButtonCommand;
             }
         }
 
-        private void FindButton()
+        
+
+        #endregion
+
+        #region Place an order 
+
+        private DelegateCommand? placeAnOrderCommand;
+
+        public ICommand PlaceAnOrderCommand
         {
-            Products = GetSearchProducts();
+            get
+            {
+                if (placeAnOrderCommand == null)
+                {
+                    placeAnOrderCommand = new DelegateCommand(/*App.ConnectionTheOrderViewModel*/() =>
+                    {
+                        new OrderView().ShowDialog();
+                    });
+                }
+                return placeAnOrderCommand;
+            }
         }
 
-        private ObservableCollection<Product> GetSearchProducts() // implement via Decorator
-        {
-            var temp = ApplicationContext.GetContext().Products.ToList();
-
-            if (SliderValue != -1)
-            {
-                temp = temp.Where(x => x.Calories < SliderValue).ToList();
-            }
-            if(CategoryItem != string.Empty)
-            {
-                //temp = temp.Where(x => x.Description)
-            }
-            if(rangeFrom != "From")
-            {
-                temp = temp.Where(x => x.Price > Decimal.Parse(rangeFrom)).ToList();
-            }
-            if (rangeTo != "To")
-            {
-                temp = temp.Where(x => x.Price < Decimal.Parse(rangeTo)).ToList();
-            }
-            return new ObservableCollection<Product>(temp);
-        }
+        #endregion
 
         #endregion
     }

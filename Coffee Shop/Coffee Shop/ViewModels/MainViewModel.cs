@@ -1,87 +1,87 @@
 ﻿using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
-using CoffeeShop.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CoffeeShop.Views;
+using CustomControl;
+using Microsoft.Web.WebView2.Core;
+using System.CodeDom;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Coffee_Shop.ViewModels
 {
-    class MainViewModel : ViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
-        private Frame? mainFrame = new();
-        public Frame MainFrame
-        {
-            get
-            {
-                return mainFrame;
-            }
-            set
-            {
-                mainFrame = value;
-                OnPropertyChanged(nameof(MainFrame));
-            }
-        }
-
         #region Constructor
 
-        private string? CultureName;
-        public MainViewModel(Frame frame, Button adminButton, string CultureName, string UserType) // стрем переделать
+        public MainViewModel()
         {
-            this.mainFrame = frame;
-            this.UserType = UserType;
-            this.AdminButton = adminButton;
-            this.CultureName = CultureName;
-
             ConfiguringApplicationForUserType();
+            ShowPage(new HomeView());
+        }
+
+        //public MainViewModel(HeaderButton adminButton)
+        //{
+            
+
+        //    ConfiguringApplicationForUserType();
+        //}
+
+        #endregion
+
+        #region Fields
+
+        private Visibility visibilityAdminButton = Visibility.Collapsed;
+
+        private DelegateCommand? showAdminPageCommand;
+        private MainView? view;
+        #endregion
+
+        #region Property
+
+        public Visibility VisibilityAdminButton
+        {
+            get => visibilityAdminButton;
+            set
+            {
+                visibilityAdminButton = value;
+                OnPropertyChanged(nameof(VisibilityAdminButton));
+            }
         }
 
         #endregion
 
-        #region Configuring Application For UserType
+        #region Methods
 
-        private Button? AdminButton;
-        private string UserType = string.Empty;
         private void ConfiguringApplicationForUserType()
         {
-            switch (UserType)
+            if (CurrentUser.IsAdmin)
             {
-                case "Admin": SettingUpForAdmin(); break;
-                case "User":  SettingUpForUser();  break;
-                case "Guest": SettingUpForGuest(); break;
+                SettingUpForAdmin();
             }
-        }
-
-        private void SettingUpForGuest()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void SettingUpForUser()
-        {
-            mainFrame.Content = new HomeView();
+            //}
+            //else
+            //{
+            //    SettingUpForUser();
+            //}
         }
 
         private void SettingUpForAdmin()
         {
-            App.ConnectionViewModelWithAdmin();
-            AdminButton.Visibility = Visibility.Visible;
+            //App.ConnectionTheAdminViewModel();
+            VisibilityAdminButton = Visibility.Visible;
         }
+
+        //private void SettingUpForUser()
+        //{
+        //    App.ConnectionTheHomeViewModel();
+        //}
 
         #endregion
 
         #region Commands
-        // chane for example About to Show About Page
-        #region Menu
+
+        #region Show menu page
 
         private DelegateCommand? showMenuCommand;
 
@@ -91,20 +91,40 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showMenuCommand == null)
                 {
-                    showMenuCommand = new DelegateCommand(ShowMenu);
+                    showMenuCommand = new DelegateCommand(/*App.ConnectionTheMenuViewModel*/() => 
+                    { 
+                        ShowPage(new MenuView()); 
+                    });
                 }
                 return showMenuCommand;
             }
         }
 
-        private void ShowMenu()
+        #endregion
+
+        #region Exit account
+
+        private DelegateCommand<object> exitAccountCommand;
+
+        public ICommand ExitAccountCommand
         {
-            App.ConnectionViewModelWithMenu();
+            get
+            {
+                if (exitAccountCommand == null)
+                {
+                    exitAccountCommand = new DelegateCommand<object>((object obj) =>
+                    {
+                        new LogIOView().Show();
+                        (obj as MainView)?.Close();
+                    });
+                }
+                return exitAccountCommand; 
+            }
         }
 
         #endregion
 
-        #region Basket
+        #region Show basket page
 
         private DelegateCommand? showBasketCommand;
 
@@ -114,22 +134,21 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showBasketCommand == null)
                 {
-                    showBasketCommand = new DelegateCommand(ShowBasket);
+                    showBasketCommand = new DelegateCommand(/*App.ConnectionTheBasketViewModel*/() =>
+                    {
+                        ShowPage(new BasketView());
+                    });
                 }
                 return showBasketCommand;
             }
         }
 
-        private void ShowBasket()
-        {
-            mainFrame.Content = new BasketView();
-        }
-
         #endregion
 
-        #region Exit
+        #region Exit for application
 
         private DelegateCommand? exitCommand;
+
 
         public ICommand ExitCommand
         {
@@ -137,20 +156,17 @@ namespace Coffee_Shop.ViewModels
             {
                 if (exitCommand == null)
                 {
-                    exitCommand = new DelegateCommand(Exit);
+                    exitCommand = new DelegateCommand(
+                        System.Windows.Application.Current.Shutdown
+                        );
                 }
                 return exitCommand;
             }
         }
 
-        private void Exit()
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-
         #endregion
 
-        #region About
+        #region Show about page
 
         private DelegateCommand? showAboutCommand;
 
@@ -160,20 +176,18 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showAboutCommand == null)
                 {
-                    showAboutCommand = new DelegateCommand(ShowAbout);
+                    showAboutCommand = new DelegateCommand(/*App.ConnectionTheAboutView*/() => 
+                    {
+                        ShowPage(new AboutView());
+                    });
                 }
                 return showAboutCommand;
             }
         }
 
-        private void ShowAbout()
-        {
-            mainFrame.Content = new AboutView();
-        }
-
         #endregion
-        
-        #region Home
+
+        #region Show home page
 
         private DelegateCommand? showHomeCommand;
 
@@ -183,22 +197,61 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showHomeCommand == null)
                 {
-                    showHomeCommand = new DelegateCommand(ShowHome);
+                    showHomeCommand = new DelegateCommand(/*App.ConnectionTheHomeViewModel*/() => 
+                    {
+                        ShowPage(new HomeView());
+                    });
                 }
                 return showHomeCommand;
             }
         }
 
-        private void ShowHome()
+        #endregion
+
+        #region Show profile page
+
+        private DelegateCommand? showProfileCommand;
+
+        public ICommand ShowProfileCommand
         {
-            App.ConnectionTheHomeViewModel();
+            get
+            {
+                if (showProfileCommand == null)
+                {
+                    showProfileCommand = new DelegateCommand(/*App.ConnectionTheProfileViewModel*/() => 
+                    {
+                        ShowPage(new ProfileView());
+                    });
+                }
+                return showProfileCommand;
+            }
         }
 
         #endregion
 
-        #region Admin
+        #region Show map page
 
-        private DelegateCommand? showAdminPageCommand;
+        private DelegateCommand? showMapCommand;
+
+        public ICommand ShowMapCommand
+        {
+            get
+            {
+                if (showMapCommand == null)
+                {
+                    showMapCommand = new DelegateCommand(/*App.ConnectionTheMapView*/ () => 
+                    {
+                        ShowPage(new MapView());
+                    });
+                }
+                return showMapCommand;
+            }
+        }
+
+        #endregion
+
+        #region Show admin page
+
 
         public ICommand ShowAdminPageCommand
         {
@@ -206,15 +259,13 @@ namespace Coffee_Shop.ViewModels
             {
                 if (showAdminPageCommand == null)
                 {
-                    showAdminPageCommand = new DelegateCommand(ShowAdminPage);
+                    showAdminPageCommand = new DelegateCommand(/*App.ConnectionTheAdminViewModel*/() =>
+                    {
+                        ShowPage(new AdminView());
+                    });
                 }
                 return showAdminPageCommand;
             }
-        }
-
-        private void ShowAdminPage()
-        {
-            App.ConnectionViewModelWithAdmin();
         }
 
         #endregion

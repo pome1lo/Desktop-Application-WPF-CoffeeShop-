@@ -7,7 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Components\BindablePasswordBox.xaml.cs">
+    <Compile Update="Views\BankCardVIew.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CreateElementView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ModalWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\OrderView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\AboutView.xaml.cs">
@@ -22,17 +31,20 @@
     <Compile Update="Views\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\MapView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Pages\MenuView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pages\ProductInfoView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\ProfileView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\BindablePasswordBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="StaticFiles\Resources\Lang.ru-RU.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -51,10 +63,22 @@
     <Page Update="StaticFiles\Themes\Dark.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\BankCardView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CreateElementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LogIOView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModalWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\OrderView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\AboutView.xaml">
@@ -69,10 +93,16 @@
     <Page Update="Views\Pages\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Pages\MapView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Pages\MenuView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\ProductInfoView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\ProfileView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

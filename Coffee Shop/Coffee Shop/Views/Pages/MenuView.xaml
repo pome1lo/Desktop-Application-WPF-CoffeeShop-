@@ -2,79 +2,114 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Coffee_Shop.Views.Pages" 
-      mc:Ignorable="d" 
-      d:DesignHeight="370" d:DesignWidth="800"
-      Title="MenuView">
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl"
+        xmlns:loc="clr-namespace:Coffee_Shop.Models.Entities"
+      mc:Ignorable="d" Name="page"
+      d:DesignHeight="370" d:DesignWidth="900"
+      Title="MenuView"
+      Style="{StaticResource PageMarginTop}">
+    <Page.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    <Page.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </Page.RenderTransform>
+    <Page.DataContext>
+        <vm:MenuViewModel/>
+    </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="270"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Find:" Margin="5"/>
-            <TextBox Grid.Row="1" Grid.ColumnSpan="2" Width="185" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TBSearch}"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <StackPanel.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </StackPanel.Resources>
+            <custom:InputBox TextName="{DynamicResource Menu_Find}" 
+                                 TextInput="{Binding SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-            <!---->
-            <!-- ПАКЕТ УДАЛИТЬ -->
-            <!---->
-            <!--<WrapPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
-            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    <TextBox Name="TBoxSearch" Style="{StaticResource TBSearch}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="TextChanged">
-                                <i:InvokeCommandAction Command="{Binding Path=SearchChanged}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                </StackPanel>
-            </WrapPanel>-->
-            
-            <TextBlock Grid.Row="2" Text="By price range:" Margin="5"/>
-            <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding RangeFrom, UpdateSourceTrigger=PropertyChanged}" Width="80" Style="{StaticResource TBSearch}"></TextBox>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RangeTo, UpdateSourceTrigger=PropertyChanged}"   Width="80" Style="{StaticResource TBSearch}"></TextBox>
-            <TextBlock Grid.Row="4" Text="By category:" Margin="5"/>
-            <ComboBox Grid.Row="5" Grid.ColumnSpan="2" Margin="5" SelectedItem="{Binding CategoryItem, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBoxItem Content="Food"/>
-                <ComboBoxItem Content="Bob"/>
-                <ComboBoxItem Content="Charlie"/>
-            </ComboBox>
-            <TextBlock Grid.Row="6" Text="By Calories:" Margin="5"/>
-            <Slider Value="{Binding SliderValue, UpdateSourceTrigger=PropertyChanged}" TickFrequency="5" Maximum="390" Minimum="130" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Center" Width="180" Foreground="#FFAE2A2A" BorderBrush="#FFD13838"/>
-            <StackPanel Grid.Row="8">
-                <TextBlock Text="By product type:" Margin="5"/>
-                <RadioButton Margin="0 5 0 5">s</RadioButton>            
-                <RadioButton Margin="0 5 0 5">s</RadioButton>            
-                <RadioButton Margin="0 5 0 5">s</RadioButton>            
+            <StackPanel Orientation="Horizontal">
+                <custom:InputBox TextName="{DynamicResource Menu_From}" Width="90"
+                                 TextInput="{Binding RangeFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 ErrorMessage="{Binding ErrorRangeFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <custom:InputBox TextName="{DynamicResource Menu_To}" Width="90"
+                                 TextInput="{Binding RangeTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 ErrorMessage="{Binding ErrorRangeTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
-            <Button Content="Find" Grid.Row="9" Grid.ColumnSpan="2" Command="{Binding FindButtonCommand}" Style="{StaticResource ButtonForLogIO}"/>
-        </Grid>
+
+            <TextBlock Text="{DynamicResource Menu_Calories}" Margin="5"/>
+            <Slider Value="{Binding SliderValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Margin="5" Style="{StaticResource MaterialDesignDiscreteSlider}"
+                    TickFrequency="5" Maximum="390" Minimum="0"
+                     Background="Transparent" Foreground="#FFFADF5A">
+            </Slider>
+
+            <StackPanel Margin="5">
+                <StackPanel.Resources>
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                </StackPanel.Resources>
+                <TextBlock Text="{DynamicResource Menu_ProductType}"/>
+                <RadioButton Margin="0 8 0 5" Content="{DynamicResource Menu_Drinks}"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             IsChecked="True"
+                                             CommandParameter="{x:Static loc:ProdType.Drinks}"
+                                             Background="#FFFADF5A"/>
+                <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Meal}"
+                                             Background="#FFFADF5A"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             CommandParameter="{x:Static loc:ProdType.Meal}"/>
+                <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Coffee}"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             Background="#FFFADF5A"
+                                             CommandParameter="{x:Static loc:ProdType.Coffee}"/>
+
+
+            </StackPanel>
+            <Button Content="{DynamicResource Menu_Find}" 
+                    Command="{Binding FindButtonCommand}"
+                    Style="{StaticResource ButtonBlack}"
+                    Width="150"/>
+            <Button Content="{DynamicResource Menu_Reset}" 
+                    Command="{Binding ResetButtonCommand}"
+                    Style="{StaticResource ButtonBlack}"
+                    Width="150"/>
+        </StackPanel>
+        
         <ListView ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}"
-                  Name="LVforProducts" 
+                  Name="mylist" 
                   Grid.Column="1"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   HorizontalContentAlignment="Center"
@@ -82,7 +117,8 @@
                   ScrollViewer.CanContentScroll="False" 
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   Background="Transparent"
-                  SelectedItem="{Binding SelectedItemForListProducts}">
+                  SelectedItem="{Binding SelectedItemForListProducts, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -108,8 +144,7 @@
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="{x:Static MouseAction.LeftClick}"
                                                        Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.SelectedItemForListProducts}"
-                                                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}"  
-                                                      />
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}"/>
                                     </Border.InputBindings>
                                     <ContentPresenter />
                                 </Border>
@@ -121,141 +156,270 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="16">
-                        <!--<Border.InputBindings>
-                            <MouseBinding MouseAction="LeftDoubleClick"
-                                          Command="{Binding AddToBasketCommand}"
-                                          CommandParameter="{Binding}" /> 
-                        </Border.InputBindings>-->
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"/>
                         </Border.Effect>
                         <StackPanel>
-                            <Grid Width="130" Margin="0 16 0 0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <Border Grid.Row="0" CornerRadius="20 0 0 20" Width="90" Height="90" HorizontalAlignment="Center">
+                            <StackPanel Width="130" Margin="0 16 0 0">
+                                <Border CornerRadius="20 0 0 20" Width="90" Height="90" HorizontalAlignment="Center">
                                     <Border.Background>
                                         <ImageBrush Stretch="Fill" ImageSource="{Binding Img}"/>
                                     </Border.Background>
-                                    <Border.ToolTip>
-                                        <ToolTip Width="850" Height="550" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
-                                            <Border Style="{StaticResource ChangeThemeBorder}" Width="400" Height="380" CornerRadius="10">
-                                                <Border.Effect>
-                                                    <DropShadowEffect BlurRadius="10" Color="Black" ShadowDepth="10"/>
-                                                </Border.Effect>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="50"/>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0">
-                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" TextAlignment="Center" Margin="0 8 0 0" Text="{Binding Name}"/>
-                                                        </Border>
-                                                    </StackPanel>
-                                                    <StackPanel Grid.Column="0" Grid.Row="1" Height="auto" Margin="6 0 6 0">
-                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Allergens"/>
-                                                        </Border>
-                                                        <TextBlock Margin="0 5 0 0" Text="Not available for this item"/>
-                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
-                                                            We cannot guarantee that any unpackaged products served in our stores are allergen-free because we use shared equipment to store, prepare, and serve them. Customers with allergies can find ingredient information for products on the labels of our packaged products or online at Coffeeshop.com/menu.
-                                                        </TextBlock>
-                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
-                                                            * 2,000 calories a day is used for general nutrition advice, but calorie needs vary.
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="6 0 10 0">
-                                                        <Border BorderBrush="#CFB73E" BorderThickness="0 0 0 2">
-                                                            <TextBlock FontSize="25" Margin="0 8 0 0" Text="Nutrition"/>
-                                                        </Border>
-                                                        <TextBlock TextAlignment="Justify" TextWrapping="Wrap" Margin="0 5 0 0">
-                                                            Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not.
-                                                        </TextBlock>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="150"/>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                                <RowDefinition/>
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock Text="{Binding Description.TotalFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.SaturatedFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.TransFat, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.Cholesterol, StringFormat={}{0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.Sodium, StringFormat={}{0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.TotalCarbohydrates, StringFormat={}{0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.Protein, StringFormat={}{0} g}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.Caffeine, StringFormat={}{0} mg}" Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="1"/>
-
-                                                            <TextBlock Text="Total Fat"     Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="0"/>
-                                                            <TextBlock Text="Saturated Fat" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="0"/>
-                                                            <TextBlock Text="Trans Fat"     Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="0"/>
-                                                            <TextBlock Text="Cholesterol"   Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="0"/>
-                                                            <TextBlock Text="Sodium"        Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="0"/>
-                                                            <TextBlock Text="Total Carbohydrates" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="0"/>
-                                                            <TextBlock Text="Protein"       Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="0"/>
-                                                            <TextBlock Text="Caffeine"      Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="0"/>
-
-                                                            <!--<TextBlock Text="{Binding Description.TotalFat, StringFormat={}Total Fat {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="0" Grid.Column="0"/>
-                                                            <TextBlock Text="{Binding Description.SaturatedFat, StringFormat={}Saturated Fat {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="1" Grid.Column="1"/>
-                                                            <TextBlock Text="{Binding Description.TransFat, StringFormat={}Trans Fat {0} g}"     Style="{StaticResource DataTableInToolTip}" Grid.Row="2" Grid.Column="2"/>
-                                                            <TextBlock Text="{Binding Description.Cholesterol, StringFormat={}Cholesterol {0} mg}"  Style="{StaticResource DataTableInToolTip}" Grid.Row="3" Grid.Column="3"/>
-                                                            <TextBlock Text="{Binding Description.Sodium, StringFormat={}Sodium {0} mg}"       Style="{StaticResource DataTableInToolTip}" Grid.Row="4" Grid.Column="4"/>
-                                                            <TextBlock Text="{Binding Description.TotalCarbohydrates, StringFormat={}Total Carbohydrates {0} g}" Style="{StaticResource DataTableInToolTip}" Grid.Row="5" Grid.Column="5"/>
-                                                            <TextBlock Text="{Binding Description.Protein, StringFormat={}Protein {0} g}"      Style="{StaticResource DataTableInToolTip}" Grid.Row="6" Grid.Column="6"/>
-                                                            <TextBlock Text="{Binding Description.Caffeine, StringFormat={}Caffeine {0} mg}"     Style="{StaticResource DataTableInToolTip}" Grid.Row="7" Grid.Column="7"/>-->
-
-                                                        </Grid>
-                                                    </StackPanel>
-                                                </Grid>
-                                                <!--<TextBlock Text="{Binding Name}" />
-                                                <TextBlock Text="{Binding Calories}" />-->
-                                            </Border>
-
-
-
-                                        </ToolTip>
-                                    </Border.ToolTip>
                                 </Border>
-
-
-                                <Grid Grid.Row="1" Height="auto" Width="260">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Button Background="Transparent" HorizontalAlignment="Right"
+                                <DockPanel> 
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap" Margin="2"/>
+                                    <Button Background="Transparent" HorizontalAlignment="Right" DockPanel.Dock="Right" BorderThickness="0"
                                             Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.AddToBasketCommand}"
-                                            CommandParameter="{Binding}"
-                                            >
-                                        <Image HorizontalAlignment="Right" Grid.Column="1" Width="25" Source="\StaticFiles\Img\Basket.png"/>
+                                            CommandParameter="{Binding}" Cursor="Hand" Height="28">
+                                        <Image Width="25" Height="25" Cursor="Hand" Source="\StaticFiles\Img\Basket.png">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Style.Triggers>
+                                                        <EventTrigger RoutedEvent="Image.MouseEnter">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard >
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Width"  From="25" To="28" Duration="0:0:0.15" />
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="25" To="28" Duration="0:0:0.15" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                        <EventTrigger RoutedEvent="Image.MouseLeave">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard >
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Width"  From="28" To="25" Duration="0:0:0.25" />
+                                                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="28" To="25" Duration="0:0:0.25" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <ContentPresenter/>
+                                            </ControlTemplate>
+                                        </Button.Template>
                                     </Button>
-                                    <TextBlock Text="{Binding Name}" Margin="0 3 0 0" Height="20" Width="100" FontSize="13" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
-                                </Grid>
+                                </DockPanel>
 
-                            </Grid>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{DynamicResource Basket_Order}" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+
+
+                <ListView ItemsSource="{Binding ProductsFromBasket, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                          Background="Transparent" BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!--<custom:ItemCard Img="{Binding Product.Img}" 
+                                             ProdName="{Binding Product.Name}"
+                                             Quanity="{Binding Quantity}"
+                                             Price="{Binding Product.Price}"
+                                             CommandClose="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.CloseItemCardCommand}"
+                                             CommandMinus="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.MinusItemCardCommand}"
+                                             CommandPlus="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.PlusItemCardCommand}"
+                                             Param="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.ProdNameFroItemCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             />-->
+
+
+
+                            <Border Width="233" Background="#191B1D" BorderThickness="1" BorderBrush="#CFB73E" CornerRadius="34" Margin="0 10 0 0">
+                                <Grid Width="230" Height="60">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Border CornerRadius="20 0 0 20" Width="60" Height="61" Grid.Column="0" Grid.RowSpan="3" HorizontalAlignment="Left">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="{Binding Product.Img}" />
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock Name="test" Text="{Binding Product.Name}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 3 0 0" Height="20" Foreground="White" FontSize="13" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                    <Button Grid.Column="2" BorderThickness="0" 
+                                            Background="#191B1D" Cursor="Hand"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.CloseItemCardCommand}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalAlignment="Right">
+                                        <TextBlock Foreground="Red" Text="╳" FontWeight="Bold"/>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}">
+                                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
+                                    <TextBlock Text="{DynamicResource Basket_Price}" Grid.Column="2" Foreground="White" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <Border Grid.Column="2" Grid.Row="2" Background="#F9DF5A" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
+                                        <TextBlock  Text="{Binding Product.Price, StringFormat={}{0:C2}}" Grid.Column="2" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Grid.Row="1"/>
+                                    </Border>
+
+                                    <TextBlock Text="{DynamicResource Basket_Quanity}" Grid.Column="1" Foreground="White" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <Border Grid.Column="1" Grid.Row="2" BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
+                                        <Grid>
+                                            <!--Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.TEST}"-->
+                                            <!--CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}"-->
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="0" Content="‾" FontWeight="Bold"
+                                                    FontSize="22" Margin="0 1 2 0"
+                                                    Style="{StaticResource buttonBascketItem}"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.MinusItemCardCommand}"
+                                                    CommandParameter="{Binding}">
+                                                <!--HorizontalAlignment="Left" 
+                                                    Margin="5 0 0 0">-->
+                                                <!--Command="{Binding test, RelativeSource={RelativeSource AncestorType={x:Type local:ItemCard}}}"-->
+                                            </Button>
+                                            <TextBlock Text="{Binding Quantity}" Grid.Column="1" Foreground="White" FontSize="12"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="2" 
+                                                    Style="{StaticResource buttonBascketItem}"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.PlusItemCardCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="➕">
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+                <!--<ListView ItemsSource="{Binding ProductsFromBasket, UpdateSourceTrigger=PropertyChanged}"
+              BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard >
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#191B1D" BorderThickness="1" BorderBrush="#CFB73E" CornerRadius="34" Margin="0 10 0 0">
+                                <Grid Width="230" Height="60">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Border CornerRadius="20 0 0 20" Width="60" Height="61" Grid.Column="0" Grid.RowSpan="3" HorizontalAlignment="Left">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="{Binding Product.Img}"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock Text="{Binding Product.Name}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 3 0 0" Height="20" Foreground="White" FontSize="13" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                    <Button Grid.Column="2" BorderThickness="0" Background="#191B1D" HorizontalAlignment="Right">
+                                        <TextBlock Text="╳" Foreground="Red" FontWeight="Bold"/>
+                                    </Button>
+                                    <TextBlock Text="{DynamicResource Basket_Price}" Grid.Column="2" Foreground="White" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <Border Grid.Column="2" Grid.Row="2" Background="#F9DF5A" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
+                                        <TextBlock Text="{Binding Product.Price, StringFormat={}{0:C2}}" Grid.Column="2" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Grid.Row="1"/>
+                                    </Border>
+                                    <TextBlock Text="{DynamicResource Basket_Quanity}" Grid.Column="1" Foreground="White" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <Border Grid.Column="1" Grid.Row="2" BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="0" 
+                                        Background="Transparent" 
+                                        BorderThickness="0" 
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.TEST}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=SelectedItem}"
+                                                    
+                                        HorizontalAlignment="Left" 
+                                        Margin="5 0 0 0">
+                                                <TextBlock Background="Transparent" 
+                                               Foreground="White" 
+                                               FontSize="22" 
+                                               FontWeight="Bold" 
+                                               Text="‾"/>
+                                            </Button>
+                                            <TextBlock Grid.Column="1" Foreground="White" FontSize="12" Text="{Binding Quantity}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="2" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Right" Margin="0 0 5 0" Padding="0 0 0 0">
+                                                <TextBlock Background="Transparent" Foreground="White" FontSize="9">➕</TextBlock>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+                
+                
+            </ScrollViewer>
+            <Button Grid.Row="2" Width="200" 
+                    Height="50" Margin="0 0 0 20"
+                    Command="{Binding PlaceAnOrderCommand}"
+                    Style="{StaticResource ButtonBlack}" 
+                    Content="{DynamicResource Basket_Checkout}"/>
+        </Grid>
     </Grid>
 </Page>

@@ -1,0 +1,168 @@
+﻿<Window x:Class="Coffee_Shop.Views.CreateElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coffee_Shop.Views"
+        xmlns:loc="clr-namespace:Coffee_Shop.Models.Entities"
+        xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+        xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        WindowStyle="None"
+        Title="CreateElement" Height="450" Width="300">
+    <Window.DataContext>
+        <vm:CreateElementViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12" Style="{DynamicResource ChengeTheme}">
+        <Border CornerRadius="10" BorderThickness="2" Background="Transparent">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#363636" Offset="0"/>
+                    <GradientStop Color="#CFB73E" Offset="0.75"/>
+                    <GradientStop Color="#E1CA52" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <StackPanel>
+                <ScrollViewer Height="450" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <Canvas>
+                            <Button Style="{StaticResource ButtonClose}" Click="CloseButton_Click" Canvas.Right="15" Canvas.Top="15"/>
+                        </Canvas>
+
+                        <StackPanel Visibility="Collapsed" Name="NewProduct">
+                            <TextBlock Text="{DynamicResource Admin_NewProduct}" Width="200" TextAlignment="Center" FontWeight="DemiBold" FontSize="20" Padding="10"/>
+                            
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdName}" 
+                                             TextInput="{Binding ProductName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdPrice}" 
+                                             TextInput="{Binding ProductPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            
+                            <TextBlock Text="{DynamicResource Admin_ProdImg}" Margin="50 5 0 0"/>
+                            <custom:AdvancedTextBox Type="BrowseFile" Content="{Binding ProductImg, Mode=TwoWay}" Width="200" Margin="0 0 0 0"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdCalories}"
+                                             TextInput="{Binding ProductCalories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductCalories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdTotalFat}"
+                                             TextInput="{Binding ProductTotalFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductTotalFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdSaturatedFat}" 
+                                             TextInput="{Binding ProductSaturatedFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductSaturatedFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdTransFat}" 
+                                             TextInput="{Binding ProductTransFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductTransFat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdCholesterol}" 
+                                             TextInput="{Binding ProductCholesterol, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductCholesterol, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdSodium}"
+                                             TextInput="{Binding ProductSodium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductSodium, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdTotalCarbohydrates}"
+                                             TextInput="{Binding ProductTotalCarbohydrates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductTotalCarbohydrates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdProtein}" 
+                                             TextInput="{Binding ProductProtein, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductProtein, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <custom:InputBox TextName="{DynamicResource Admin_ProdCaffeine}"
+                                             TextInput="{Binding ProductCaffeine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorProductCaffeine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <StackPanel Margin="50 5 0 0">
+                                <StackPanel.Resources>
+                                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                                </StackPanel.Resources>
+                                <TextBlock Text="{DynamicResource Menu_ProductType}" />
+                                <RadioButton Margin="0 8 0 5" Content="{DynamicResource Menu_Drinks}"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             IsChecked="True"
+                                             CommandParameter="{x:Static loc:ProdType.Drinks}"
+                                             Background="#FFFADF5A"/>
+                                <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Meal}"
+                                             Background="#FFFADF5A"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             CommandParameter="{x:Static loc:ProdType.Meal}"/>
+                                <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Coffee}"
+                                             Command="{Binding CheckedTypeCommand}"
+                                             Background="#FFFADF5A"
+                                             CommandParameter="{x:Static loc:ProdType.Coffee}"/>
+
+
+                                <CheckBox IsChecked="{Binding WhetherToSendANewsletter}"
+                                      Content="{DynamicResource Admin_newsletter}"/>
+
+
+                            </StackPanel>
+                            <Button Content="{DynamicResource Admin_ButAddNewProduct}" 
+                                    Command="{Binding AddNewProductCommand}"
+                                    Style="{StaticResource ButtonBlack}"
+                                    Width="200"/>
+                        </StackPanel>
+                        <StackPanel Visibility="Collapsed" Name="NewNews">
+                            <TextBlock Text="{DynamicResource Admin_ButAddNewNews}" Width="200" TextAlignment="Center" FontWeight="DemiBold" FontSize="20" Padding="10"/>
+                            <custom:InputBox TextName="{DynamicResource Admin_NewNewsTitle}" 
+                                             TextInput="{Binding Title, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorTitle, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <!--<components:InputBox TextName="{DynamicResource Admin_NewNewsDate}" TextInput="{Binding ProductName, Mode=TwoWay}"/>-->
+
+                            <!--<DatePickerTextBox Text="{Binding Date, Mode=TwoWay}"/>-->
+
+                            <custom:InputBox TextName="{DynamicResource Admin_NewNewsContent}"
+                                             TextInput="{Binding Content, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                            <TextBlock Text="{DynamicResource Admin_ProdImg}" Margin="50 0 0 0"/>
+                            <custom:AdvancedTextBox Type="BrowseFile" Width="200"
+                                                    Content="{Binding Img, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding ErrorImg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                       Foreground="DarkRed" Margin="52 0 0 10"/>
+
+                            <!--<custom:InputBox TextName="{DynamicResource Admin_NewNewsImg}"
+                                             TextInput="{Binding Img, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorImg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>-->
+
+                            <CheckBox IsChecked="{Binding WhetherToSendANewsletter}" Width="200"
+                                      Content="{DynamicResource Admin_newsletter}"/>
+
+                            <Button Content="{DynamicResource Admin_ButAddNewNews}" 
+                                    Command="{Binding AddNewNewsCommand}"
+                                    Style="{StaticResource ButtonBlack}"
+                                    Width="200"/>
+                        </StackPanel>
+                        <StackPanel Visibility="Collapsed" Name="NewUser">
+                            <TextBlock Text="{DynamicResource Admin_ButAddNewUser}" Width="200" TextAlignment="Center" FontWeight="DemiBold" FontSize="20" Padding="10"/>
+                            <custom:InputBox TextName="{DynamicResource Log_UserName}" 
+                                             TextInput="{Binding UserName, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorUserName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <custom:InputBox TextName="{DynamicResource Log_Password}" 
+                                             TextInput="{Binding Password, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            
+                            <CheckBox IsChecked="{Binding WhetherToSendANewsletter}" Width="200"
+                                      Content="{DynamicResource Admin_newsletter}"/>
+                            
+                            <Button Content="{DynamicResource Admin_ButAddNewUser}" 
+                                    Command="{Binding AddNewUserCommand}"
+                                    Style="{StaticResource ButtonBlack}"
+                                    Width="200"/>
+                        </StackPanel>
+                        
+                        </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </Border>
+</Window>

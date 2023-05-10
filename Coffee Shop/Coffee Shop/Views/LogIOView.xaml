@@ -4,94 +4,242 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeShop.Views" 
-        xmlns:components="clr-namespace:Coffee_Shop.Components"
+        xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl"
+        xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
         mc:Ignorable="d"
          WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
+        Name="logView"
+        MouseDown="logViewMouseDown"
         WindowStartupLocation="CenterScreen"
         Title="Authorization" Height="550" Width="800">
-    <!--<Grid>
-        --><!--xmlns:components="clr-namespace:Coffee_Shop.Components" 
-        xmlns:viewmodels="clr-namespace:Coffee_Shop.ViewModels" 
-        d:DataContext="{d:DesignInstance Type=viewmodels:LogIOViewModel}"--><!--
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="\StaticFiles\Img\bg.png" AlignmentY="Top" AlignmentX="Center"/>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Image Source="\StaticFiles\Img\Logo.png" Grid.ColumnSpan="2" Width="150"/>
-        <StackPanel x:Name="BlackPanel" Style="{StaticResource ChangeThemeStackPanel}" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="2" Height="125" >
-            <Grid VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Button Grid.Column="1" Grid.Row="1" x:Name="SignInStartPage" Content="{DynamicResource Log_SignIn}" Template="{StaticResource ButtonTemplate}" Click="SignInStartPageClick" Margin="0 45" />
-                <Button Grid.Column="0" Grid.Row="1" x:Name="JoinStartPage"  Content="{DynamicResource Log_Join}" Template="{StaticResource ButtonTemplate}" Click="JoinStartPageClick" Margin="0 45"/>
-                <Grid x:Name="SignInForm"  Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Margin="0 35 0 15">
-                        <TextBlock Text="{DynamicResource Log_UserName}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
-                        <TextBox Text="{Binding UserName}" Style="{StaticResource TextBoxForLogIO}"/>
-                    </StackPanel>
-                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="0 15 0 15">
-                        <TextBlock Text="{DynamicResource Log_Password}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
-                        <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                    </StackPanel>
-                    <Button Grid.Row="2" Grid.Column="0" Content="{DynamicResource Log_Clear}" Template="{StaticResource ButtonTemplate}" Margin="0 15" Command="{Binding ClearCommand}"  />
-                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource Log_SignIn}" Template="{StaticResource ButtonTemplate}" Margin="0 15" Command="{Binding SignInCommand}" />
-                </Grid>
-                <Grid x:Name="JoinForm" Grid.ColumnSpan="2" Grid.Row="0" Visibility="Collapsed">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.ColumnSpan="2" Grid.Row="0" Margin="0 15 0 15" >
-                        <TextBlock Text="{DynamicResource Log_UserName}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
-                        <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxForLogIO}"/>
-                    </StackPanel>
-                    <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="0 7 0 7">
-                        <TextBlock Text="{DynamicResource Log_Password}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
-                        <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                    </StackPanel>
-                    <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Margin="0 7 0 7">
-                        <TextBlock Text="{DynamicResource Log_ConfirmPassword}" Foreground="Gray" Margin="20 0 0 0"></TextBlock>
-                        <components:BindablePasswordBox Password="{Binding PasswordConfirmation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                    </StackPanel>
-                    <Button Grid.Row="3" Grid.Column="0" Content="{DynamicResource Log_Clear}" Margin="0 15" Command="{Binding ClearCommand}" Style="{StaticResource ButtonForLogIO}"/>
-                    <Button Grid.Row="3" Grid.Column="1" Content="{DynamicResource Log_Join}" Margin="0 15" Command="{Binding JoinCommand}"  Style="{StaticResource ButtonForLogIO}"/>
-                </Grid>
-            </Grid>
-        </StackPanel>
-    </Grid>-->
-
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard >
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.9000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.1000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBox" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EmailBox" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bindablePasswordBox" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="btnLogin" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.7000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01" Value="100">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.9000000" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <CircleEase EasingMode="EaseOut"/>
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.9000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.1000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBox" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EmailBox" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bindablePasswordBox" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock4" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="btnLogin" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.7000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+                        <EasingDoubleKeyFrame KeyTime="00:00:01.7000000" Value="1"/>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.DataContext>
+        <vm:LogIOViewModel/>
+    </Window.DataContext>
     <Border CornerRadius="12">
         <Border.Background>
             <ImageBrush ImageSource="\StaticFiles\Img\back-image.jpg" Stretch="None"/>
@@ -123,7 +271,7 @@
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="LOG IN"
+                    <TextBlock Text="{DynamicResource Log_LogIn}"
                                Foreground="DarkGray"
                                FontSize="10"
                                FontFamily="Montserrat"
@@ -198,31 +346,75 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0">
 
-                    <Image Source="\StaticFiles\Img\LogoImg.png"
-                           Width="57" Height="57" Margin="0 0 0 10"/>
+                    <Image x:Name="image" Source="\StaticFiles\Img\LogoImg.png"
+                           Width="57" Height="57" Margin="0 0 0 10" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
 
-                    <Image Source="\StaticFiles\Img\LogoText.png"
-                           Width="170" Margin="5 0 0 10"/>
+                    <Image x:Name="image1" Source="\StaticFiles\Img\LogoText.png"
+                           Width="170" Margin="5 0 0 10" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
 
-                    <TextBlock Text="Let's warm up your morning! The best stories are told over a cup of coffee..."
+                    <TextBlock x:Name="textBlock" Text="{DynamicResource Log_Desc}"
                                Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
-                               Margin="0,5,0,0"/>
+                               Margin="0,5,0,0" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
 
 
-                    <TextBlock Text="Username"
+                    <TextBlock x:Name="textBlock1" Text="{DynamicResource Log_UserName}"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,35,0,0"/>
+                               Margin="0,35,0,0" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
 
-                    <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource ResourceKey=LogInTextBox}">
+                    <TextBox x:Name="textBox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ResourceKey=LogInTextBox}" RenderTransformOrigin="0.5,0.5">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
                         <TextBox.Background>
                             <ImageBrush ImageSource="\StaticFiles\Img\user-icon.png"
                                         Stretch="None"
@@ -230,87 +422,166 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Password"
-                               Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"                             
-                               Margin="0,15,0,0"/>
-
-
-                    <components:BindablePasswordBox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-
-                    <TextBlock Text="{Binding ErrorMessage}"
+                    <TextBlock x:Name="textBlock2" Text="{Binding ErrorUserNameMessage}"
                                Foreground="#D7596D"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
-                               Margin="0,10,0,0"
-                               TextWrapping="Wrap"/>
+                               Margin="0,2,0,0"
+                               TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+
+                    <StackPanel Name="EmailBox" Style="{StaticResource Visible/HidenEmail}" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <TextBlock Text="{DynamicResource Log_Mail}"
+                                   Foreground="DarkGray"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"                             
+                                   Margin="0,10,0,0"/>
+
+                        <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ResourceKey=LogInTextBox}">
+                            <TextBox.Background>
+                                <ImageBrush ImageSource="\StaticFiles\Img\user-icon.png"
+                                            Stretch="None"
+                                            AlignmentX="Left"/>
+                            </TextBox.Background>
+                        </TextBox>
+
+                        <TextBlock Text="{Binding ErrorEmailMessage}"
+                                   Foreground="#D7596D"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   Margin="0 2 0 0"
+                                   FontFamily="Montserrat"                             
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <TextBlock x:Name="textBlock3" Text="{DynamicResource Log_Password}"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,10,0,0" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+
+                    <custom:BindablePasswordBox x:Name="bindablePasswordBox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" RenderTransformOrigin="0.5,0.5">
+                        <custom:BindablePasswordBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </custom:BindablePasswordBox.RenderTransform>
+                    </custom:BindablePasswordBox>
+
+                    <TextBlock x:Name="textBlock4" Text="{Binding ErrorPasswordMessage}"
+                               Foreground="#D7596D"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0 2 0 10"
+                               TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+
 
                     <Button x:Name="btnLogin" 
-                            Command="{Binding SignInCommand}"
-                            BorderThickness="0"
-                            Content="LOG IN"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"                           
-                            Margin="0,30,0,0">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="DarkGray"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="#E1CA52"/>
-                                        <Setter Property="Foreground" Value="#E1CA52"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                        CornerRadius="20"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                            Style="{StaticResource ChangeCommandJoinLog}"
+                            CommandParameter="{Binding ElementName=logView}" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
                     </Button>
 
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel x:Name="stackPanel" Orientation="Horizontal"
                                 HorizontalAlignment="Center"
-                                Margin="0,15,0,0">
+                                Margin="0,15,0,0" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
 
-                        <TextBlock Text="Forgot Password?"
+                        <TextBlock Text="{DynamicResource Log_FargotPassword}"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
 
-                        <TextBlock Text="Reset"
-                               Foreground="White"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Cursor="Hand"
-                               Margin="8,0,0,0"/>
+                        <CheckBox Name="radioJoin">
+                            <CheckBox.Style>
+                                <Style TargetType="{x:Type CheckBox}">
+                                    <Setter Property="Margin" Value="8 0 0 0"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="FontWeight" Value="Medium"/>
+                                    <Setter Property="FontFamily" Value="Montserrat"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="12"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type CheckBox}">
+                                                <Border>
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Content" Value="{DynamicResource Log_Sign}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="False">
+                                            <Setter Property="Content" Value="{DynamicResource Log_Reset}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
 
                     </StackPanel>
-
                 </StackPanel>
-
             </Grid>
-
         </Border>
-
     </Border>
-
-
 </Window>

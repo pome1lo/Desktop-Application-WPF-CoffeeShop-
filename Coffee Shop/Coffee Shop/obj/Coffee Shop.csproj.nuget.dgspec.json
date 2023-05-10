@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj": {}
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj": {}
   },
   "projects": {
-    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj": {
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj",
-        "projectName": "Coffee Shop",
-        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj",
+        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj",
+        "projectName": "APIForEmail",
+        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\obj\\",
+        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
@@ -45,11 +45,306 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj",
+        "projectName": "Coffee Shop",
+        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj": {
+                "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj"
+              },
+              "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj": {
+                "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj"
+              },
+              "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj": {
+                "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj"
+              },
+              "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj": {
+                "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.Xaml.Behaviors.Wpf": {
+              "target": "Package",
+              "version": "[1.1.39, )"
+            },
+            "MvvmLightLibs": {
+              "target": "Package",
+              "version": "[5.4.1.1, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.3, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj",
+        "projectName": "CustomControl",
+        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1777-prerelease, )"
+            },
+            "Microsoft.Windows.CppWinRT": {
+              "target": "Package",
+              "version": "[2.0.230225.1, )"
+            },
+            "System.Runtime.WindowsRuntime": {
+              "target": "Package",
+              "version": "[5.0.0-preview.5.20278.1, )"
+            },
+            "System.Runtime.WindowsRuntime.UI.Xaml": {
+              "target": "Package",
+              "version": "[5.0.0-preview.5.20278.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj",
+        "projectName": "DataEncryption",
+        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj",
+        "projectName": "DataValidation",
+        "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "imports": [
             "net461",
             "net462",

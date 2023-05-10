@@ -1,11 +1,117 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- HomeView.xaml -->
+    <v:String x:Key="Home_GetInsoired">ЧЕРПАЙТЕ ВДОХНОВЕНИЕ</v:String>
+    <v:String x:Key="Home_SweetWorld">Исследуйте сладкий мир сиропов</v:String>
+    <v:String x:Key="Home_Quote">
+        Домашние сиропы приносят больше, чем просто нотку сладости
+        к вашему кофе: это простой способ придать ему аромат.
+    </v:String>
+    <v:String x:Key="Home_Button">Попробуйте наши рецепты</v:String>
+    <v:String x:Key="Home_News">Новости</v:String>
 
     
-    
-    
+    <!-- ProfileView.xaml -->
+    <v:String x:Key="Profile_EditData">Изменить данные профиль</v:String>
+    <v:String x:Key="Profile_Save">Save changes</v:String>
+    <v:String x:Key="Profile_VK">ВКонтаке</v:String>
+    <v:String x:Key="Profile_Inst">Инстаграмм</v:String>
+    <v:String x:Key="Profile_Telegram">Телеграмм</v:String>
+    <v:String x:Key="Profile_Female">Женский</v:String>
+    <v:String x:Key="Profile_Male">Мужской</v:String>
+    <v:String x:Key="Profile_ChangePassword">Сменить пароль</v:String>
+    <v:String x:Key="Profile_Notifications">Уведомления</v:String>
+    <v:String x:Key="Profile_Profile">Профиль</v:String>
+    <v:String x:Key="Profile_NewPassword">Новый пароль</v:String>
+    <v:String x:Key="Profile_PasswordConfirm">Подтверждение пароля</v:String>
+    <v:String x:Key="Profile_ChangingThePassword">Смена пароля</v:String>
+    <v:String x:Key="Profile_CurrentPassword">Текущий пароль</v:String>
+    <v:String x:Key="Profile_Recommendations">Рекомендации</v:String>
+    <v:String x:Key="Profile_PasswordExample">
+        Пароль должен содержать не менее 5 символов
+        (с учетом регистра). Пример пароля: @sr51(SAp*
+    </v:String>
+    <v:String x:Key="Profile_RecommendationsText">
+        Если пароль содержит заглавные буквы, они должны вводиться одним
+        и тем же способом каждый раз, когда вы входите в систему.
+    </v:String>
+
+    <!-- OrderView.xaml -->
+    <v:String x:Key="Order_Conditions">Условия доставки</v:String>
+    <v:String x:Key="Order_Flat">Кв.</v:String>
+    <v:String x:Key="Order_Intercom">Домофон</v:String>
+    <v:String x:Key="Order_Entrance">Подъезд</v:String>
+    <v:String x:Key="Order_Floor">Этаж</v:String>
+    <v:String x:Key="Order_Comment">Комментарий</v:String>
+    <v:String x:Key="Order_DeliveryTime">Время доставки</v:String>
+    <v:String x:Key="Order_DelCurTime">Сегодня (~ 30-40 мин.)</v:String>
+    <v:String x:Key="Order_Payment">Способ оплаты</v:String>
+    <v:String x:Key="Order_Change">Изменить</v:String>
+    <v:String x:Key="Order_Pay">Оплатить</v:String>
+
+    <!-- ProductInfoView.xaml -->
+    <v:String x:Key="ProdInfo_Allergens">Аллергены</v:String>
+    <v:String x:Key="ProdInfo_FirstTextAllergens">
+        Мы не можем гарантировать, что любые неупакованные продукты, продаваемые в наших магазинах, не содержат аллергенов, поскольку
+        для их хранения, приготовления и подачи мы используем общее оборудование. Покупатели, страдающие аллергией, могут найти 
+        информацию об ингредиентах продуктов на этикетках из наших упакованных продуктов или онлайн по адресу Coffeeshop.com/menu .
+    </v:String>
+    <v:String x:Key="ProdInfo_SecondTextAllergens">
+        * 2000 калорий в день используются для общих рекомендаций по питанию, но потребности в калориях различаются.
+    </v:String>
+    <v:String x:Key="ProdInfo_Components">Компоненты</v:String>
+    <v:String x:Key="ProdInfo_Nutrition">Питание</v:String>
+    <v:String x:Key="ProdInfo_available">Недоступно для этого товара</v:String>
+    <v:String x:Key="ProdInfo_TextNutrition">
+        Информация о питании рассчитана на основе наших стандартных рецептов. Только 
+        изменение размера напитка обновит эту информацию. Других настроек не будет.
+    </v:String>
+    <v:String x:Key="ProdInfo_AddToCart">Добавить в корзину</v:String>
+    <v:String x:Key="ProdInfo_AddToFavorites">Добавить в избранное</v:String>
+
+    <!-- MenuView.xaml -->
+    <v:String x:Key="Menu_PriceRange">По ценовому диапазону:</v:String>
+    <v:String x:Key="Menu_Calories">По калориям:</v:String>
+    <v:String x:Key="Menu_ProductType">По типу продукта:</v:String>
+    <v:String x:Key="Menu_Find">Найти</v:String>
+    <v:String x:Key="Menu_From">От</v:String>
+    <v:String x:Key="Menu_To">До</v:String>
+    <v:String x:Key="Menu_Drinks">Напитки</v:String>
+    <v:String x:Key="Menu_Coffee">Кофе</v:String>
+    <v:String x:Key="Menu_Meal">Еда</v:String>
+    <v:String x:Key="Menu_Reset">Сбросить</v:String>
+
+    <!-- BasketView.xaml -->
+    <v:String x:Key="Basket_Price">Цена</v:String>
+    <v:String x:Key="Basket_Quanity">Количество</v:String>
+    <v:String x:Key="Basket_Order">Ваш заказ:</v:String>
+    <v:String x:Key="Basket_Total">Итого:</v:String>
+    <v:String x:Key="Basket_CardNumber">Номер карты:</v:String>
+    <v:String x:Key="Basket_CardHolder">Имя носителя:</v:String>
+    <v:String x:Key="Basket_CardCVV">CVV код:</v:String>
+    <v:String x:Key="Basket_CardPeriod">Срок действия:</v:String>
+    <v:String x:Key="Basket_SymbTotal">******************************************</v:String>
+
     <!-- AdminView.xaml -->
+    <v:String x:Key="Admin_ButUserDatabase">База данных - пользователи</v:String>
+    <v:String x:Key="Admin_ButProductDatabase">База данных - продукты</v:String>
+    <v:String x:Key="Admin_ButNewsDatabase">База данных - новости</v:String>
+    <v:String x:Key="Admin_ButAddNewUser">Добавить пользователя</v:String>
+    <v:String x:Key="Admin_DeleteUser">Удалить пользователя</v:String>
+    <v:String x:Key="Admin_ButAddNewProduct">Добавить продукт</v:String>
+    <v:String x:Key="Admin_ButAddNewNews">Добавить новость</v:String>
+    <v:String x:Key="Admin_DeleteProduct">Удалить продукт</v:String>
+    <v:String x:Key="Admin_ButOther">Другие параметры</v:String>
+    <v:String x:Key="Admin_newsletter">Следует ли отправлять новостную рассылку</v:String>
+
+    <v:String x:Key="Admin_NewNewsTitle">Заголовок</v:String>
+    <v:String x:Key="Admin_NewNewsDate">Дата</v:String>
+    <v:String x:Key="Admin_NewNewsContent">Контент</v:String>
+    <v:String x:Key="Admin_DeleteNews">Удалить новость</v:String>
+    <v:String x:Key="Admin_NewNewsImg">Картинка</v:String>
+
     <v:String x:Key="Admin_TextLanguage">Изменить язык приложения</v:String>
     <v:String x:Key="Admin_NewProduct">Добавить новый товар</v:String>
     <v:String x:Key="Admin_ProdName">Имя</v:String>
@@ -23,16 +129,21 @@
     <v:String x:Key="Admin_AddButton">Добавить новый товар</v:String>
     <v:String x:Key="Admin_TextTheme">Изменить тему приложения</v:String>
 
+    
     <!-- LogIOView.xaml -->
     <v:String x:Key="Log_UserName">Имя пользователя</v:String>
     <v:String x:Key="Log_Password">Пароль</v:String>
     <v:String x:Key="Log_Clear">Очистить</v:String>
-    <v:String x:Key="Log_SignIn">Войти</v:String>
+    <v:String x:Key="Log_LogIn">Войти</v:String>
     <v:String x:Key="Log_ConfirmPassword">Подтвердите пароль</v:String>
     <v:String x:Key="Log_Join">Присоединиться</v:String>
+    <v:String x:Key="Log_Desc">Давайте согреем ваше утро! Самые лучшие истории рассказываются за чашечкой кофе...</v:String>
+    <v:String x:Key="Log_FargotPassword">Забыли пароль?</v:String>
+    <v:String x:Key="Log_Reset">Присоединяйтесь</v:String>
+    <v:String x:Key="Log_Mail">Почта</v:String>
+    <v:String x:Key="Log_Sign">Войти</v:String>
 
-    
-    
+
     <!-- About.xaml -->
     <v:String x:Key="About_Title">Наша компания</v:String>
     <v:String x:Key="About_SubtitleHeritage">Наше наследие</v:String>

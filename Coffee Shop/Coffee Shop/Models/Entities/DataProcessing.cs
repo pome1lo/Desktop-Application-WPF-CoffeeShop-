@@ -38,7 +38,7 @@ namespace Coffee_Shop.Models.Entities
                 xml.Serialize(fs, configuration);
             }
         }
-        public static void SetDefaultSettings(this ConfigurationSettings? configuration)
+        public static void SetDefaultSettings(this ConfigurationSettings configuration)
         {
             SetLanguage();
             SetTheme();

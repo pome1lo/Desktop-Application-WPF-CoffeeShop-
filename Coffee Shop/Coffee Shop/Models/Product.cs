@@ -1,4 +1,5 @@
-﻿using CoffeShop.Data.Models;
+﻿using Coffee_Shop.Models.Entities;
+using CoffeShop.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,18 @@ namespace CoffeShop.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = default;
         public string Name { get; set; } = string.Empty;
-        public decimal Price { get; set; }
         public string Img { get; set; } = string.Empty;
+        public decimal Price { get; set; } = default;
         public ushort Calories { get; set; }
-        public Description? Description { get; set; }
+        public ProductType ProductType { get; set; }
+        public Description Description { get; set; }
 
         public Product()
         {
-            Description= new Description();
+            this.Description= new Description();
+            this.ProductType = new ProductType();
         }
     }
 }

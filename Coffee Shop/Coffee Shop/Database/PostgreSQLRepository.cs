@@ -1,4 +1,5 @@
 ﻿using Coffee_Shop.Models;
+using Coffee_Shop.Models.Entities;
 using CoffeeShop.Data.Models;
 using CoffeShop.Data.Models;
 using CoffeShop.Models;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Coffee_Shop.Database
 {
@@ -24,32 +26,34 @@ namespace Coffee_Shop.Database
             db.SaveChanges();
         }
 
-        #region Person Methods
-        public IEnumerable<Person> GetPersonList()
+        #region User Methods
+
+        public IEnumerable<User> GetUserList()
         {
-            return db.Persons;
+            return db.Users.Include(x => x.BankCard).Include(x => x.ProductsFromBasket).Include(x => x.SocialNetworks);
         }
-        public Person? GetPerson(int id)
+        public User? GetUser(int id)
         {
-            return db.Persons.Find(id);
+            return GetUserList().ToList().Find(x => x.Id == id);
         }
-        public void CreatePerson(Person person)
+        public void CreateUser(User user)
         {
-            db.Persons.Add(person);
+            user.Id = db.Users.Count() + 1;
+            db.Users.Add(user);
         }
 
-        public void UpdatePerson(Person person)
+        public void UpdateUser(User user)
         {
-            db.Entry(person).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
         }
 
-        public void DeletePerson(int id)
+        public void DeleteUser(int id)
         {
-            Person? person = db.Persons.Find(id);
+            User? user = db.Users.Find(id);
 
-            if (person != null)
+            if (user != null)
             {
-                db.Persons.Remove(person);
+                db.Users.Remove(user);
             }
         }
 
@@ -59,7 +63,11 @@ namespace Coffee_Shop.Database
 
         public IEnumerable<Product> GetProductList()
         {
-            return db.Products;
+            //IEnumerable<Product> products = db.Products;
+
+            //products.ToList().ForEach(x => x.Description = db.Descriptions.ToArray()[x.Id - 1]);
+
+            return db.Products.Include(x => x.ProductType).Include(x => x.Description);
         }
 
         public void UpdateProduct(Product product)
@@ -74,6 +82,7 @@ namespace Coffee_Shop.Database
 
         public void CreateProduct(Product product)
         {
+            product.Id = db.Products.Count() + 1;
             db.Products.Add(product);
         }
 
@@ -135,6 +144,84 @@ namespace Coffee_Shop.Database
 
         #endregion
 
+        #region Product From Basket
+
+        public IEnumerable<ProductFromBasket> GetProductFromBasketList()
+        {
+            return db.ProductsFromBasket.Include(x => x.Product);
+        }
+
+        public ProductFromBasket? GetProductFromBasket(int product)
+        {           
+            return db.ProductsFromBasket.Find(product);
+        }
+
+        public void CreateProductFromBasket(ProductFromBasket item)
+        {
+            db.ProductsFromBasket.Add(item);
+        }
+
+        public void UpdateProductFromBasket(ProductFromBasket item)
+        {
+            db.Entry(item).State = EntityState.Modified;
+        }
+
+        public void DeleteProductFromBasket(int id)
+        {
+            ProductFromBasket? productFromBasket = db.ProductsFromBasket.Find(id);
+
+            if (productFromBasket != null)
+            {
+                db.ProductsFromBasket.Remove(productFromBasket);
+            }
+        }
+
+        #endregion
+
+        #region Bank Card
+        
+        public IEnumerable<BankCard> GetBankCardList()
+        {
+            return db.BankCards;
+        }
+
+        public BankCard? GetBankCard(int id)
+        {
+            return db.BankCards.Find(id);
+        }
+
+        public void CreateBankCard(BankCard item)
+        {
+            db.BankCards.Add(item);
+        }
+
+        public void UpdateBankCard(BankCard item)
+        {
+            db.Entry(item).State = EntityState.Modified;
+        }
+
+        public void DeleteBankCard(int id)
+        {
+            BankCard? bankCard = db.BankCards.Find(id);
+
+            if (bankCard != null)
+            {
+                db.BankCards.Remove(bankCard);
+            }
+        }
+
+        #endregion
+
+        public ProductType GetProductType(string Name)
+        {
+            if (!db.ProductTypes.ToList().Any(x => x.Name == Name))
+            {
+                db.ProductTypes.Add(new ProductType() { Name = Name });
+                db.SaveChanges();
+            }
+            return db.ProductTypes.First(x => x.Name == Name);
+        }
+
         #region Dispose
 
         private bool disposed = false;
@@ -156,8 +243,6 @@ namespace Coffee_Shop.Database
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         #endregion
-
     }
 }

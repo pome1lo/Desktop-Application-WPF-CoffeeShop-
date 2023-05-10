@@ -8,7 +8,7 @@ namespace CoffeShop.Data.Models
 {
     public class Description
     {
-        public int Id { get; set; }
+        public int Id { get; set; } = default;
         public ushort TotalFat { get; set; }
         public ushort SaturatedFat { get; set; }
         public ushort TransFat { get; set; }
