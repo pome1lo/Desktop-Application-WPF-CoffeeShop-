@@ -9132,11 +9132,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj",
+      "projectUniqueName": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj",
       "projectName": "Coffee Shop",
-      "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\Coffee Shop.csproj",
+      "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\Coffee Shop.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\Coffee Shop\\obj\\",
+      "outputPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\Coffee Shop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Visual Studio 2022\\Общие компаненты\\NuGetPackages"
@@ -9158,17 +9158,17 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj": {
-              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\APIForEmail\\APIForEmail.csproj"
+            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\APIForEmail\\APIForEmail.csproj": {
+              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\APIForEmail\\APIForEmail.csproj"
             },
-            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj": {
-              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\CustomControl\\CustomControl.csproj"
+            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\CustomControl\\CustomControl.csproj": {
+              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\CustomControl\\CustomControl.csproj"
             },
-            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj": {
-              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataEncryption\\DataEncryption.csproj"
+            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\DataEncryption\\DataEncryption.csproj": {
+              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\DataEncryption\\DataEncryption.csproj"
             },
-            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj": {
-              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop — копия\\DataValidation\\DataValidation.csproj"
+            "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\DataValidation\\DataValidation.csproj": {
+              "projectPath": "D:\\FILES\\Курсачи\\Мои курсачи\\ООП 2-2\\Coffee Shop\\DataValidation\\DataValidation.csproj"
             }
           }
         }

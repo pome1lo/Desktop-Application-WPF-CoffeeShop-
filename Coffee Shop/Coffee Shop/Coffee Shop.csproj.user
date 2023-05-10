@@ -54,9 +54,6 @@
     <Page Update="StaticFiles\Styles\CommonStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="StaticFiles\Styles\MainStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="StaticFiles\Themes\Light.xaml">
       <SubType>Designer</SubType>
     </Page>

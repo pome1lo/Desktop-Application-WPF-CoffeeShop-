@@ -14,6 +14,7 @@ namespace Coffee_Shop.Database
         public DbSet<ProductFromBasket> ProductsFromBasket { get; set; } = null!;
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<News> News { get; set; } = null!;
+        public DbSet<Notification> Notifications { get; set; } = null!;
         public DbSet<Description> Descriptions { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<SocialNetworks> SocialNetworks { get; set; } = null!;

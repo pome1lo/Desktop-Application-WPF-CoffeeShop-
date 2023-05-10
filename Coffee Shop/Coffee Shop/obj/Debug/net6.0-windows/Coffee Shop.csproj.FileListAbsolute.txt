@@ -55,7 +55,6 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.dll
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\CustomControl.pdb
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\App.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\StaticFiles\Styles\MainStyles.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\CreateElementView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\LogIOView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\MainView.baml

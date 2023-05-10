@@ -104,7 +104,7 @@ namespace Coffee_Shop.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BankCardId")
+                    b.Property<int?>("BankCardId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Email")
@@ -209,6 +209,39 @@ namespace Coffee_Shop.Migrations
                     b.ToTable("News");
                 });
 
+            modelBuilder.Entity("Coffee_Shop.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Img")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("Coffee_Shop.Models.ProductFromBasket", b =>
                 {
                     b.Property<int>("Id")
@@ -286,9 +319,7 @@ namespace Coffee_Shop.Migrations
                 {
                     b.HasOne("Coffee_Shop.Models.BankCard", "BankCard")
                         .WithMany()
-                        .HasForeignKey("BankCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BankCardId");
 
                     b.HasOne("Coffee_Shop.Models.SocialNetworks", "SocialNetworks")
                         .WithMany()
@@ -299,6 +330,13 @@ namespace Coffee_Shop.Migrations
                     b.Navigation("BankCard");
 
                     b.Navigation("SocialNetworks");
+                });
+
+            modelBuilder.Entity("Coffee_Shop.Models.Notification", b =>
+                {
+                    b.HasOne("CoffeeShop.Data.Models.User", null)
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Coffee_Shop.Models.ProductFromBasket", b =>
@@ -316,6 +354,8 @@ namespace Coffee_Shop.Migrations
 
             modelBuilder.Entity("CoffeeShop.Data.Models.User", b =>
                 {
+                    b.Navigation("Notifications");
+
                     b.Navigation("ProductsFromBasket");
                 });
 #pragma warning restore 612, 618

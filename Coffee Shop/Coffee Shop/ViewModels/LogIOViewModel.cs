@@ -24,12 +24,25 @@ namespace Coffee_Shop.ViewModels
 
         #region Methods
 
-        private void GoToTheMainPage(object objView)
+        private void GoToTheMainPage(LogIOView view)
         {
             ViewModelBase.CurrentUser = users.Find(x => x.UserName == user.UserName) ?? user;
             ShowMainWindow();
 
-            (objView as LogIOView)?.Close();
+            view?.Close();
+        }
+
+        private bool IsTheUserDataCorrect()
+        {
+            return validator.Verify(ValidationBased.Password, Password, nameof(ErrorPasswordMessage)) &
+                validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserNameMessage));
+
+            //return validator.CheckingForPasswordLength(Password, nameof(ErrorPasswordMessage)) &
+            //    validator.ValidationOfPlainText(UserName, nameof(ErrorUserNameMessage));
+        }
+        private bool IsTheNewUserDataCorrect()
+        {
+            return IsTheUserDataCorrect() & validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmailMessage)); //validator.ValidationOfEmail(Email, nameof(ErrorEmailMessage));
         }
 
         #endregion
@@ -135,7 +148,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Log in
 
-        private DelegateCommand<object>? logInCommand;
+        private DelegateCommand<LogIOView>? logInCommand;
 
         public ICommand LogInCommand
         {
@@ -143,45 +156,30 @@ namespace Coffee_Shop.ViewModels
             {
                 if (logInCommand == null)
                 {
-                    logInCommand = new DelegateCommand<object>(LogIn);
+                    logInCommand = new DelegateCommand<LogIOView>((LogIOView obj) =>
+                    {
+                        if (IsTheUserDataCorrect())
+                        {
+                            if (users.Any(x => x.UserName == user.UserName && CryptographerBuilder.Decrypt(x.Password) == user.Password))
+                            {
+                                GoToTheMainPage(obj);
+                            }
+                            else
+                            {
+                                SendToModalWindow("There is no such user.");
+                            }
+                        }
+                    });
                 }
                 return logInCommand;
             }
         }
-
-        private void LogIn(object objView)
-        {
-            if (IsTheUserDataCorrect())
-            {
-                if (users.Any(x => x.UserName == user.UserName && CryptographerBuilder.Decrypt(x.Password) == user.Password))
-                {
-                    GoToTheMainPage(objView);
-                }
-                else
-                {
-                    SendToModalWindow("There is no such user.");
-                }
-            }
-        }
-
-        private bool IsTheUserDataCorrect()
-        {
-            return validator.Verify(ValidationBased.Password, Password, nameof(ErrorPasswordMessage)) &
-                validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserNameMessage));
-            
-            //return validator.CheckingForPasswordLength(Password, nameof(ErrorPasswordMessage)) &
-            //    validator.ValidationOfPlainText(UserName, nameof(ErrorUserNameMessage));
-        }
-        private bool IsTheNewUserDataCorrect()
-        {
-            return IsTheUserDataCorrect() & validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmailMessage)); //validator.ValidationOfEmail(Email, nameof(ErrorEmailMessage));
-        }
-
+       
         #endregion
 
         #region Join
 
-        private DelegateCommand<object>? joinCommand;
+        private DelegateCommand<LogIOView>? joinCommand;
 
         public ICommand JoinCommand
         {
@@ -189,28 +187,26 @@ namespace Coffee_Shop.ViewModels
             {
                 if (joinCommand == null)
                 {
-                    joinCommand = new DelegateCommand<object>(Join);
+                    joinCommand = new DelegateCommand<LogIOView>((LogIOView obj) => 
+                    {
+                        if (IsTheNewUserDataCorrect())
+                        {
+                            if (!users.Any(x => x.UserName == user.UserName && x.Password == user.Password))
+                            {
+                                user.Password = CryptographerBuilder.Encrypt(user.Password);
+
+                                Db.CreateUser(user);
+                                Db.Save();
+                                GoToTheMainPage(obj);
+                            }
+                            else
+                            {
+                                SendToModalWindow("A user with this name already exists.");
+                            }
+                        }
+                    });
                 }
                 return joinCommand;
-            }
-        }
-
-        private void Join(object objView)
-        {
-            if (IsTheNewUserDataCorrect())
-            {
-                if (!users.Any(x => x.UserName == user.UserName && x.Password == user.Password))
-                {
-                    user.Password = CryptographerBuilder.Encrypt(user.Password);
-
-                    Db.CreateUser(user);
-                    Db.Save();
-                    GoToTheMainPage(objView);
-                }
-                else
-                {
-                    SendToModalWindow("A user with this name already exists.");
-                }
             }
         }
 

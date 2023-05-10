@@ -18,6 +18,7 @@ namespace CoffeeShop.Data.Models
         public bool IsAdmin { get; set; } = false;
         public BankCard? BankCard { get; set; }
         public SocialNetworks SocialNetworks { get; set; }
+        public List<Notification>? Notifications { get; set; }
         public List<ProductFromBasket> ProductsFromBasket { get; set; }
 
         public User()

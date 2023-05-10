@@ -11,7 +11,7 @@
       Title="ProfileView"
       Style="{StaticResource PageMarginTop}">
     <Page.Resources>
-        <Storyboard x:Key="Storyboard1">
+        <Storyboard x:Key="Storyboard">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="page" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="100">
                     <EasingDoubleKeyFrame.EasingFunction>
@@ -32,7 +32,7 @@
     </Page.Resources>
     <Page.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+            <BeginStoryboard Storyboard="{StaticResource Storyboard}"/>
         </EventTrigger>
     </Page.Triggers>
     <Page.RenderTransform>
