@@ -75,8 +75,6 @@ namespace Coffee_Shop {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "7.0.2.0")]
         public static void Main() {
-            SplashScreen splashScreen = new SplashScreen("staticfiles/img/load.gif");
-            splashScreen.Show(true);
             Coffee_Shop.App app = new Coffee_Shop.App();
             app.InitializeComponent();
             app.Run();

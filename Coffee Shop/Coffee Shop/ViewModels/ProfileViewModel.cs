@@ -1,4 +1,5 @@
-﻿using CoffeeShop.Commands;
+﻿using Coffee_Shop.Models;
+using CoffeeShop.Commands;
 using DataEncryption;
 using DataValidation;
 using Microsoft.Extensions.Options;
@@ -143,13 +144,9 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-
         public string UserName
         {
-            get
-            {
-                return userName;
-            }
+            get => userName;
             set
             {
                 userName = value;
@@ -211,14 +208,10 @@ namespace Coffee_Shop.ViewModels
 
         public string Picture
         {
-            get
-            {
-                return CurrentUser.Picture;
-            }
+            get => CurrentUser.Picture;
             set
             {
                 CurrentUser.Picture = value;
-                MessageBox.Show(value);
                 //Db.Save();
                 OnPropertyChanged(nameof(Picture));
             }
@@ -226,10 +219,7 @@ namespace Coffee_Shop.ViewModels
         
         public string CurrentPassword
         {
-            get
-            {
-                return new String('●', CryptographerBuilder.Decrypt(CurrentUser.Password).Count());
-            }
+            get => new String('●', CryptographerBuilder.Decrypt(CurrentUser.Password).Count());
             set
             {
                 CurrentUser.Password = value;
@@ -237,13 +227,9 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-
         public string NewPassword
         {
-            get
-            {
-                return newPassword;
-            }
+            get => newPassword;
             set
             {
                 newPassword = value;
@@ -253,14 +239,21 @@ namespace Coffee_Shop.ViewModels
 
         public string ConfirmPassword
         {
-            get
-            {
-                return confirmPassword;
-            }
+            get => confirmPassword;
             set
             {
                 confirmPassword = value;
                 OnPropertyChanged(nameof(ConfirmPassword));
+            }
+        }
+
+        public List<Notification>? Notifications
+        {
+            get => CurrentUser.Notifications;
+            set
+            {
+                CurrentUser.Notifications = value;
+                OnPropertyChanged(nameof(Notifications));
             }
         }
 
@@ -378,6 +371,28 @@ namespace Coffee_Shop.ViewModels
             }
             return false;
 
+        }
+
+        #endregion
+
+        #region Close item card 
+
+        private DelegateCommand<Notification> closeItemCardCommand;
+        public ICommand CloseItemCardCommand
+        {
+            get
+            {
+                if (closeItemCardCommand == null)
+                {
+                    closeItemCardCommand = new DelegateCommand<Notification>((Notification notification) => 
+                    {
+                        CurrentUser.Notifications.Remove(notification);
+                        Db.Save();
+                        Notifications = new(CurrentUser.Notifications);
+                    });
+                }
+                return closeItemCardCommand; 
+            }
         }
 
         #endregion

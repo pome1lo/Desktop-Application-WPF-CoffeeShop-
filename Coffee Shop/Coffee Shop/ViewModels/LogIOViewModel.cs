@@ -1,8 +1,10 @@
-﻿using CoffeeShop.Commands;
+﻿using Coffee_Shop.Models;
+using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
 using CoffeeShop.Views;
 using DataEncryption;
 using DataValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -36,25 +38,38 @@ namespace Coffee_Shop.ViewModels
         {
             return validator.Verify(ValidationBased.Password, Password, nameof(ErrorPasswordMessage)) &
                 validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserNameMessage));
-
-            //return validator.CheckingForPasswordLength(Password, nameof(ErrorPasswordMessage)) &
-            //    validator.ValidationOfPlainText(UserName, nameof(ErrorUserNameMessage));
         }
         private bool IsTheNewUserDataCorrect()
         {
-            return IsTheUserDataCorrect() & validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmailMessage)); //validator.ValidationOfEmail(Email, nameof(ErrorEmailMessage));
+            return IsTheUserDataCorrect() & validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmailMessage));
+        }
+
+        private Notification GetDefaultNotification()
+        {
+            Notification notification = new Notification();
+            notification.Title = $"{user.UserName}, welcome to the Coffee Shop!";
+            notification.Content =
+                "Thanks to our application, you can view the menu catalog, " +
+                "place orders, learn the history of the company, as well as " +
+                "quickly learn about news and new products thanks to our newsletter.";
+            notification.Date = DateTime.Now;
+            return notification;
         }
 
         #endregion
 
         #region Fields
 
-        private List<User> users { get; } = new();
+        private List<User> users { get; set; } = new();
         private User user = new();
         private Validator validator;
         private string errorPasswordMessage = string.Empty;
         private string errorUserNameMessage = string.Empty;
         private string errorEmailMessage = string.Empty;
+
+        private DelegateCommand? exitCommand;
+        private DelegateCommand<LogIOView>? joinCommand;
+        private DelegateCommand<LogIOView>? logInCommand;
 
         #endregion
 
@@ -148,8 +163,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Log in
 
-        private DelegateCommand<LogIOView>? logInCommand;
-
         public ICommand LogInCommand
         {
             get
@@ -174,12 +187,10 @@ namespace Coffee_Shop.ViewModels
                 return logInCommand;
             }
         }
-       
+
         #endregion
 
         #region Join
-
-        private DelegateCommand<LogIOView>? joinCommand;
 
         public ICommand JoinCommand
         {
@@ -187,16 +198,16 @@ namespace Coffee_Shop.ViewModels
             {
                 if (joinCommand == null)
                 {
-                    joinCommand = new DelegateCommand<LogIOView>((LogIOView obj) => 
+                    joinCommand = new DelegateCommand<LogIOView>((LogIOView obj) =>
                     {
                         if (IsTheNewUserDataCorrect())
                         {
                             if (!users.Any(x => x.UserName == user.UserName && x.Password == user.Password))
                             {
                                 user.Password = CryptographerBuilder.Encrypt(user.Password);
-
-                                Db.CreateUser(user);
-                                Db.Save();
+                                user.Notifications = new() { GetDefaultNotification() };
+                                Db?.CreateUser(user);
+                                Db?.Save();
                                 GoToTheMainPage(obj);
                             }
                             else
@@ -214,23 +225,18 @@ namespace Coffee_Shop.ViewModels
 
         #region Exit
 
-        private DelegateCommand? exitCommand;
-
         public ICommand ExitCommand
         {
             get
             {
                 if (exitCommand == null)
                 {
-                    exitCommand = new DelegateCommand(Exit);
+                    exitCommand = new DelegateCommand(
+                        System.Windows.Application.Current.Shutdown
+                    );
                 }
                 return exitCommand;
             }
-        }
-
-        private void Exit()
-        {
-            System.Windows.Application.Current.Shutdown();
         }
 
         #endregion

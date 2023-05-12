@@ -7,7 +7,7 @@
         xmlns:loc="clr-namespace:Coffee_Shop.Models.Entities"
         xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
         xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Name="view"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -44,7 +44,13 @@
                                              ErrorMessage="{Binding ErrorProductPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             
                             <TextBlock Text="{DynamicResource Admin_ProdImg}" Margin="50 5 0 0"/>
-                            <custom:AdvancedTextBox Type="BrowseFile" Content="{Binding ProductImg, Mode=TwoWay}" Width="200" Margin="0 0 0 0"/>
+                            <!--<custom:AdvancedTextBox Type="BrowseFile" Content="{Binding ProductImg, Mode=TwoWay}" Width="200" Margin="0 0 0 0"/>-->
+                            <!--<custom:AdvancedTextBox Type="BrowseFile" Content="{Binding ProductImg, Mode=TwoWay}" Width="200" Margin="0 0 0 0"/>
+                            FullPath="{Binding ProductImg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+-->
+                            <custom:AdvancedTextBox Type="BrowseFile" Width="200" Margin="0 0 0 0" 
+                                                    Content="{Binding ProductImg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
 
                             <custom:InputBox TextName="{DynamicResource Admin_ProdCalories}"
                                              TextInput="{Binding ProductCalories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -108,6 +114,7 @@
                             </StackPanel>
                             <Button Content="{DynamicResource Admin_ButAddNewProduct}" 
                                     Command="{Binding AddNewProductCommand}"
+                                    CommandParameter="{Binding ElementName=view}"
                                     Style="{StaticResource ButtonBlack}"
                                     Width="200"/>
                         </StackPanel>
@@ -126,7 +133,7 @@
 
                             <TextBlock Text="{DynamicResource Admin_ProdImg}" Margin="50 0 0 0"/>
                             <custom:AdvancedTextBox Type="BrowseFile" Width="200"
-                                                    Content="{Binding Img, Mode=TwoWay}"/>
+                                                    FullPath="{Binding Img, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                             <TextBlock Text="{Binding ErrorImg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        Foreground="DarkRed" Margin="52 0 0 10"/>
 
@@ -139,6 +146,7 @@
 
                             <Button Content="{DynamicResource Admin_ButAddNewNews}" 
                                     Command="{Binding AddNewNewsCommand}"
+                                    CommandParameter="{Binding ElementName=view}"
                                     Style="{StaticResource ButtonBlack}"
                                     Width="200"/>
                         </StackPanel>
@@ -156,6 +164,7 @@
                             
                             <Button Content="{DynamicResource Admin_ButAddNewUser}" 
                                     Command="{Binding AddNewUserCommand}"
+                                    CommandParameter="{Binding ElementName=view}"
                                     Style="{StaticResource ButtonBlack}"
                                     Width="200"/>
                         </StackPanel>

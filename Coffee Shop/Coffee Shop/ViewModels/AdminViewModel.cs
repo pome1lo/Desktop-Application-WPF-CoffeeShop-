@@ -18,11 +18,11 @@ namespace Coffee_Shop.ViewModels
 
         public AdminViewModel() { }
 
-        public AdminViewModel(string lang, string theme)
-        {
-            this.language = lang;
-            this.theme = theme;
-        }
+        //public AdminViewModel(string lang, string theme)
+        //{
+        //    this.language = lang;
+        //    this.theme = theme;
+        //}
 
         #endregion
 
@@ -202,11 +202,6 @@ namespace Coffee_Shop.ViewModels
             );
         }
 
-        private void ShowPageCreateElementView(TypeOfObjectBeingCreated product)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         #region Commands
@@ -231,8 +226,6 @@ namespace Coffee_Shop.ViewModels
                 return showAddNewProductCommand;
             }
         }
-
-      
 
         #endregion
 

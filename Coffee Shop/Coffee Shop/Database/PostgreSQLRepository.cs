@@ -30,7 +30,10 @@ namespace Coffee_Shop.Database
 
         public IEnumerable<User> GetUserList()
         {
-            return db.Users.Include(x => x.BankCard).Include(x => x.ProductsFromBasket).Include(x => x.SocialNetworks);
+            return db.Users.Include(x => x.BankCard)
+                .Include(x => x.ProductsFromBasket)
+                .Include(x => x.SocialNetworks)
+                .Include(x => x.Notifications);
         }
         public User? GetUser(int id)
         {
@@ -82,7 +85,7 @@ namespace Coffee_Shop.Database
 
         public void CreateProduct(Product product)
         {
-            product.Id = db.Products.Count() + 1;
+            //product.Id = db.Products.Last().Id + 1;
             db.Products.Add(product);
         }
 

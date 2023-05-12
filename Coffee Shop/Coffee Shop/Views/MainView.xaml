@@ -16,7 +16,7 @@
         MinHeight="550" MinWidth="900"
         Height="550" Width="900">
     <Window.Resources>
-        <Storyboard x:Key="Storyboard1">
+        <Storyboard x:Key="Storyboard">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
@@ -205,7 +205,7 @@
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+            <BeginStoryboard Storyboard="{StaticResource Storyboard}"/>
         </EventTrigger>
     </Window.Triggers>
     <!-- IsEnabled  для модальных око и opacity на 0.6-->

@@ -1,4 +1,5 @@
 ﻿using CoffeeShop.Commands;
+using CoffeeShop.Views;
 using CoffeShop.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Reflection;
 using DataValidation;
 using static DataValidation.Validator;
 using Coffee_Shop.Models.Entities;
+using Coffee_Shop.Views;
 
 namespace Coffee_Shop.ViewModels
 {
@@ -25,6 +27,7 @@ namespace Coffee_Shop.ViewModels
         public CreateElementViewModel() 
         {
             this.validator = new Validator(this);
+            product.ProductType = Db.GetProductType("Coffee");
         }
 
         #endregion
@@ -53,7 +56,6 @@ namespace Coffee_Shop.ViewModels
         private string errorPassword = string.Empty;
 
         private string errorTitle = string.Empty;
-        private string errorDate = string.Empty;
         private string errorContent = string.Empty;
         private string errorImg = string.Empty;
 
@@ -169,6 +171,16 @@ namespace Coffee_Shop.ViewModels
             {
                 product.Description.Caffeine = value;
                 OnPropertyChanged(nameof(ProductCaffeine));
+            }
+        }
+
+        public ProductType ProductType
+        {
+            get => product.ProductType;
+            set
+            {
+                product.ProductType = value;
+                OnPropertyChanged(nameof(ProductType));
             }
         }
 
@@ -339,17 +351,6 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(Title));
             }
         }
-
-        //public DateTime Date
-        //{
-        //    get => news.Date;
-        //    set
-        //    {
-        //        news.Date = value;
-        //        OnPropertyChanged(nameof(Date));
-        //    }
-        //}
-
         public string Content
         {
             get => news.Content;
@@ -436,7 +437,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Add New Product
 
-        private DelegateCommand? addNewProductCommand;
+        private DelegateCommand<CreateElement>? addNewProductCommand;
 
         public ICommand AddNewProductCommand
         {
@@ -444,14 +445,15 @@ namespace Coffee_Shop.ViewModels
             {
                 if (addNewProductCommand == null)
                 {
-                    addNewProductCommand = new DelegateCommand(() =>
+                    addNewProductCommand = new DelegateCommand<CreateElement>((CreateElement view) =>
                     {
                         if (NewProductValidate())
                         {
+                            //product.ProductType = Db.GetProductType("Coffee");
                             Db.CreateProduct(product);
                             Db.Save();
                             SendToModalWindow("The product was successfully added to the database.");
-
+                            view.Close();
                             if (WhetherToSendANewsletter == true)
                             {
                                 // почта отправка епта
@@ -467,7 +469,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Add New News
 
-        private DelegateCommand? addNewNewsCommand;
+        private DelegateCommand<CreateElement>? addNewNewsCommand;
 
         public ICommand AddNewNewsCommand
         {
@@ -475,14 +477,15 @@ namespace Coffee_Shop.ViewModels
             {
                 if (addNewNewsCommand == null)
                 {
-                    addNewNewsCommand = new DelegateCommand(() => 
+                    addNewNewsCommand = new DelegateCommand<CreateElement>((CreateElement view) => 
                     {
                         if (NewNewsValidate())
                         {
+
                             Db.CreateNews(news);
                             Db.Save();
                             SendToModalWindow("The news was successfully added to the database.");
-
+                            view.Close();
                             if (WhetherToSendANewsletter == true)
                             {
                                 // почта отправка епта
@@ -500,7 +503,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Add New User
 
-        private DelegateCommand? addNewUserCommand;
+        private DelegateCommand<CreateElement>? addNewUserCommand;
 
         public ICommand AddNewUserCommand
         {
@@ -508,14 +511,14 @@ namespace Coffee_Shop.ViewModels
             {
                 if (addNewUserCommand == null)
                 {
-                    addNewUserCommand = new DelegateCommand(() =>
+                    addNewUserCommand = new DelegateCommand<CreateElement>((CreateElement view) =>
                     {
                         if (NewUserValidate())
                         {
                             Db.CreateUser(user);
                             Db.Save();
                             SendToModalWindow("The user was successfully added to the database.");
-
+                            view.Close();
                             if (WhetherToSendANewsletter == true)
                             {
                                 SendANewsLetter();

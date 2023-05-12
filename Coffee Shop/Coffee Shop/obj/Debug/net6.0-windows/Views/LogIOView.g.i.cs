@@ -167,7 +167,7 @@ namespace CoffeeShop.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Coffee Shop;component/views/logioview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Coffee Shop;V1.0.0.0;component/views/logioview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\LogIOView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

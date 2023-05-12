@@ -202,16 +202,59 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Name="Notifications" Style="{StaticResource Visible/HidenNotifications}">
-            <ListView ItemsSource="{Binding}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackPanel Name="Notifications" Style="{StaticResource Visible/HidenNotifications}" Width="660">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding Notifications, UpdateSourceTrigger=PropertyChanged}" 
+                      Background="Transparent" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Border Background="Transparent" Width="650">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="15"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="80" Height="80">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Img}"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <StackPanel Orientation="Vertical"  Grid.Column="1" Margin="5 0 0 5">
+                                        <TextBlock Text="{Binding Title}" 
+                                                   FontSize="16"
+                                                   FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Content}"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Date, StringFormat=d}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <Button BorderThickness="0" Cursor="Hand" Grid.Column="2"
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.CloseItemCardCommand}"
+                                        CommandParameter="{Binding}"
+                                        Background="Transparent" VerticalAlignment="Top">
+                                        <TextBlock Foreground="Red" Text="╳" FontWeight="Bold"/>
+                                        <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}">
+                                                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
 
     </StackPanel>

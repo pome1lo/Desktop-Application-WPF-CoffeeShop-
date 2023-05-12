@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Coffee_Shop.ViewModels.AdminViewModel">
+    <Position X="0.5" Y="2.5" Width="2.5" />
+    <InheritanceLine Type="Coffee_Shop.ViewModels.ViewModelBase" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="12" />
+        <Point X="7.25" Y="11.579" />
+        <Point X="1.75" Y="11.579" />
+        <Point X="1.75" Y="10.021" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>IAkAACIAKJAEACgQEgAAgAAAAAAEAAAACBiAJAABgAQ=</HashCode>
+      <FileName>ViewModels\AdminViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.BankCardViewModel">
+    <Position X="8.75" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEIAABAAAEAQAAAAkEAAAIAAAEAAQAAIAAAAKIAAIA=</HashCode>
+      <FileName>ViewModels\BankCardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.BasketViewModel">
+    <Position X="8.5" Y="16.25" Width="2.5" />
+    <InheritanceLine Type="Coffee_Shop.ViewModels.ViewModelBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="15.612" />
+        <Point X="7.25" Y="17.125" />
+        <Point X="8.5" Y="17.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAhAAAAAAEAAAAAgAAAAAQAAAAEAAAAAAACA=</HashCode>
+      <FileName>ViewModels\BasketViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.CreateElementViewModel">
+    <Position X="14.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAEiAWBQJgDIBmDQQEACwgJJJjAKEwQSAZFAAIgJIUI=</HashCode>
+      <FileName>ViewModels\CreateElementViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.HomeViewModel">
+    <Position X="3.25" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ViewModels\HomeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.LogIOViewModel">
+    <Position X="11.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IIAACAAIAGAAAEBAAABACAAAAAAAgCACAQAIAKAACYA=</HashCode>
+      <FileName>ViewModels\LogIOViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.MainViewModel">
+    <Position X="3.75" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAIBAAIAIAguAAAYBAAAAJAAAAAAIAAQACAAgIACA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.MenuViewModel">
+    <Position X="11.5" Y="13.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>LAIFEwCAABGAkAAEkRAQBBkAADAAAABAgAAABK0ABQQ=</HashCode>
+      <FileName>ViewModels\MenuViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.OrderViewModel">
+    <Position X="6" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAQgEACEAAAgQAAIIEAGCAgABwAAAAAAAFIAAAjQ=</HashCode>
+      <FileName>ViewModels\OrderViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.ProductInfoViewModel">
+    <Position X="7.5" Y="20.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAggAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProductInfoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.ProfileViewModel">
+    <Position X="0.5" Y="12" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>A5AgghKAAWIggEAwgRBAAJAAQAAUAEoQBQAJAIWAIAA=</HashCode>
+      <FileName>ViewModels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.ViewModels.ViewModelBase">
+    <Position X="6" Y="12" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAIAAQAAAMAAAgAAAgEAAAAAAAAAAAQQAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Coffee_Shop.Models.BankCard">
+    <Position X="19.5" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAEEAAAAAAAAAAAAAIAAAACAAAAA=</HashCode>
+      <FileName>Models\BankCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.News">
+    <Position X="22.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAgAAAEAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\News.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.Notification">
+    <Position X="19.5" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAgAAAEAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.ProductFromBasket">
+    <Position X="22.25" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\ProductFromBasket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.SocialNetworks">
+    <Position X="22.25" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SocialNetworks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoffeShop.Data.Models.Description">
+    <Position X="25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAAAAQAAAAAIAAAAIAAAAAEAAQAAAw=</HashCode>
+      <FileName>Models\Description.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoffeShop.Models.Product">
+    <Position X="25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAQAQAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.Entities.ProductType">
+    <Position X="25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoffeeShop.Data.Models.User">
+    <Position X="19.5" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAACAgAAACAAAAAAAACAAAAAACAQAAAAEACAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.Entities.ConfigurationSettings">
+    <Position X="25" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entities\ConfigurationSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.Entities.DataProcessing">
+    <Position X="25" Y="20.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAQAAgAAAAAACAAAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>Models\Entities\DataProcessing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Models.Entities.ItemDetailedProductDescription">
+    <Position X="27.75" Y="21.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgABAAAAA=</HashCode>
+      <FileName>Models\Entities\ItemDetailedProductDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Database.ApplicationContext">
+    <Position X="17.5" Y="10.25" Width="2.5" />
+    <NestedTypes>
+      <Enum Name="Coffee_Shop.Database.ApplicationContext.ChoiceDataBase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Database\ApplicationContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEAACAQAQAgAABCAIAAAAAAAAAAAAAAQDAAAAEACAQ=</HashCode>
+      <FileName>Database\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee_Shop.Database.PostgreSQLRepository" BaseTypeListCollapsed="true">
+    <Position X="23.5" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>oDIAAYAAASAYEAAEoQEAAAnEgQAACAgBEAAACAAQAAA=</HashCode>
+      <FileName>Database\PostgreSQLRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Coffee_Shop.Database.SQLServerRepository" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>oDIAAYAAASAYEAAEoQEAAAnEgQAACAgBEAAACAAQAAA=</HashCode>
+      <FileName>Database\SQLServerRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoffeeShop.Commands.CommandReference" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="19.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAACAAUAAEAABAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Commands\CommandReference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoffeeShop.Commands.DelegateCommand" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAQACCAQQAAEQAAAAAAAAAAAAAAAAAAACAAEA=</HashCode>
+      <FileName>Commands\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoffeeShop.Commands.DelegateCommand&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAQACCAQQAAEQAAAAAAAAAAAAAAAAAAACAAEA=</HashCode>
+      <FileName>Commands\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoffeeShop.Commands.CommandManagerHelper">
+    <Position X="18.5" Y="17.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Commands\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomControl.WebView">
+    <Position X="33.5" Y="6" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.AdminButton">
+    <Position X="33.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.AdvancedTextBox">
+    <Position X="36" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.BindablePasswordBox">
+    <Position X="38.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.HeaderButton">
+    <Position X="36" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.InputBox">
+    <Position X="38.5" Y="5.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CustomControl.ItemCard">
+    <Position X="41" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataValidation.Validator">
+    <Position X="33.75" Y="11.5" Width="2" />
+    <NestedTypes>
+      <Class Name="DataValidation.Validator.ValidationBased" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataEncryption.CryptographerBuilder">
+    <Position X="40.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="APIForEmail.EmailService">
+    <Position X="37" Y="15.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Coffee_Shop.Database.IRepository">
+    <Position X="20.5" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>oDAAAYAAAQAIEAAEoQEAAAnEgQAACAgBEAAACAAQAAA=</HashCode>
+      <FileName>Database\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Coffee_Shop.Models.Entities.ProdType">
+    <Position X="27.75" Y="20.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entities\ProdType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Coffee_Shop.Models.Entities.TypeOfObjectBeingCreated">
+    <Position X="27.75" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entities\TypeOfObjectBeingCreated.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CustomControl.TextBoxType">
+    <Position X="33.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
