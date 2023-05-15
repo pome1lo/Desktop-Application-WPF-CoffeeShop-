@@ -1,0 +1,6 @@
+<h1 align="center">Course project on object-oriented programming 💾</h1>
+<p>This course project examines the process of developing a software tool "Coffee Shop Coffee Shop", which is a user-friendly interface for solving the full range of tasks related to ordering, viewing and adding menu items, coffee shop news and many others. Based on this, labor productivity increases, the speed of ordering and the overall profit of the company. Most of these services are presented in the form of websites. The main stages of application creation will also be described, starting with interface design, and ending with testing and code optimization.</p>
+<p>As an application programming interface, an extensive API was chosen - Windows Presentation Foundation (WPF), which allows you to create beautiful and productive applications with a variety of controls and respond to various user actions.</p>
+<p>To work with WPF, an object-oriented programming language with a C-like syntax was used — C#, designed to create applications on the Microsoft platform.NET Framework.</p>
+<p>The object-relational database management system PostgreSQL was chosen as a data storage service.</p>
+<p>The paper will cover the main stages of application creation – from interface design to code optimization.</p>
