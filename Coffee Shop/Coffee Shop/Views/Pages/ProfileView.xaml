@@ -87,7 +87,7 @@
                                              Type="BrowseFile" 
                                              DockPanel.Dock="Top"
                                              Width="200" />
-                    
+
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                         <control:HeaderButton ImgSource="\StaticFiles\Img\instagram_logo.png"
                                               Command="{Binding GoToTheInstagramCommand}"/>
@@ -96,7 +96,7 @@
                         <control:HeaderButton ImgSource="\StaticFiles\Img\vk_logo.png"
                                               Command="{Binding GoToTheVKCommand}"/>
                     </StackPanel>
-                
+
                 </DockPanel>
             </Border>
             <StackPanel Orientation="Vertical" Margin="20 0">
@@ -118,15 +118,6 @@
                 <control:InputBox TextName="{DynamicResource Profile_Telegram}" 
                                   TextInput="{Binding Telegram, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   ErrorMessage="{Binding ErrorTelegram, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                <StackPanel>
-                    <StackPanel.Resources>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                    </StackPanel.Resources>
-                    <RadioButton Content="{DynamicResource Profile_Male}"
-                                 Background="#FFFADF5A" Margin="0 5"/>
-                    <RadioButton Content="{DynamicResource Profile_Female}"
-                                 Background="#FFFADF5A" Margin="0 5"/>
-                </StackPanel>
                 <Button Style="{StaticResource ButtonBlack}"
                         Content="{DynamicResource Profile_Save}"
                         Command="{Binding ProfileSaveChangesCommand}"
@@ -165,7 +156,7 @@
                 <TextBlock Text="{DynamicResource Profile_NewPassword}" Margin="0 10 0 0"/>
                 <control:BindablePasswordBox Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   HorizontalAlignment="Left" Width="200"/>
-                
+
                 <TextBlock Text="{Binding ErrorNewPassword, UpdateSourceTrigger=PropertyChanged}"
                                Foreground="#D7596D"
                                FontSize="12"
@@ -173,7 +164,7 @@
                                FontFamily="Montserrat"                             
                                Margin="0,2,0,0"
                                TextWrapping="Wrap"/>
-                
+
                 <TextBlock Text="{DynamicResource Profile_PasswordConfirm}" Margin="0 10 0 0"/>
                 <control:BindablePasswordBox Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   HorizontalAlignment="Left" Width="200"/>
@@ -234,20 +225,20 @@
                                         Background="Transparent" VerticalAlignment="Top">
                                         <TextBlock Foreground="Red" Text="╳" FontWeight="Bold"/>
                                         <Button.Style>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Background="{TemplateBinding Background}"
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
                                                                     BorderThickness="{TemplateBinding BorderThickness}"
                                                                     BorderBrush="{TemplateBinding BorderBrush}">
-                                                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
+                                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                 </Grid>
                             </Border>

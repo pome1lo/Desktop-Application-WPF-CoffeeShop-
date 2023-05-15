@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using DataEncryption;
 using DataValidation;
@@ -21,12 +22,15 @@ namespace Coffee_Shop.ViewModels
 
         public ProfileViewModel()
         {
+            this.Db = new UnitOfWork();
             this.validator = new Validator(this);
         }
 
         #endregion
 
         #region Fields
+
+        private UnitOfWork Db;
 
         private Validator validator;
         private string email = CurrentUser.Email;

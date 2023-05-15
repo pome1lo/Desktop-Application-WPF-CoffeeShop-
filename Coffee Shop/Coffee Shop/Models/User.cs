@@ -16,15 +16,12 @@ namespace CoffeeShop.Data.Models
         public string Picture { get; set; } = @"\StaticFiles\Img\ProfileDefault.jpg";
         public string Email { get; set; } = string.Empty;
         public bool IsAdmin { get; set; } = false;
-        public BankCard? BankCard { get; set; }
-        public SocialNetworks SocialNetworks { get; set; }
-        public List<Notification>? Notifications { get; set; }
-        public List<ProductFromBasket> ProductsFromBasket { get; set; }
+        public string Theme { get; set; } = "Dark";
+        public string Language { get; set; } = ".en-US";
 
-        public User()
-        {
-            this.SocialNetworks = new SocialNetworks();
-            this.ProductsFromBasket = new List<ProductFromBasket>();
-        }
+        public BankCard? BankCard { get; set; }
+        public SocialNetworks? SocialNetworks { get; set; }
+        public List<Notification>? Notifications { get; set; }
+        public List<ProductFromBasket>? ProductsFromBasket { get; set; }
     }
 }

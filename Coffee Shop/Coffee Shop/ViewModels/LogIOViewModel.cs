@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
 using CoffeeShop.Views;
@@ -18,9 +19,26 @@ namespace Coffee_Shop.ViewModels
 
         public LogIOViewModel()
         {
-            this.users = Db.GetUserList().ToList();
+            this.Db = new UnitOfWork();
+            this.users = Db.Users.GetIEnumerable().ToList();
             this.validator = new Validator(this);
         }
+
+        #endregion
+
+        #region Fields
+
+        private UnitOfWork Db;
+        private List<User> users { get; set; } = new();
+        private User user = new();
+        private Validator validator;
+        private string errorPasswordMessage = string.Empty;
+        private string errorUserNameMessage = string.Empty;
+        private string errorEmailMessage = string.Empty;
+
+        private DelegateCommand? exitCommand;
+        private DelegateCommand<LogIOView>? joinCommand;
+        private DelegateCommand<LogIOView>? logInCommand;
 
         #endregion
 
@@ -55,21 +73,6 @@ namespace Coffee_Shop.ViewModels
             notification.Date = DateTime.Now;
             return notification;
         }
-
-        #endregion
-
-        #region Fields
-
-        private List<User> users { get; set; } = new();
-        private User user = new();
-        private Validator validator;
-        private string errorPasswordMessage = string.Empty;
-        private string errorUserNameMessage = string.Empty;
-        private string errorEmailMessage = string.Empty;
-
-        private DelegateCommand? exitCommand;
-        private DelegateCommand<LogIOView>? joinCommand;
-        private DelegateCommand<LogIOView>? logInCommand;
 
         #endregion
 
@@ -206,7 +209,7 @@ namespace Coffee_Shop.ViewModels
                             {
                                 user.Password = CryptographerBuilder.Encrypt(user.Password);
                                 user.Notifications = new() { GetDefaultNotification() };
-                                Db?.CreateUser(user);
+                                Db.Users.Create(user);
                                 Db?.Save();
                                 GoToTheMainPage(obj);
                             }

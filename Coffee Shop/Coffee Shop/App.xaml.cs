@@ -21,7 +21,7 @@ namespace Coffee_Shop
         public App()
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); // убрать
-            DataProcessing.GetConfigurationSettings()?.SetDefaultSettings();  // убрать
+            //DataProcessing.GetConfigurationSettings()?.SetDefaultSettings();  // убрать
         }
     }
 }

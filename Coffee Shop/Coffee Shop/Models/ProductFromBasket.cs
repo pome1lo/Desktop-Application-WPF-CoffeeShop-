@@ -12,7 +12,6 @@ namespace Coffee_Shop.Models
     {
         public int Id { get; set; } = default;
         public Product? Product { get; set; }
-        public bool IsFavorite { get; set; } = false;
         public ushort Quantity { get; set; } = 1;
 
         public ProductFromBasket()

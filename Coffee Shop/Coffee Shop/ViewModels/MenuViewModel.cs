@@ -22,8 +22,9 @@ namespace Coffee_Shop.ViewModels
 
         public MenuViewModel()
         {
-            Products = Db.GetProductList().ToList();
+            this.Db = new UnitOfWork();
             validator = new Validator(this);
+            Products = Db.Products.GetIEnumerable().ToList();
         }
 
         #endregion
@@ -32,6 +33,7 @@ namespace Coffee_Shop.ViewModels
 
         private string categoryItem = string.Empty;
 
+        private UnitOfWork Db;
         private List<Product>? products;
         private Product? selectedItemForListProducts;
         private Validator validator;
@@ -218,7 +220,7 @@ namespace Coffee_Shop.ViewModels
 
         private void Sort()
         {
-            var currentProducts = Db.GetProductList().ToList();
+            var currentProducts = Db.Products.GetIEnumerable().ToList();
             Products = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
         }
 
@@ -227,11 +229,11 @@ namespace Coffee_Shop.ViewModels
         {
             if (!string.IsNullOrEmpty(RangeTo))
             {
-                Products = Db.GetProductList().Where(x => x.Price < Decimal.Parse(RangeTo)).ToList();
+                Products = Db.Products.GetIEnumerable().Where(x => x.Price < Decimal.Parse(RangeTo)).ToList();
             }
             if (!string.IsNullOrEmpty(RangeFrom))
             {
-                Products = Db.GetProductList().Where(x => x.Price > Decimal.Parse(RangeFrom)).ToList();
+                Products = Db.Products.GetIEnumerable().Where(x => x.Price > Decimal.Parse(RangeFrom)).ToList();
             }
         }
 
@@ -239,7 +241,7 @@ namespace Coffee_Shop.ViewModels
         {
             if (SliderValue != -1)
             {
-                Products = Db.GetProductList().Where(x => x.Calories < SliderValue).ToList();
+                Products = Db.Products.GetIEnumerable().Where(x => x.Calories < SliderValue).ToList();
             }
         }
 
@@ -285,7 +287,7 @@ namespace Coffee_Shop.ViewModels
                         {
                             if (prodFromDB.Quantity == 1)
                             {
-                                Db.DeleteProductFromBasket(prod.Id);
+                                Db.ProductsFromBascket.Delete(prod.Id);
                                 Db.Save();
                                 ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
                             }
@@ -312,7 +314,7 @@ namespace Coffee_Shop.ViewModels
                     closeItemCardCommand = new DelegateCommand<object>((object obj) =>
                     {
                         var prod = obj as ProductFromBasket;
-                        Db.DeleteProductFromBasket(prod.Id);
+                        Db.ProductsFromBascket.Delete(prod.Id);
                         Db.Save();
                         ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
                     });
@@ -374,7 +376,7 @@ namespace Coffee_Shop.ViewModels
                         ErrorRangeTo = string.Empty;
                         SliderValue = -1;
                         SearchString = string.Empty;
-                        Products = Db.GetProductList().ToList();
+                        Products = Db.Products.GetIEnumerable().ToList();
                     });
                 }
                 return resetButtonCommand;
@@ -395,7 +397,9 @@ namespace Coffee_Shop.ViewModels
                 {
                     checkedTypeCommand = new DelegateCommand<ProdType>((ProdType obj) =>
                     {
-                        Products = Db.GetProductList().ToList().Where(x => x.ProductType.Name == obj.ToString()).ToList();
+                        Products = Db.Products.GetIEnumerable().ToList()
+                            .Where(x => x.ProductType.Name == obj.ToString())
+                            .ToList();
                     });
                 }
                 return checkedTypeCommand;

@@ -46,7 +46,6 @@ namespace Coffee_Shop.ViewModels
             set 
             {
                 product = value;
-                MessageBox.Show("GREAT!");
                 OnPropertyChanged(nameof(Product)); 
             }
         }

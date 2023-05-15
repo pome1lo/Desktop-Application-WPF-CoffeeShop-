@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using Coffee_Shop.Models.Entities;
 using Coffee_Shop.Views;
 using CoffeeShop.Commands;
@@ -16,7 +17,13 @@ namespace Coffee_Shop.ViewModels
     {
         #region Constructors
 
-        public AdminViewModel() { }
+        public AdminViewModel() 
+        {
+            Db = new UnitOfWork();
+            news = Db.News.GetIEnumerable().ToList();
+            users = Db.Users.GetIEnumerable().ToList();
+            products = Db.Products.GetIEnumerable().ToList();
+        }
 
         //public AdminViewModel(string lang, string theme)
         //{
@@ -28,9 +35,11 @@ namespace Coffee_Shop.ViewModels
 
         #region Fields
 
-        private List<News> news = Db.GetNewsList().ToList();
-        private List<User> users = Db.GetUserList().ToList();
-        private List<Product> products = Db.GetProductList().ToList();
+        private UnitOfWork Db;
+
+        private List<News> news;
+        private List<User> users;
+        private List<Product> products;
 
         private string language;
         private string theme;
@@ -92,43 +101,43 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-        #region Change language
+        //#region Change language
 
-        public string Language
-        {
-            get
-            {
-                return language;
-            }
-            set
-            {
-                language = new String(value.Skip(38).ToArray());
+        //public string Language
+        //{
+        //    get
+        //    {
+        //        return language;
+        //    }
+        //    set
+        //    {
+        //        language = new String(value.Skip(38).ToArray());
 
-                ChangeLanguage();
-                OnPropertyChanged(nameof(Language));
-            }
-        }
+        //        //ChangeLanguage();
+        //        OnPropertyChanged(nameof(Language));
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Change theme
+        //#region Change theme
 
-        public string Theme
-        {
-            get
-            {
-                return theme;
-            }
-            set
-            {
-                theme = new String(value.Skip(38).ToArray());
+        //public string Theme
+        //{
+        //    get
+        //    {
+        //        return theme;
+        //    }
+        //    set
+        //    {
+        //        theme = new String(value.Skip(38).ToArray());
 
-                ChangeTheme();
-                OnPropertyChanged(nameof(Theme));
-            }
-        }
+        //        //ChangeTheme();
+        //        OnPropertyChanged(nameof(Theme));
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region Selected Item For Users Database
 
@@ -176,31 +185,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Methods
 
-        private void ChangeLanguage()
-        {
-            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
-                new ResourceDictionary()
-                {
-                    Source = new Uri(
-                        String.Format($"StaticFiles/Resources/Lang{Language}.xaml"),
-                        UriKind.Relative
-                    )
-                }
-            );
-        }
-
-        private void ChangeTheme()
-        {
-            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
-                new ResourceDictionary()
-                {
-                    Source = new Uri(
-                        String.Format($"StaticFiles/Themes/{Theme}.xaml"),
-                        UriKind.Relative
-                    )
-                }
-            );
-        }
 
         #endregion
 
@@ -291,9 +275,9 @@ namespace Coffee_Shop.ViewModels
                         }
                         else
                         {
-                            Db.DeleteProduct(SelectedItemForProductsDB.Id);
+                            Db.Products.Delete(SelectedItemForProductsDB.Id);
                             Db.Save();
-                            Products = Db.GetProductList().ToList();
+                            Products = Db.Products.GetIEnumerable().ToList();
                             SendToModalWindow("The item was successfully deleted.");
                         }
                     });
@@ -320,9 +304,9 @@ namespace Coffee_Shop.ViewModels
                         }
                         else
                         {
-                            Db?.DeleteUser(selectedItemForUsersDB.Id);
+                            Db.Users.Delete(selectedItemForUsersDB.Id);
                             Db?.Save();
-                            Users = Db.GetUserList().ToList();
+                            Users = Db.Users.GetIEnumerable().ToList();
                             SendToModalWindow("The item was successfully deleted.");
                         }
                     });
@@ -349,9 +333,9 @@ namespace Coffee_Shop.ViewModels
                         }
                         else
                         {
-                            Db?.DeleteNews(SelectedItemForNewsDB.Id);
+                            Db.News.Delete(SelectedItemForNewsDB.Id);
                             Db?.Save();
-                            News = Db.GetNewsList().ToList();
+                            News = Db.News.GetIEnumerable().ToList();
                             SendToModalWindow("The item was successfully deleted.");
                         }
                     });

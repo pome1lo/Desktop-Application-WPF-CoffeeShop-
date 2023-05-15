@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using Coffee_Shop.Models.Entities;
 using CoffeeShop.Commands;
 using CoffeShop.Data.Models;
@@ -29,6 +30,8 @@ namespace Coffee_Shop.ViewModels
 
         public ProductInfoViewModel(Product? product)
         {
+            Db = new UnitOfWork();
+
             this.Product = new ProductFromBasket()
             {
                 Product = product,
@@ -40,6 +43,8 @@ namespace Coffee_Shop.ViewModels
         #endregion
 
         #region Fields
+
+        private UnitOfWork Db;
 
         private ProductFromBasket? product;
         private DelegateCommand? addToBasketCommand;

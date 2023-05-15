@@ -17,6 +17,7 @@ using DataValidation;
 using static DataValidation.Validator;
 using Coffee_Shop.Models.Entities;
 using Coffee_Shop.Views;
+using Coffee_Shop.Database;
 
 namespace Coffee_Shop.ViewModels
 {
@@ -27,12 +28,16 @@ namespace Coffee_Shop.ViewModels
         public CreateElementViewModel() 
         {
             this.validator = new Validator(this);
-            product.ProductType = Db.GetProductType("Coffee");
+            Db = new UnitOfWork();
+
+            product.ProductType = Db.ProductTypes.GetByName("Coffee");
         }
 
         #endregion
 
         #region Fields
+
+        private UnitOfWork Db;
 
         private Product product = new();
         private News news = new();
@@ -85,10 +90,10 @@ namespace Coffee_Shop.ViewModels
         }
         public string ProductImg
         {
-            get => product.Img;
+            get => product.Image;
             set
             {
-                product.Img = @"\StaticFiles\Img\" + value;
+                product.Image = @"\StaticFiles\Img\" + value;
                 OnPropertyChanged(nameof(ProductImg));
             }
         }
@@ -450,7 +455,7 @@ namespace Coffee_Shop.ViewModels
                         if (NewProductValidate())
                         {
                             //product.ProductType = Db.GetProductType("Coffee");
-                            Db.CreateProduct(product);
+                            Db.Products.Create(product);
                             Db.Save();
                             SendToModalWindow("The product was successfully added to the database.");
                             view.Close();
@@ -482,7 +487,7 @@ namespace Coffee_Shop.ViewModels
                         if (NewNewsValidate())
                         {
 
-                            Db.CreateNews(news);
+                            Db.News.Create(news);
                             Db.Save();
                             SendToModalWindow("The news was successfully added to the database.");
                             view.Close();
@@ -515,7 +520,7 @@ namespace Coffee_Shop.ViewModels
                     {
                         if (NewUserValidate())
                         {
-                            Db.CreateUser(user);
+                            Db.Users.Create(user);
                             Db.Save();
                             SendToModalWindow("The user was successfully added to the database.");
                             view.Close();
@@ -550,7 +555,7 @@ namespace Coffee_Shop.ViewModels
                         //    case ProdType.Coffee: product.ProductType = Db.GetProductType(obj.ToString()); break;
                         //    case ProdType.Drinks: product.ProductType = Db.GetProductType(obj.ToString()); break;
                         //}
-                        product.ProductType = Db.GetProductType(obj.ToString());
+                        product.ProductType = Db.ProductTypes.GetByName(obj.ToString());
                     });
                 }
                 return checkedTypeCommand;

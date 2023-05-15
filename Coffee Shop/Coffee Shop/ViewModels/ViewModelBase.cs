@@ -19,7 +19,7 @@ namespace Coffee_Shop.ViewModels
     internal class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected static IRepository? Db { get; private set; }
+        //protected static IRepository? Db { get; private set; }
         protected static User CurrentUser { get; set; } = new();
 
         private static Frame MainFrame = new();
@@ -41,11 +41,11 @@ namespace Coffee_Shop.ViewModels
         }
 
 
-        public static void SetDatabase(byte database)
-        {
-            SetConnectionString(database);
-            Db = GetTheCurrentDatabase();
-        }
+        //public static void SetDatabase(byte database)
+        //{
+        //    SetConnectionString(database);
+        //    Db = GetTheCurrentDatabase();
+        //}
 
         protected void OnPropertyChanged(string propertyName)
         {
@@ -68,3 +68,5 @@ namespace Coffee_Shop.ViewModels
         }
     }
 }
+
+

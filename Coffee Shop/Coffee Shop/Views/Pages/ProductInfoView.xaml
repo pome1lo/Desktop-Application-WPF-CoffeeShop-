@@ -316,9 +316,6 @@
                         Command="{Binding AddToBasketCommand}"
                         Style="{StaticResource ButtonBlack}"
                         Width="200"/>
-                <Button Content="{DynamicResource ProdInfo_AddToFavorites}"
-                        Style="{StaticResource ButtonBlack}"
-                        Width="200"/>
             </StackPanel>
         </Grid>
     </StackPanel>

@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,15 @@ namespace Coffee_Shop.ViewModels
 
 		public HomeViewModel()
 		{
-			News = Db.GetNewsList().ToList();
+            this.Db = new UnitOfWork();
+            News = Db.News.GetIEnumerable().ToList();
         }
 
 		#endregion
 
 		#region Fields
 
+		private UnitOfWork Db;
 		private List<News>? news;
 
 		#endregion

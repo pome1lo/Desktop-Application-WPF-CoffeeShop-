@@ -365,7 +365,7 @@
                     </DockPanel>
                 </Button>
 
-                <custom:AdminButton ImgSource="/StaticFiles/Img/Other.png"
+                <!--<custom:AdminButton ImgSource="/StaticFiles/Img/Other.png"
                                     x:Name="radioOther"
                                     Text="{DynamicResource Admin_ButOther}" RenderTransformOrigin="0.5,0.5">
                     <custom:AdminButton.RenderTransform>
@@ -376,7 +376,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </custom:AdminButton.RenderTransform>
-                </custom:AdminButton>
+                </custom:AdminButton>-->
             </StackPanel>
 
             <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenUsers}">
@@ -427,14 +427,14 @@
                 </DataGrid>
             </StackPanel>
 
-            <StackPanel Margin="20 0 0 0" Style="{StaticResource Visible/HidenOther}">
+            <!--<StackPanel Margin="20 0 0 0" Style="{StaticResource Visible/HidenOther}">
 
-                <!--<RadioButton Content=".en-US"/>
+                --><!--<RadioButton Content=".en-US"/>
                 <RadioButton Content=".ru-RU"/>-->
 
 
                 <!--<RadioButton Content="Dark"/>
-                <RadioButton Content="Light"/>-->
+                <RadioButton Content="Light"/>--><!--
 
                 <TextBlock Text="{DynamicResource Admin_TextLanguage}"
                            Style="{StaticResource TextBlockAbout}"
@@ -456,7 +456,7 @@
                     <ComboBoxItem Content="Light"/>
                 </ComboBox>
 
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
     </StackPanel>
 </Page>

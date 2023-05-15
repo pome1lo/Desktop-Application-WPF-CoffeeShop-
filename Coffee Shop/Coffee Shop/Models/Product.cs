@@ -12,7 +12,7 @@ namespace CoffeShop.Models
     {
         public int Id { get; set; } = default;
         public string Name { get; set; } = string.Empty;
-        public string Img { get; set; } = string.Empty;
+        public string Image { get; set; } = @"\StaticFiles\Img\ImgDefault.png";
         public decimal Price { get; set; } = default;
         public ushort Calories { get; set; }
         public ProductType ProductType { get; set; }

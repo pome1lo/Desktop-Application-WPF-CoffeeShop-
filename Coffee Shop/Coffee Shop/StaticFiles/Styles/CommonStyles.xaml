@@ -305,7 +305,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style TargetType="{x:Type StackPanel}" x:Key="Visible/HidenOther">
+    <!--<Style TargetType="{x:Type StackPanel}" x:Key="Visible/HidenOther">
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=radioOther, Path=IsChecked}" Value="True">
                 <Setter Property="Visibility" Value="Visible"/>
@@ -314,7 +314,7 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>
-    </Style>
+    </Style>-->
 
 
     <Style TargetType="{x:Type Button}" x:Key="buttonBascketItem">

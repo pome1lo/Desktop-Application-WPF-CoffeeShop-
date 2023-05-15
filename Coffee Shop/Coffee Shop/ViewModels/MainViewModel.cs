@@ -2,11 +2,16 @@
 using CoffeeShop.Commands;
 using CoffeeShop.Views;
 using CustomControl;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Web.WebView2.Core;
+using System;
 using System.CodeDom;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Coffee_Shop.ViewModels
 {
@@ -76,6 +81,34 @@ namespace Coffee_Shop.ViewModels
         //{
         //    App.ConnectionTheHomeViewModel();
         //}
+
+        private void ChangeLanguage(string Language)
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(
+                        String.Format($"StaticFiles/Resources/Lang{Language}.xaml"),
+                        UriKind.Relative
+                    )
+                }
+            );
+            CurrentUser.Language = Language;
+        }
+
+        private void ChangeTheme(string Theme)
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(
+                        String.Format($"StaticFiles/Themes/{Theme}.xaml"),
+                        UriKind.Relative
+                    )
+                }
+            );
+            CurrentUser.Theme = Theme;
+        }
 
         #endregion
 
@@ -267,6 +300,85 @@ namespace Coffee_Shop.ViewModels
                 return showAdminPageCommand;
             }
         }
+
+        #endregion
+
+        #region Toggle Image Theme Command
+
+        private DelegateCommand toggleImageThemeCommand;
+        public ICommand ToggleImageThemeCommand
+        {
+            get
+            {
+                if (toggleImageThemeCommand == null)
+                {
+                    toggleImageThemeCommand = new DelegateCommand(() => 
+                    {
+                        if (isThemeFirstImage)
+                        {
+                            CurrentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeLight.png", UriKind.Relative));
+                            new Task(() => { ChangeTheme("Light"); }).Start();
+                            isThemeFirstImage = false;
+                        }
+                        else
+                        { 
+                            CurrentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeDark.png", UriKind.Relative));
+                            new Task(() => { ChangeTheme("Dark"); }).Start();
+                            isThemeFirstImage = true;
+                        }
+                    });
+                }
+                return toggleImageThemeCommand;
+            }
+        }
+        private DelegateCommand toggleImageLangCommand;
+        public ICommand ToggleImageLangCommand
+        {
+            get
+            {
+                if (toggleImageLangCommand == null)
+                {
+                    toggleImageLangCommand = new DelegateCommand(() =>
+                    {
+                        if (isLangFirstImage)
+                        {
+                            CurrentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\rus.png", UriKind.Relative));
+                            ChangeLanguage(".ru-RU");
+                            isLangFirstImage = false;
+                        }
+                        else
+                        {
+                            CurrentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\en.png", UriKind.Relative));
+                            ChangeLanguage(".en-US");
+                            isLangFirstImage = true;
+                        }
+                    });
+                }
+                return toggleImageLangCommand;
+            }
+        }
+        private ImageSource currentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeDark.png", UriKind.Relative));
+        public ImageSource CurrentThemeImage
+        {
+            get => currentThemeImage;
+            set
+            {
+                currentThemeImage = value;
+                OnPropertyChanged(nameof(CurrentThemeImage));
+            }
+        } 
+        private ImageSource currentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\en.png", UriKind.Relative));
+        public ImageSource CurrentLangImage
+        {
+            get => currentLangImage;
+            set
+            {
+                currentLangImage = value;
+                OnPropertyChanged(nameof(CurrentLangImage));
+            }
+        }
+        private bool isThemeFirstImage = true;
+        private bool isLangFirstImage = true;
 
         #endregion
 

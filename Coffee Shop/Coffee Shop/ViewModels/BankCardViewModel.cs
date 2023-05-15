@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Models;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using DataValidation;
 using Microsoft.Extensions.Options;
@@ -20,6 +21,7 @@ namespace Coffee_Shop.ViewModels
 
         public BankCardViewModel()
         {
+            this.Db = new UnitOfWork();
             this.validator = new Validator(this);
         }
 
@@ -29,6 +31,7 @@ namespace Coffee_Shop.ViewModels
 
         private BankCard bankCard = new();
 
+        private UnitOfWork Db;
         private Validator validator;
 
         private string errorCVV = string.Empty ;
