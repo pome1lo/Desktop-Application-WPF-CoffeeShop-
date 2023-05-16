@@ -1,9 +1,6 @@
 using System;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Windows;
-using System.Windows.Input;
 
 namespace DataEncryption
 {
@@ -14,7 +11,7 @@ namespace DataEncryption
         public string? Decrypt(string value)
         {
             rsa.FromXmlString(Key);
-            return ToString(rsa.Decrypt(Convert.FromBase64String(value), true)); 
+            return ToString(rsa.Decrypt(Convert.FromBase64String(value), true));
         }
 
         public string Encrypt(string value)
@@ -22,10 +19,10 @@ namespace DataEncryption
             rsa.FromXmlString(Key);
             return Convert.ToBase64String(rsa.Encrypt(ToByte(value), true));
         }
-        
+
         private byte[] ToByte(string value)
         {
-           return Encoding.UTF8.GetBytes(value);
+            return Encoding.UTF8.GetBytes(value);
         }
 
         private string ToString(byte[] value)

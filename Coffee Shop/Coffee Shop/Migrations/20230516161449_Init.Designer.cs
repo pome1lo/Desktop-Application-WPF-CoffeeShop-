@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Coffee_Shop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230516084456_Init")]
+    [Migration("20230516161449_Init")]
     partial class Init
     {
         /// <inheritdoc />

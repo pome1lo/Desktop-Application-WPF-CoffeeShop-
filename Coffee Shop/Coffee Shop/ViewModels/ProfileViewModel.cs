@@ -3,6 +3,7 @@ using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using DataEncryption;
 using DataValidation;
+using LiveCharts.SeriesAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -426,17 +427,45 @@ namespace Coffee_Shop.ViewModels
             return false;
 
         }
+
+
         private bool IsTheProfileCorrect()
         {
             return validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName)) &
-                validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail)) &
-                validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte)) &
-                validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram)) &
-                validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram))
-                ;
+                    validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail)) &
+                    validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte)) &
+                    validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram)) &
+                    validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram))
+                   ;
+            //    bool vk = false;
+            //    bool telegram = false;
+            //    bool inst = false;
+            //    bool username = false;
+            //    bool mail = false;
+            //    if (Vkontakte != string.Empty)
+            //    {
+            //        vk = validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte));
+            //    }
+            //    if (Telegram != string.Empty)
+            //    {
+            //        inst = validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram));
+            //    }
+            //    if (Instagram != string.Empty)
+            //    {
+            //        telegram = validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram));
+            //    }
+            //    if (UserName != string.Empty && UserName != CurrentUser.UserName)
+            //    {
+            //        username = validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName));
+            //    }
+            //    if (Email != string.Empty && Email != CurrentUser.Email)
+            //    {
+            //         mail = validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail));
+            //    }
+            //    return username & mail & vk & inst & telegram;
         }
 
-        private void FollowTheLink(string link)
+            private void FollowTheLink(string link)
         {
             if (String.IsNullOrEmpty(link))
             {
