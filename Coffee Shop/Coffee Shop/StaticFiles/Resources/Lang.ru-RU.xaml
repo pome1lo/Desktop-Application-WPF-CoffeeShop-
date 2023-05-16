@@ -14,8 +14,8 @@
 
     
     <!-- ProfileView.xaml -->
-    <v:String x:Key="Profile_EditData">Изменить данные профиль</v:String>
-    <v:String x:Key="Profile_Save">Save changes</v:String>
+    <v:String x:Key="Profile_EditData">Изменить данные профиля</v:String>
+    <v:String x:Key="Profile_Save">Сохранить</v:String>
     <v:String x:Key="Profile_VK">ВКонтаке</v:String>
     <v:String x:Key="Profile_Inst">Инстаграмм</v:String>
     <v:String x:Key="Profile_Telegram">Телеграмм</v:String>
@@ -75,16 +75,16 @@
     <v:String x:Key="Menu_PriceRange">По ценовому диапазону:</v:String>
     <v:String x:Key="Menu_Calories">По калориям:</v:String>
     <v:String x:Key="Menu_ProductType">По типу продукта:</v:String>
-    <v:String x:Key="Menu_Find">Найти</v:String>
+    <v:String x:Key="Menu_Find">Искать в меню</v:String>
     <v:String x:Key="Menu_From">От</v:String>
     <v:String x:Key="Menu_To">До</v:String>
-    <v:String x:Key="Menu_Drinks">Напитки</v:String>
+    <v:String x:Key="Menu_Drinks">Коктейли</v:String>
     <v:String x:Key="Menu_Coffee">Кофе</v:String>
     <v:String x:Key="Menu_Meal">Еда</v:String>
     <v:String x:Key="Menu_Reset">Сбросить</v:String>
 
     <!-- BasketView.xaml -->
-    <v:String x:Key="Basket_Price">Цена</v:String>
+    <v:String x:Key="Basket_Price">Цена за 1</v:String>
     <v:String x:Key="Basket_Quanity">Количество</v:String>
     <v:String x:Key="Basket_Order">Ваш заказ:</v:String>
     <v:String x:Key="Basket_Total">Итого:</v:String>
@@ -99,16 +99,16 @@
     <v:String x:Key="Admin_ConfirmOrder">Подвердить заказ</v:String>
     <v:String x:Key="Admin_RejectOrder">Отклонить заказ</v:String>
     
-    <v:String x:Key="Admin_ButUserDatabase">База данных - пользователи</v:String>
-    <v:String x:Key="Admin_ButProductDatabase">База данных - продукты</v:String>
-    <v:String x:Key="Admin_ButNewsDatabase">База данных - новости</v:String>
+    <v:String x:Key="Admin_ButUserDatabase">Все пользователи</v:String>
+    <v:String x:Key="Admin_ButProductDatabase">Все продукты</v:String>
+    <v:String x:Key="Admin_ButNewsDatabase">Все новости</v:String>
     <v:String x:Key="Admin_ButAddNewUser">Добавить пользователя</v:String>
     <v:String x:Key="Admin_DeleteUser">Удалить пользователя</v:String>
     <v:String x:Key="Admin_ButAddNewProduct">Добавить продукт</v:String>
     <v:String x:Key="Admin_ButAddNewNews">Добавить новость</v:String>
     <v:String x:Key="Admin_DeleteProduct">Удалить продукт</v:String>
-    <v:String x:Key="Admin_ButOther">Другие параметры</v:String>
-    <v:String x:Key="Admin_newsletter">Следует ли отправлять новостную рассылку</v:String>
+    <v:String x:Key="Admin_ButOther">Заказы</v:String>
+    <v:String x:Key="Admin_newsletter">Рассылка</v:String>
 
     <v:String x:Key="Admin_NewNewsTitle">Заголовок</v:String>
     <v:String x:Key="Admin_NewNewsDate">Дата</v:String>

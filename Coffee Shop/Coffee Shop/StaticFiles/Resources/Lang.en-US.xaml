@@ -74,16 +74,16 @@
     <v:String x:Key="Menu_PriceRange">By price range:</v:String>
     <v:String x:Key="Menu_Calories">By calories:</v:String>
     <v:String x:Key="Menu_ProductType">By product type:</v:String>
-    <v:String x:Key="Menu_Find">Find</v:String>
+    <v:String x:Key="Menu_Find">Search in the menu</v:String>
     <v:String x:Key="Menu_From">From</v:String>
     <v:String x:Key="Menu_To">To</v:String>
-    <v:String x:Key="Menu_Drinks">Drinks</v:String>
+    <v:String x:Key="Menu_Drinks">Refreashes</v:String>
     <v:String x:Key="Menu_Coffee">Coffee</v:String>
     <v:String x:Key="Menu_Meal">Meal</v:String>
     <v:String x:Key="Menu_Reset">Reset</v:String>
     
     <!-- BasketView.xaml -->
-    <v:String x:Key="Basket_Price">Price</v:String>
+    <v:String x:Key="Basket_Price">Price by 1</v:String>
     <v:String x:Key="Basket_Quanity">Quanity</v:String>
     <v:String x:Key="Basket_Order">Your order:</v:String>
     <v:String x:Key="Basket_Total">Total:</v:String>
@@ -111,7 +111,7 @@
     <v:String x:Key="Admin_ButAddNewUser">Add new user</v:String>
     <v:String x:Key="Admin_ButAddNewProduct">Add new product</v:String>
     <v:String x:Key="Admin_ButAddNewNews">Add new news</v:String>
-    <v:String x:Key="Admin_ButOther">Other parameters</v:String>
+    <v:String x:Key="Admin_ButOther">Orders</v:String>
 
     <v:String x:Key="Admin_DeleteUser">Delete User</v:String>
     <v:String x:Key="Admin_DeleteNews">Delete News</v:String>

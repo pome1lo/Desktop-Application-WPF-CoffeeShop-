@@ -2,7 +2,7 @@
 {
     public enum ProdType
     {
-        Drinks,
+        Refreashes,
         Meal,
         Coffee
     }

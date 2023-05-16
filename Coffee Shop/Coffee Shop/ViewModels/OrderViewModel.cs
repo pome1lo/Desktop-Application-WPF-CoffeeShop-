@@ -2,12 +2,15 @@
 using Coffee_Shop.Database;
 using Coffee_Shop.Models;
 using Coffee_Shop.Views;
+using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
 using DataValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using static DataValidation.Validator;
 
@@ -215,6 +218,8 @@ namespace Coffee_Shop.ViewModels
                                 new Task(SendMailToUserAboutOrder).Start();
 
                                 view?.Close();
+                                Thread.Sleep(500);
+                                ShowPage(new MenuView());
                             }
                             else
                             {

@@ -49,13 +49,21 @@ namespace APIForEmail
                 Text = GetContentForType()
             };
 
-            using (var client = new SmtpClient())
+            try
             {
-                client.Connect("smtp.mail.ru", 465, true);
-                client.Authenticate(this.FromMail, this.AuthenticateKey);
-                client.Send(emailMessage);
-                client.Disconnect(true);
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.mail.ru", 465, true);
+                    client.Authenticate(this.FromMail, this.AuthenticateKey);
+                    client.Send(emailMessage);
+                    client.Disconnect(true);
+                }
             }
+            catch
+            {
+                return;
+            }
+            
         }
 
         private string GetContentForType()

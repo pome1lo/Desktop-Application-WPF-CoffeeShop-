@@ -5,6 +5,7 @@ using CoffeeShop.Commands;
 using CoffeShop.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Coffee_Shop.ViewModels
@@ -75,11 +76,24 @@ namespace Coffee_Shop.ViewModels
                     {
                         if (CurrentUser.ProductsFromBasket.Any(x => x.Product == Product?.Product))
                         {
-                            CurrentUser.ProductsFromBasket.First(x => x.Product == product?.Product).Quantity += 1;
+                            if (CurrentUser.ProductsFromBasket.First(x => x.Product == product?.Product).Quantity + 1 < 10)
+                            {
+                                SendToModalWindow("The product has been successfully added to the cart");
+                                CurrentUser.ProductsFromBasket.First(x => x.Product == product?.Product).Quantity += 1;
+                                Db.Save();
+                            }   
+                            else
+                            {
+                                SendToModalWindow("Exceeded the number of units of the product");
+                            }
                         }
                         else
                         {
-                            CurrentUser.ProductsFromBasket.Add(Product);
+                            if (CurrentUser.ProductsFromBasket.Count() < 5)
+                            {
+                                SendToModalWindow("The product has been successfully added to the cart");
+                                CurrentUser.ProductsFromBasket.Add(Product);
+                            }
                         }
                         Db.Save();
                     });

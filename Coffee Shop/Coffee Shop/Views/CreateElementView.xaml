@@ -95,7 +95,7 @@
                                 <RadioButton Margin="0 8 0 5" Content="{DynamicResource Menu_Drinks}"
                                              Command="{Binding CheckedTypeCommand}"
                                              IsChecked="True"
-                                             CommandParameter="{x:Static loc:ProdType.Drinks}"
+                                             CommandParameter="{x:Static loc:ProdType.Refreashes}"
                                              Background="#FFFADF5A"/>
                                 <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Meal}"
                                              Background="#FFFADF5A"

@@ -388,14 +388,21 @@ namespace Coffee_Shop.ViewModels
                         {
                             if (IsTheProfileCorrect())
                             {
-                                CurrentUser.Email = Email;
-                                CurrentUser.UserName = UserName;
-                                CurrentUser.SocialNetworks.Telegram = Telegram;
-                                CurrentUser.SocialNetworks.Instagram = Instagram;
-                                CurrentUser.SocialNetworks.Vkontakte = Vkontakte;
+                                if (Db.Users.GetIEnumerable().Any(x => x.UserName == UserName))
+                                {
+                                    SendToModalWindow("Incorrect data.");
+                                }
+                                else
+                                {
+                                    CurrentUser.Email = Email;
+                                    CurrentUser.UserName = UserName;
+                                    CurrentUser.SocialNetworks.Telegram = Telegram;
+                                    CurrentUser.SocialNetworks.Instagram = Instagram;
+                                    CurrentUser.SocialNetworks.Vkontakte = Vkontakte;
 
-                                Db.Save();
-                                SendToModalWindow("Your data has been successfully changed");
+                                    Db.Save();
+                                    SendToModalWindow("Your data has been successfully changed");
+                                }
                             }
                         }
                     );
@@ -435,37 +442,10 @@ namespace Coffee_Shop.ViewModels
                     validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail)) &
                     validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte)) &
                     validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram)) &
-                    validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram))
-                   ;
-            //    bool vk = false;
-            //    bool telegram = false;
-            //    bool inst = false;
-            //    bool username = false;
-            //    bool mail = false;
-            //    if (Vkontakte != string.Empty)
-            //    {
-            //        vk = validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte));
-            //    }
-            //    if (Telegram != string.Empty)
-            //    {
-            //        inst = validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram));
-            //    }
-            //    if (Instagram != string.Empty)
-            //    {
-            //        telegram = validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram));
-            //    }
-            //    if (UserName != string.Empty && UserName != CurrentUser.UserName)
-            //    {
-            //        username = validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName));
-            //    }
-            //    if (Email != string.Empty && Email != CurrentUser.Email)
-            //    {
-            //         mail = validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail));
-            //    }
-            //    return username & mail & vk & inst & telegram;
+                    validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram));
         }
 
-            private void FollowTheLink(string link)
+        private void FollowTheLink(string link)
         {
             if (String.IsNullOrEmpty(link))
             {

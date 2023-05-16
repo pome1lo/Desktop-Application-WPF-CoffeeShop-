@@ -15,7 +15,11 @@
     <None Remove="StaticFiles\Img\AddNews.png" />
     <None Remove="StaticFiles\Img\AddProduct.png" />
     <None Remove="StaticFiles\Img\AddUser.png" />
+    <None Remove="StaticFiles\Img\AvocadoSpread.png" />
     <None Remove="StaticFiles\Img\back-image.jpg" />
+    <None Remove="StaticFiles\Img\BaconCheddarEggWhiteSandwich.png" />
+    <None Remove="StaticFiles\Img\BaconEggSandwich.png" />
+    <None Remove="StaticFiles\Img\BaconGoudaSandwich.png" />
     <None Remove="StaticFiles\Img\Basket.png" />
     <None Remove="StaticFiles\Img\bg.png" />
     <None Remove="StaticFiles\Img\CaffeMisto.png" />
@@ -23,15 +27,24 @@
     <None Remove="StaticFiles\Img\Card.png" />
     <None Remove="StaticFiles\Img\ChangePassword.png" />
     <None Remove="StaticFiles\Img\ChestnutLatte.png" />
+    <None Remove="StaticFiles\Img\ChickenBaconBrioche.png" />
+    <None Remove="StaticFiles\Img\ChickenCapreseCiabatta.png" />
     <None Remove="StaticFiles\Img\ChocolateEspresso.png" />
     <None Remove="StaticFiles\Img\CinnamonLatte.png" />
     <None Remove="StaticFiles\Img\ColdBrew.png" />
+    <None Remove="StaticFiles\Img\CrispyGrilledCheese.png" />
+    <None Remove="StaticFiles\Img\CrispyGrilledCheeseSourdough.png" />
+    <None Remove="StaticFiles\Img\DoubleSmokedBaconSandwich.png" />
     <None Remove="StaticFiles\Img\DragonDrink.png" />
+    <None Remove="StaticFiles\Img\EggRedPepperEggBites.png" />
     <None Remove="StaticFiles\Img\en.png" />
     <None Remove="StaticFiles\Img\Exit.png" />
     <None Remove="StaticFiles\Img\Favicon.ico" />
+    <None Remove="StaticFiles\Img\HamSwissBaguette.png" />
     <None Remove="StaticFiles\Img\ImgDefault.png" />
+    <None Remove="StaticFiles\Img\ImpossibleBreakfastSandwich.png" />
     <None Remove="StaticFiles\Img\instagram_logo.png" />
+    <None Remove="StaticFiles\Img\KaleMushroomEgg.png" />
     <None Remove="StaticFiles\Img\key-icon.png" />
     <None Remove="StaticFiles\Img\KiwiStarfruit.png" />
     <None Remove="StaticFiles\Img\Logo.png" />
@@ -51,12 +64,16 @@
     <None Remove="StaticFiles\Img\ProfileDefault.jpg" />
     <None Remove="StaticFiles\Img\Question.png" />
     <None Remove="StaticFiles\Img\rus.png" />
+    <None Remove="StaticFiles\Img\SausageCheddarSandwich.png" />
     <None Remove="StaticFiles\Img\Settings.png" />
+    <None Remove="StaticFiles\Img\SpinachFetaWrap.png" />
     <None Remove="StaticFiles\Img\StarDrink.png" />
     <None Remove="StaticFiles\Img\StrawberryAcai.png" />
     <None Remove="StaticFiles\Img\telegram_logo.png" />
     <None Remove="StaticFiles\Img\ThemeDark.png" />
     <None Remove="StaticFiles\Img\ThemeLight.png" />
+    <None Remove="StaticFiles\Img\TomatoMozzarellaFocaccia.png" />
+    <None Remove="StaticFiles\Img\TurkeyProvolonePestoCiabatta.png" />
     <None Remove="StaticFiles\Img\user-icon.png" />
     <None Remove="StaticFiles\Img\Users.png" />
     <None Remove="StaticFiles\Img\VanillaSweet.png" />
@@ -73,14 +90,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="StaticFiles\Img\AvocadoSpread.png" />
+    <Resource Include="StaticFiles\Img\BaconCheddarEggWhiteSandwich.png" />
+    <Resource Include="StaticFiles\Img\BaconEggSandwich.png" />
+    <Resource Include="StaticFiles\Img\BaconGoudaSandwich.png" />
+    <Resource Include="StaticFiles\Img\ChickenBaconBrioche.png" />
+    <Resource Include="StaticFiles\Img\ChickenCapreseCiabatta.png" />
+    <Resource Include="StaticFiles\Img\CrispyGrilledCheese.png" />
+    <Resource Include="StaticFiles\Img\CrispyGrilledCheeseSourdough.png" />
+    <Resource Include="StaticFiles\Img\DoubleSmokedBaconSandwich.png" />
+    <Resource Include="StaticFiles\Img\EggRedPepperEggBites.png" />
     <Resource Include="StaticFiles\Img\en.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="StaticFiles\Img\Card.png" />
     <Resource Include="StaticFiles\Img\ChangePassword.png" />
+    <Resource Include="StaticFiles\Img\HamSwissBaguette.png" />
     <Resource Include="StaticFiles\Img\ImgDefault.png" />
+    <Resource Include="StaticFiles\Img\ImpossibleBreakfastSandwich.png" />
     <Resource Include="StaticFiles\Img\instagram_logo.png" />
+    <Resource Include="StaticFiles\Img\KaleMushroomEgg.png" />
     <Resource Include="StaticFiles\Img\news1.jpeg" />
   </ItemGroup>
 
@@ -143,12 +173,16 @@
     <Resource Include="StaticFiles\Img\ProfileDefault.jpg" />
     <Resource Include="StaticFiles\Img\Question.png" />
     <Resource Include="StaticFiles\Img\rus.png" />
+    <Resource Include="StaticFiles\Img\SausageCheddarSandwich.png" />
     <Resource Include="StaticFiles\Img\Settings.png" />
+    <Resource Include="StaticFiles\Img\SpinachFetaWrap.png" />
     <Resource Include="StaticFiles\Img\StarDrink.png" />
     <Resource Include="StaticFiles\Img\StrawberryAcai.png" />
     <Resource Include="StaticFiles\Img\telegram_logo.png" />
     <Resource Include="StaticFiles\Img\ThemeDark.png" />
     <Resource Include="StaticFiles\Img\ThemeLight.png" />
+    <Resource Include="StaticFiles\Img\TomatoMozzarellaFocaccia.png" />
+    <Resource Include="StaticFiles\Img\TurkeyProvolonePestoCiabatta.png" />
     <Resource Include="StaticFiles\Img\user-icon.png" />
     <Resource Include="StaticFiles\Img\Users.png" />
     <Resource Include="StaticFiles\Img\VanillaSweet.png" />

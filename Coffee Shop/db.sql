@@ -28,8 +28,26 @@ INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Chol
 	(230, 240, 250, 260, 270, 280, 290, 300),
 	(50, 60, 70, 80, 90, 100, 110, 120)
 	
+	(170, 180, 190, 200, 210, 220, 230, 240),
+	(250, 260, 270, 280, 290, 300, 50, 60),
+	(70, 80, 90, 100, 110, 120, 130, 140),
+	(150, 160, 170, 180, 190, 200, 210, 220),
+	(230, 240, 250, 260, 270, 280, 290, 300),
+	(50, 60, 70, 80, 90, 100, 110, 120),
+	(250, 260, 270, 280, 290, 300, 50, 60),
+	
 
 INSERT INTO public."Products" ("Name", "Image", "Price", "Calories", "ProductTypeId", "DescriptionId") VALUES
+	--	('', '\StaticFiles\Img\', , 145, , 1), 
+	('', '\StaticFiles\Img\', 125, 355, 2, 16), 
+	('', '\StaticFiles\Img\', 245, 345, 2, 17), 
+	('', '\StaticFiles\Img\', 341, 236, 2, 18), 
+	('', '\StaticFiles\Img\', 432, 265, 2, 19), 
+	('', '\StaticFiles\Img\', 122, 285, 2, 20), 
+	('', '\StaticFiles\Img\', 128, 578, 2, 21), 
+	('', '\StaticFiles\Img\', 271, 456, 2, 22), 
+	('', '\StaticFiles\Img\', 235, 325, 2, 23), 
+	('', '\StaticFiles\Img\', 268, 436, 2, 24), 
 	
 	('Caffe Misto', '\StaticFiles\Img\CaffeMisto.png', 168, 245, 3, 1), 
 	('Caramel Macchiato', '\StaticFiles\Img\CaramelMacchiato.png', 254, 145, 3, 2), 
@@ -41,8 +59,7 @@ INSERT INTO public."Products" ("Name", "Image", "Price", "Calories", "ProductTyp
 	('Veranda Blend', '\StaticFiles\Img\VerandaBlend.png', 109, 230, 3, 8), 
 	('White Chocolate', '\StaticFiles\Img\WhiteChocolate.png', 172, 360, 3, 9), 
 	
---	('', '\StaticFiles\Img\ProfileDefault.', , 145, , 1), 
---	('', '\StaticFiles\Img\ProfileDefault.', , 145, , 1), 
+
 	
 	('Acai Lemonade', '\StaticFiles\Img\AcaiLemonade.png', 154, 145, 1, 10), 
 	('Strawberry Acai', '\StaticFiles\Img\StrawberryAcai.png', 199, 145, 1, 11), 

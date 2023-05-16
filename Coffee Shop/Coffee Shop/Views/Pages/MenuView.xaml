@@ -73,7 +73,7 @@
             <TextBlock Text="{DynamicResource Menu_Calories}" Margin="5"/>
             <Slider Value="{Binding SliderValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Margin="5" Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    TickFrequency="5" Maximum="390" Minimum="0"
+                    TickFrequency="1" Maximum="500" Minimum="130"
                      Background="Transparent" Foreground="#FFFADF5A">
             </Slider>
 
@@ -84,8 +84,7 @@
                 <TextBlock Text="{DynamicResource Menu_ProductType}"/>
                 <RadioButton Margin="0 8 0 5" Content="{DynamicResource Menu_Drinks}"
                                              Command="{Binding CheckedTypeCommand}"
-                                             IsChecked="True"
-                                             CommandParameter="{x:Static loc:ProdType.Drinks}"
+                                             CommandParameter="{x:Static loc:ProdType.Refreashes}"
                                              Background="#FFFADF5A"/>
                 <RadioButton Margin="0 5 0 5" Content="{DynamicResource Menu_Meal}"
                                              Background="#FFFADF5A"
@@ -155,11 +154,8 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="16">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"/>
-                        </Border.Effect>
-                        <StackPanel>
+                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="16">    
+                        <StackPanel Margin="0 0 15 0">
                             <StackPanel Width="130" Margin="0 16 0 0">
                                 <Border CornerRadius="20 0 0 20" Width="90" Height="90" HorizontalAlignment="Center">
                                     <Border.Background>
@@ -167,7 +163,7 @@
                                     </Border.Background>
                                 </Border>
                                 <DockPanel> 
-                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap" Margin="2"/>
+                                    <TextBlock Text="{Binding Name}" Width="100" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" Margin="2"/>
                                     <Button Background="Transparent" HorizontalAlignment="Right" DockPanel.Dock="Right" BorderThickness="0"
                                             Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.AddToBasketCommand}"
                                             CommandParameter="{Binding}" Cursor="Hand" Height="28">
@@ -223,8 +219,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{DynamicResource Basket_Order}" FontSize="20" FontWeight="DemiBold" HorizontalAlignment="Center"/>
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" Height="390">
 
                 <ListView ItemsSource="{Binding ProductsFromBasket, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                           Background="Transparent" BorderThickness="0">
@@ -242,19 +237,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <!--<custom:ItemCard Img="{Binding Product.Img}" 
-                                             ProdName="{Binding Product.Name}"
-                                             Quanity="{Binding Quantity}"
-                                             Price="{Binding Product.Price}"
-                                             CommandClose="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.CloseItemCardCommand}"
-                                             CommandMinus="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.MinusItemCardCommand}"
-                                             CommandPlus="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.PlusItemCardCommand}"
-                                             Param="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.ProdNameFroItemCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                             />-->
-
-
-
-                            <Border Width="233" Background="#191B1D" BorderThickness="1" BorderBrush="#CFB73E" CornerRadius="34" Margin="0 10 0 0">
+                            <Border Width="233" BorderThickness="1" BorderBrush="#CFB73E" CornerRadius="34" Margin="0 10 0 0">
                                 <Grid Width="230" Height="60">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
@@ -272,36 +255,23 @@
                                         </Border.Background>
                                     </Border>
 
-                                    <TextBlock Name="test" Text="{Binding Product.Name}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 3 0 0" Height="20" Foreground="White" FontSize="13" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                    <TextBlock Name="test" Text="{Binding Product.Name}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 3 0 0" Height="20"  FontSize="13" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                                     <Button Grid.Column="2" BorderThickness="0" 
-                                            Background="#191B1D" Cursor="Hand"
+                                             Cursor="Hand"
+                                            Style="{DynamicResource changeTheme}"
                                             Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.CloseItemCardCommand}"
                                             CommandParameter="{Binding}"
                                             HorizontalAlignment="Right">
                                         <TextBlock Foreground="Red" Text="╳" FontWeight="Bold"/>
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="Button">
-                                                            <Border Background="{TemplateBinding Background}"
-                                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                                    BorderBrush="{TemplateBinding BorderBrush}">
-                                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                                            </Border>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </Button.Style>
+                                        
                                     </Button>
 
-                                    <TextBlock Text="{DynamicResource Basket_Price}" Grid.Column="2" Foreground="White" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <TextBlock Text="{DynamicResource Basket_Price}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="0 0 15 0"/>
                                     <Border Grid.Column="2" Grid.Row="2" Background="#F9DF5A" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
                                         <TextBlock  Text="{Binding Product.Price, StringFormat={}{0:C2}}" Grid.Column="2" TextAlignment="Center" Foreground="Black" FontWeight="Bold" Grid.Row="1"/>
                                     </Border>
 
-                                    <TextBlock Text="{DynamicResource Basket_Quanity}" Grid.Column="1" Foreground="White" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Margin="0 0 15 0"/>
+                                    <TextBlock Text="{DynamicResource Basket_Quanity}" Grid.Column="1"  Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Margin="0 0 15 0"/>
                                     <Border Grid.Column="1" Grid.Row="2" BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" CornerRadius="10" HorizontalAlignment="Center"  Margin="0 0 10 2">
                                         <Grid>
                                             <!--Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.TEST}"-->
@@ -320,7 +290,7 @@
                                                     Margin="5 0 0 0">-->
                                                 <!--Command="{Binding test, RelativeSource={RelativeSource AncestorType={x:Type local:ItemCard}}}"-->
                                             </Button>
-                                            <TextBlock Text="{Binding Quantity}" Grid.Column="1" Foreground="White" FontSize="12"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Quantity}" Grid.Column="1"  FontSize="12"  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             <Button Grid.Column="2" 
                                                     Style="{StaticResource buttonBascketItem}"
                                                     Command="{Binding RelativeSource={RelativeSource AncestorType ={x:Type ListView}}, Path=DataContext.PlusItemCardCommand}"

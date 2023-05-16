@@ -45,9 +45,9 @@ namespace Coffee_Shop.ViewModels
 
         private DelegateCommand? findButtonCommand;
         private DelegateCommand? resetButtonCommand;
-        private DelegateCommand<object>? plusItemCardCommand;
-        private DelegateCommand<object>? minusItemCardCommand;
-        private DelegateCommand<object>? closeItemCardCommand;
+        private DelegateCommand<ProductFromBasket>? plusItemCardCommand;
+        private DelegateCommand<ProductFromBasket>? minusItemCardCommand;
+        private DelegateCommand<ProductFromBasket>? closeItemCardCommand;
         private DelegateCommand<object>? addToBasketCommand;
         private DelegateCommand<ProdType> checkedTypeCommand;
         private DelegateCommand? placeAnOrderCommand;
@@ -219,14 +219,35 @@ namespace Coffee_Shop.ViewModels
 
         private void RangeFilter()
         {
-            if (!string.IsNullOrEmpty(RangeTo))
+            if (!string.IsNullOrEmpty(RangeTo) && !string.IsNullOrEmpty(RangeFrom))
+            {
+                if (Decimal.TryParse(RangeTo, out var defTo) && Decimal.TryParse(RangeFrom, out var defFrom))
+                {
+                    if (Decimal.Parse(RangeTo) > Decimal.Parse(RangeFrom))
+                    {
+                        Products = Db.Products.GetIEnumerable().Where(x => x.Price < Decimal.Parse(RangeTo) && x.Price > Decimal.Parse(RangeFrom)).ToList();
+                    }
+                    else
+                    {
+                        ErrorRangeFrom = "Incorrect";
+                        ErrorRangeTo = "Incorrect";
+                    }
+                }
+                else
+                {
+                    ErrorRangeFrom = "Incorrect";
+                    ErrorRangeTo = "Incorrect";
+                }
+            }
+            if (!string.IsNullOrEmpty(RangeTo) && Decimal.TryParse(RangeTo, out var To))
             {
                 Products = Db.Products.GetIEnumerable().Where(x => x.Price < Decimal.Parse(RangeTo)).ToList();
             }
-            if (!string.IsNullOrEmpty(RangeFrom))
+            if (!string.IsNullOrEmpty(RangeFrom) && Decimal.TryParse(RangeFrom, out var From))
             {
                 Products = Db.Products.GetIEnumerable().Where(x => x.Price > Decimal.Parse(RangeFrom)).ToList();
             }
+            
         }
 
         private void SliderFilter()
@@ -249,12 +270,14 @@ namespace Coffee_Shop.ViewModels
             {
                 if (plusItemCardCommand == null)
                 {
-                    plusItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    plusItemCardCommand = new DelegateCommand<ProductFromBasket>((ProductFromBasket prod) =>
                     {
-                        var prod = obj as ProductFromBasket;
-                        CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity++;
-                        Db.Save();
-                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
+                        if (prod.Quantity + 1 < 10)
+                        {
+                            prod.Quantity++;
+                            Db.Save();
+                            ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
+                        }
                     });
                 }
                 return plusItemCardCommand;
@@ -267,14 +290,11 @@ namespace Coffee_Shop.ViewModels
             {
                 if (minusItemCardCommand == null)
                 {
-                    minusItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    minusItemCardCommand = new DelegateCommand<ProductFromBasket>((ProductFromBasket prod) =>
                     {
-                        var prod = obj as ProductFromBasket;
-                        ProductFromBasket? prodFromDB = CurrentUser.ProductsFromBasket.Find(x => x == prod);
-
-                        if (prodFromDB != null)
+                        if (prod != null)
                         {
-                            if (prodFromDB.Quantity == 1)
+                            if (prod.Quantity == 1)
                             {
                                 Db.ProductsFromBascket.Delete(prod.Id);
                                 Db.Save();
@@ -282,7 +302,7 @@ namespace Coffee_Shop.ViewModels
                             }
                             else
                             {
-                                CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity--;
+                                prod.Quantity--;
                             }
                             Db.Save();
                             ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
@@ -300,9 +320,8 @@ namespace Coffee_Shop.ViewModels
             {
                 if (closeItemCardCommand == null)
                 {
-                    closeItemCardCommand = new DelegateCommand<object>((object obj) =>
+                    closeItemCardCommand = new DelegateCommand<ProductFromBasket>((ProductFromBasket prod) =>
                     {
-                        var prod = obj as ProductFromBasket;
                         Db.ProductsFromBascket.Delete(prod.Id);
                         Db.Save();
                         ProductsFromBasket = new(CurrentUser.ProductsFromBasket); 
@@ -324,15 +343,20 @@ namespace Coffee_Shop.ViewModels
                 {
                     addToBasketCommand = new DelegateCommand<object>((object obj) =>
                     {
-
                         Product? product = obj as Product;
                         if (CurrentUser.ProductsFromBasket.Any(x => x.Product == product))
                         {
-                            CurrentUser.ProductsFromBasket.First(x => x.Product == product).Quantity += 1;
+                            if (CurrentUser.ProductsFromBasket.First(x => x.Product == product).Quantity + 1 < 10)
+                            {
+                                CurrentUser.ProductsFromBasket.First(x => x.Product == product).Quantity += 1;
+                            }
                         }
                         else
                         {
-                            CurrentUser.ProductsFromBasket.Add(new ProductFromBasket() { Product = product });
+                            if (CurrentUser.ProductsFromBasket.Count() < 5)
+                            {
+                                CurrentUser.ProductsFromBasket.Add(new ProductFromBasket() { Product = product });
+                            }
                         }
                         Db.Save();
                         ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
@@ -354,8 +378,8 @@ namespace Coffee_Shop.ViewModels
                 {
                     resetButtonCommand = new DelegateCommand(() =>
                     {
-                        RangeFrom = "";
-                        RangeTo = "";
+                        RangeFrom = string.Empty;
+                        RangeTo = string.Empty;
                         ErrorRangeFrom = string.Empty;
                         ErrorRangeTo = string.Empty;
                         SliderValue = -1;
@@ -420,7 +444,14 @@ namespace Coffee_Shop.ViewModels
                 {
                     placeAnOrderCommand = new DelegateCommand(() =>
                     {
-                        new OrderView().ShowDialog();
+                        if (CurrentUser.ProductsFromBasket.Count() > 0)
+                        {
+                            new OrderView().ShowDialog();
+                        }
+                        else
+                        {
+                            SendToModalWindow("First fill out the shopping cart");
+                        }
                     });
                 }
                 return placeAnOrderCommand;

@@ -92,7 +92,11 @@
                             Width="{TemplateBinding Width}"
                             HorizontalAlignment="Center"
                             BorderBrush="DarkGray">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border.Background>
+                            <SolidColorBrush Color="#D9D9D9" Opacity="0.01"/>
+                        </Border.Background>
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -104,6 +108,8 @@
         </Setter>
     </Style>
 
+  
+    
     <Style TargetType="{x:Type Button}" x:Key="SmallButton">
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">

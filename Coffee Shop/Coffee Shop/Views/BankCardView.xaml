@@ -9,6 +9,7 @@
         xmlns:control="clr-namespace:CustomControl;assembly=CustomControl"
         mc:Ignorable="d"
         Name="view"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="BankCardVIew" Height="350" Width="350">

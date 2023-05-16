@@ -659,8 +659,8 @@ namespace Coffee_Shop.ViewModels
         private bool NewNewsValidate()
         {
             return validator.Verify(ValidationBased.TextTo, Title, nameof(ErrorTitle)) &
-                ImgValidate() &
-                validator.Verify(ValidationBased.TextTo, Content, nameof(ErrorContent));
+                ImgValidate();
+            //validator.Verify(ValidationBased.TextTo, Content, nameof(ErrorContent))
         }
 
         private bool NewUserValidate()

@@ -59,24 +59,7 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="100">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="100">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
+          
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
@@ -126,24 +109,7 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:01.3000000" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <SineEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
+            
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="scrollViewer" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
@@ -189,7 +155,7 @@
                             
                             <TextBlock x:Name="textBlock" Text="{DynamicResource Home_GetInsoired}" 
                                        FontSize="25" FontWeight="ExtraBlack" 
-                                       FontFamily="Segoe UI Black" 
+                                       FontFamily="Segoe UI Black" Foreground="White"
                                        TextWrapping="Wrap" Margin="5" RenderTransformOrigin="0.5,0.5">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
@@ -201,7 +167,7 @@
                                 </TextBlock.RenderTransform>
                             </TextBlock>
                             <TextBlock x:Name="textBlock1" Text="{DynamicResource Home_SweetWorld}" 
-                                       FontSize="40" FontWeight="Bold" Margin="5"
+                                       FontSize="40" FontWeight="Bold" Margin="5" Foreground="White"
                                        FontFamily="Bell MT" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
@@ -212,7 +178,7 @@
                                     </TransformGroup>
                                 </TextBlock.RenderTransform>
                             </TextBlock>
-                            <TextBlock x:Name="textBlock2" Text="{DynamicResource Home_Quote}" Margin="5" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock x:Name="textBlock2" Foreground="White" Text="{DynamicResource Home_Quote}" Margin="5" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -222,22 +188,9 @@
                                     </TransformGroup>
                                 </TextBlock.RenderTransform>
                             </TextBlock>
-                            <Button x:Name="button" Content="{DynamicResource Home_Button}"
-                                    Style="{StaticResource ButtonBlack}"
-                                    Margin="5"
-                                    Width="200" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
-                                <Button.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Button.RenderTransform>
-                            </Button>
 
                         </StackPanel>
-                        <TextBlock Text="{DynamicResource Home_News}" FontSize="25" FontWeight="Bold" Margin="20" HorizontalAlignment="Center"/>
+                        <TextBlock Foreground="White" Text="{DynamicResource Home_News}" FontSize="25" FontWeight="Bold" Margin="20 150 20 20" HorizontalAlignment="Center"/>
                         <ListView ItemsSource="{Binding News}" HorizontalContentAlignment="Center"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.CanContentScroll="False" 

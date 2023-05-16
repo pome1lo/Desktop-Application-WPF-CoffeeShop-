@@ -11,7 +11,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Title="ModalWindow" Height="100" Width="200">
-    <Border CornerRadius="13" Background="#191B1D">
+    <Border CornerRadius="13" Style="{StaticResource ChengeTheme}">
         <Border CornerRadius="10" BorderThickness="2">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

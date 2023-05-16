@@ -327,6 +327,7 @@ namespace Coffee_Shop.ViewModels
                             CurrentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\rus.png", UriKind.Relative));
                             ChangeLanguage(".ru-RU");
                             isLangFirstImage = false;
+
                         }
                         else
                         {
