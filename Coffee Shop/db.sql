@@ -13,7 +13,7 @@ INSERT INTO public."OrderStatuses" ("Id", "StatusName") VALUES
 INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Cholesterol", "Sodium", "TotalCarbohydrates", "Protein", "Caffeine") VALUES
 	(110, 120, 130, 140, 150, 160, 170, 180),
 	(190, 200, 210, 220, 230, 240, 250, 260),
-    (290, 300, 50, 60, 70, 80, 90, 100),
+ (290, 300, 50, 60, 70, 80, 90, 100),
 	(270, 280, 290, 300, 50, 60, 70, 80),
 	(90, 100, 110, 120, 130, 140, 150, 160),
 	(170, 180, 190, 200, 210, 220, 230, 240),
@@ -26,8 +26,7 @@ INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Chol
 	(70, 80, 90, 100, 110, 120, 130, 140),
 	(150, 160, 170, 180, 190, 200, 210, 220),
 	(230, 240, 250, 260, 270, 280, 290, 300),
-	(50, 60, 70, 80, 90, 100, 110, 120)
-	
+	(50, 60, 70, 80, 90, 100, 110, 120),
 	(170, 180, 190, 200, 210, 220, 230, 240),
 	(250, 260, 270, 280, 290, 300, 50, 60),
 	(70, 80, 90, 100, 110, 120, 130, 140),
@@ -35,20 +34,33 @@ INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Chol
 	(230, 240, 250, 260, 270, 280, 290, 300),
 	(50, 60, 70, 80, 90, 100, 110, 120),
 	(250, 260, 270, 280, 290, 300, 50, 60),
+	(170, 180, 190, 200, 210, 220, 230, 240),
+	(250, 260, 270, 280, 290, 300, 50, 60),
+	(70, 80, 90, 100, 110, 120, 130, 140),
+	(150, 160, 170, 180, 190, 200, 210, 220),
+	(230, 240, 250, 260, 270, 280, 290, 300),
+	(50, 60, 70, 80, 90, 100, 110, 120),
+	(150, 160, 170, 180, 190, 200, 210, 220),
+	(250, 260, 270, 280, 290, 300, 50, 60)
 	
 
 INSERT INTO public."Products" ("Name", "Image", "Price", "Calories", "ProductTypeId", "DescriptionId") VALUES
-	--	('', '\StaticFiles\Img\', , 145, , 1), 
-	('', '\StaticFiles\Img\', 125, 355, 2, 16), 
-	('', '\StaticFiles\Img\', 245, 345, 2, 17), 
-	('', '\StaticFiles\Img\', 341, 236, 2, 18), 
-	('', '\StaticFiles\Img\', 432, 265, 2, 19), 
-	('', '\StaticFiles\Img\', 122, 285, 2, 20), 
-	('', '\StaticFiles\Img\', 128, 578, 2, 21), 
-	('', '\StaticFiles\Img\', 271, 456, 2, 22), 
-	('', '\StaticFiles\Img\', 235, 325, 2, 23), 
-	('', '\StaticFiles\Img\', 268, 436, 2, 24), 
-	
+	('Avocado Spread', '\StaticFiles\Img\AvocadoSpread.png', 125, 355, 2, 16), 
+	('Bacon Cheddar', '\StaticFiles\Img\BaconCheddarEggWhiteSandwich.png', 245, 345, 2, 17), 
+	('Bacon Egg Sandwich', '\StaticFiles\Img\BaconEggSandwich.png', 341, 236, 2, 18), 
+	('Bacon Gouda Sandwich', '\StaticFiles\Img\BaconGoudaSandwich.png', 432, 265, 2, 19), 
+	('ChickenBacon Brioche', '\StaticFiles\Img\ChickenBaconBrioche.png', 122, 285, 2, 20), 
+	('Chicken Caprese Ciabatta', '\StaticFiles\Img\ChickenCapreseCiabatta.png', 128, 578, 2, 21), 
+	('Crispy Grilled Cheese', '\StaticFiles\Img\CrispyGrilledCheese.png', 271, 456, 2, 22), 
+	('Crispy Sourdough', '\StaticFiles\Img\CrispyGrilledCheeseSourdough.png', 235, 325, 2, 23), 
+	('Double Bacon Sandwich', '\StaticFiles\Img\DoubleSmokedBaconSandwich.png', 268, 436, 2, 24), 
+	('Red Egg Bites', '\StaticFiles\Img\EggRedPepperEggBites.png', 534, 214, 2, 25), 
+	('Ham Swiss Baguette', '\StaticFiles\Img\HamSwissBaguette.png', 124, 521, 2, 26), 
+	('Breakfast Sandwich', '\StaticFiles\Img\ImpossibleBreakfastSandwich.png', 352, 211, 2, 27), 
+	('Kale Mushroom Egg', '\StaticFiles\Img\KaleMushroomEgg.png', 225, 241, 2, 28), 
+	('Spinach Feta Wrap', '\StaticFiles\Img\SpinachFetaWrap.png', 142, 421, 2, 29), 
+	('Mozzarella Focaccia', '\StaticFiles\Img\TomatoMozzarellaFocaccia.png', 256, 231, 2, 30), 
+	('Turkey Pesto Ciabatta', '\StaticFiles\Img\TurkeyProvolonePestoCiabatta.png', 269, 436, 2, 31)
 	('Caffe Misto', '\StaticFiles\Img\CaffeMisto.png', 168, 245, 3, 1), 
 	('Caramel Macchiato', '\StaticFiles\Img\CaramelMacchiato.png', 254, 145, 3, 2), 
 	('Chestnut Latte', '\StaticFiles\Img\ChestnutLatte.png', 129, 195, 3, 3), 
@@ -58,9 +70,6 @@ INSERT INTO public."Products" ("Name", "Image", "Price", "Calories", "ProductTyp
 	('Vanilla Sweet', '\StaticFiles\Img\VanillaSweet.png', 162, 211, 3, 7), 
 	('Veranda Blend', '\StaticFiles\Img\VerandaBlend.png', 109, 230, 3, 8), 
 	('White Chocolate', '\StaticFiles\Img\WhiteChocolate.png', 172, 360, 3, 9), 
-	
-
-	
 	('Acai Lemonade', '\StaticFiles\Img\AcaiLemonade.png', 154, 145, 1, 10), 
 	('Strawberry Acai', '\StaticFiles\Img\StrawberryAcai.png', 199, 145, 1, 11), 
 	('Star Drink', '\StaticFiles\Img\StarDrink.png', 189, 145, 1, 12), 
