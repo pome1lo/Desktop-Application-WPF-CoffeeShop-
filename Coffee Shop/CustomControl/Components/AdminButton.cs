@@ -9,45 +9,7 @@ namespace CustomControl
     [TemplatePart(Name = "img", Type = typeof(Image))]
     public class AdminButton : UserControl
     {
-        #region Is checked
-        public bool? IsChecked
-        {
-            get { return (bool)GetValue(IsCheckedProperty); }
-            set { SetValue(IsCheckedProperty, value); }
-        }
-
-        public static readonly DependencyProperty IsCheckedProperty =
-            DependencyProperty.Register("IsChecked", typeof(bool), typeof(AdminButton),
-                new PropertyMetadata(false));
-
-        #endregion
-
-        #region Text
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(AdminButton),
-                new PropertyMetadata(string.Empty));
-
-        #endregion
-
-        #region Image source
-
-        public ImageSource ImgSource
-        {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
-            set { SetValue(ImgSourceProperty, value); }
-        }
-
-        public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(AdminButton));
-
-        #endregion
+        #region Constructor
 
         static AdminButton()
         {
@@ -55,9 +17,54 @@ namespace CustomControl
                 new FrameworkPropertyMetadata(typeof(AdminButton)));
         }
 
+        #endregion
+
+        #region Fields
+
         private Image img;
         private TextBlock textBlock;
         private RadioButton radioButton;
+
+        #endregion
+
+        #region Property
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        public bool? IsChecked
+        {
+            get { return (bool)GetValue(IsCheckedProperty); }
+            set { SetValue(IsCheckedProperty, value); }
+        }
+
+        public ImageSource ImgSource
+        {
+            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            set { SetValue(ImgSourceProperty, value); }
+        }
+
+        #region Dependency property
+
+        public static readonly DependencyProperty IsCheckedProperty =
+           DependencyProperty.Register("IsChecked", typeof(bool), typeof(AdminButton),
+               new PropertyMetadata(false));
+
+        public static readonly DependencyProperty TextProperty =
+           DependencyProperty.Register("Text", typeof(string), typeof(AdminButton),
+               new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty ImgSourceProperty =
+           DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(AdminButton));
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         public override void OnApplyTemplate()
         {
@@ -73,5 +80,7 @@ namespace CustomControl
                 textBlock.Text = Text;
             }
         }
+
+        #endregion 
     }
 }

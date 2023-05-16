@@ -4,7 +4,7 @@
     <Style TargetType="{x:Type Page}" x:Key="PageMarginTop">
         <Setter Property="Margin" Value="0 60 0 0"/>
     </Style>
-    
+
     <Style TargetType="{x:Type TextBox}" x:Key="LogInTextBox">
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Medium"/>
@@ -92,7 +92,7 @@
                             Width="{TemplateBinding Width}"
                             HorizontalAlignment="Center"
                             BorderBrush="DarkGray">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -135,7 +135,7 @@
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontFamily" Value="Montserrat"></Setter>
-        <Setter Property="Cursor" Value="Hand"></Setter> 
+        <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -305,7 +305,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <!--<Style TargetType="{x:Type StackPanel}" x:Key="Visible/HidenOther">
+    <Style TargetType="{x:Type StackPanel}" x:Key="Visible/HidenOther">
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=radioOther, Path=IsChecked}" Value="True">
                 <Setter Property="Visibility" Value="Visible"/>
@@ -314,8 +314,7 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>
-    </Style>-->
-
+    </Style>
 
     <Style TargetType="{x:Type Button}" x:Key="buttonBascketItem">
         <Setter Property="Background" Value="Transparent"/>
@@ -337,33 +336,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-</ResourceDictionary>
 
-<!--<Style.Triggers>
-            -->
-<!--<EventTrigger RoutedEvent="Button.MouseEnter">
-                <EventTrigger.Actions>
-                    <BeginStoryboard >
-                        <Storyboard>
-                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
-                                <LinearColorKeyFrame KeyTime="0:0:1" Value="#CFB73E"/>
-                            </ColorAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger.Actions>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="Button.MouseLeave">
-                <EventTrigger.Actions>
-                    <BeginStoryboard >
-                        <Storyboard>
-                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
-                                <LinearColorKeyFrame KeyTime="0:0:1" Value="Transparent"/>
-                            </ColorAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger.Actions>
-            </EventTrigger>-->
-<!--
-        </Style.Triggers>-->
+</ResourceDictionary>

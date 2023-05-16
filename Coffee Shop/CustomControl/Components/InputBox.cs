@@ -13,58 +13,63 @@ namespace CustomControl
     [TemplatePart(Name = "errorMessage", Type = typeof(TextBox))]
     public partial class InputBox : UserControl
     {
+        #region Property
+
         public string TextName
         {
             get { return (string)GetValue(TextNameProperty); }
             set { SetValue(TextNameProperty, value); }
         }
-
-        public static readonly DependencyProperty TextNameProperty =
-            DependencyProperty.Register("TextName", typeof(string), typeof(InputBox),
-                new PropertyMetadata(string.Empty));
-
-
-
+          
         public new string TextInput
         {
             get { return (string)GetValue(TextInputProperty); }
             set { SetValue(TextInputProperty, value); }
         }
 
-        public static readonly DependencyProperty TextInputProperty =
-            DependencyProperty.Register("TextInput", typeof(string), typeof(InputBox),
-                new PropertyMetadata(string.Empty));
-
-
         public string ErrorMessage
         {
-            get {
-               
-                return (string)GetValue(ErrorMessageProperty);
-            }
-            set 
-            {
-                //errorMessage.Text = value;
-
-                SetValue(ErrorMessageProperty, value);
-            }
+            get { return (string)GetValue(ErrorMessageProperty); }
+            set { SetValue(ErrorMessageProperty, value); }
         }
+
+        #region Dependency property
 
         public static readonly DependencyProperty ErrorMessageProperty =
             DependencyProperty.Register("ErrorMessage", typeof(string), typeof(InputBox),
                 new PropertyMetadata(string.Empty));
 
+        public static readonly DependencyProperty TextInputProperty =
+          DependencyProperty.Register("TextInput", typeof(string), typeof(InputBox),
+              new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty TextNameProperty =
+          DependencyProperty.Register("TextName", typeof(string), typeof(InputBox),
+              new PropertyMetadata(string.Empty));
+
+        #endregion
+          
+        #endregion
+
+        #region Fields
 
         private TextBox textBox;
         private TextBlock textBlock;
         private TextBox errorMessage;
 
+        #endregion
+
+        #region Constructor
 
         static InputBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(InputBox),
                 new FrameworkPropertyMetadata(typeof(InputBox)));
         }
+
+        #endregion
+
+        #region Methods
 
         public override void OnApplyTemplate()
         {
@@ -80,7 +85,7 @@ namespace CustomControl
                 ErrorMessage = errorMessage.Text;
 
                 errorMessage.TextChanged += ErrorMessage_TextChanged; ;
-               
+
             }
         }
 
@@ -99,7 +104,8 @@ namespace CustomControl
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextInput = textBox.Text;
-           // errorMessage.Text = ErrorMessage;
-        }
+        } 
+
+        #endregion
     }
 }

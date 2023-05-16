@@ -1,6 +1,6 @@
-﻿using Coffee_Shop.Database;
+﻿using APIForEmail;
+using Coffee_Shop.Database;
 using Coffee_Shop.Models;
-using Coffee_Shop.Models.Entities;
 using Coffee_Shop.Views;
 using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
@@ -8,6 +8,7 @@ using CoffeShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,19 +18,14 @@ namespace Coffee_Shop.ViewModels
     {
         #region Constructors
 
-        public AdminViewModel() 
+        public AdminViewModel()
         {
             Db = new UnitOfWork();
             news = Db.News.GetIEnumerable().ToList();
             users = Db.Users.GetIEnumerable().ToList();
+            orders = Db.Order.GetIEnumerable().ToList();
             products = Db.Products.GetIEnumerable().ToList();
         }
-
-        //public AdminViewModel(string lang, string theme)
-        //{
-        //    this.language = lang;
-        //    this.theme = theme;
-        //}
 
         #endregion
 
@@ -40,13 +36,12 @@ namespace Coffee_Shop.ViewModels
         private List<News> news;
         private List<User> users;
         private List<Product> products;
-
-        private string language;
-        private string theme;
+        private List<Order> orders;
 
         private News selectedItemForNewsDB;
         private User selectedItemForUsersDB;
         private Product selectedItemForProductsDB;
+        private Order selectedItemForOrderDB;
 
         private DelegateCommand? showAddNewProductCommand;
         private DelegateCommand? showAddNewNewsCommand;
@@ -54,6 +49,9 @@ namespace Coffee_Shop.ViewModels
         private DelegateCommand? deleteProductCommand;
         private DelegateCommand? deleteNewsCommand;
         private DelegateCommand? deleteUserCommand;
+
+        private DelegateCommand? confirmTheOrderCommand;
+        private DelegateCommand? rejectTheOrderCommand;
 
         #endregion
 
@@ -86,7 +84,21 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
-        
+
+        #region News list
+
+        public List<Order> Orders
+        {
+            get => orders;
+            set
+            {
+                orders = value;
+                OnPropertyChanged(nameof(Orders));
+            }
+        }
+
+        #endregion
+
         #region News list
 
         public List<News> News
@@ -101,44 +113,6 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-        //#region Change language
-
-        //public string Language
-        //{
-        //    get
-        //    {
-        //        return language;
-        //    }
-        //    set
-        //    {
-        //        language = new String(value.Skip(38).ToArray());
-
-        //        //ChangeLanguage();
-        //        OnPropertyChanged(nameof(Language));
-        //    }
-        //}
-
-        //#endregion
-
-        //#region Change theme
-
-        //public string Theme
-        //{
-        //    get
-        //    {
-        //        return theme;
-        //    }
-        //    set
-        //    {
-        //        theme = new String(value.Skip(38).ToArray());
-
-        //        //ChangeTheme();
-        //        OnPropertyChanged(nameof(Theme));
-        //    }
-        //}
-
-        //#endregion
-
         #region Selected Item For Users Database
 
         public User SelectedItemForUsersDB
@@ -148,6 +122,21 @@ namespace Coffee_Shop.ViewModels
             {
                 selectedItemForUsersDB = value;
                 OnPropertyChanged(nameof(SelectedItemForUsersDB));
+            }
+        }
+
+        #endregion
+
+        #region Selected Item For OrderDB
+
+        public Order SelectedItemForOrderDB
+        {
+            get => selectedItemForOrderDB;
+            set
+            {
+                selectedItemForOrderDB = value;
+                OnPropertyChanged(nameof(SelectedItemForOrderDB));
+
             }
         }
 
@@ -166,7 +155,7 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
-        
+
         #region Selected Item For Products Database
 
         public Product SelectedItemForProductsDB
@@ -180,11 +169,6 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
-
-        #endregion
-
-        #region Methods
-
 
         #endregion
 
@@ -202,8 +186,6 @@ namespace Coffee_Shop.ViewModels
                     {
                         CreateElement view = new CreateElement();
                         view.NewProduct.Visibility = Visibility.Visible;
-                        //MainView.IsEnabled = false;удалить
-                        //MainView.Opacity = 0.5;
                         view.ShowDialog();
                     });
                 }
@@ -225,8 +207,6 @@ namespace Coffee_Shop.ViewModels
                     {
                         CreateElement view = new CreateElement();
                         view.NewNews.Visibility = Visibility.Visible;
-                        //MainView.IsEnabled = false;удалить
-                        //MainView.Opacity = 0.5;
                         view.ShowDialog();
                     });
                 }
@@ -248,8 +228,6 @@ namespace Coffee_Shop.ViewModels
                     {
                         CreateElement view = new CreateElement();
                         view.NewUser.Visibility = Visibility.Visible;
-                        //MainView.IsEnabled = false;удалить
-                        //MainView.Opacity = 0.5;
                         view.ShowDialog();
                     });
                 }
@@ -258,7 +236,7 @@ namespace Coffee_Shop.ViewModels
         }
 
         #endregion
-        
+
         #region Delete product
 
         public ICommand DeleteProductCommand
@@ -267,7 +245,7 @@ namespace Coffee_Shop.ViewModels
             {
                 if (deleteProductCommand == null)
                 {
-                    deleteProductCommand = new DelegateCommand(() => 
+                    deleteProductCommand = new DelegateCommand(() =>
                     {
                         if (SelectedItemForProductsDB == null)
                         {
@@ -284,7 +262,7 @@ namespace Coffee_Shop.ViewModels
                 }
                 return deleteProductCommand;
             }
-        } 
+        }
 
         #endregion
 
@@ -313,7 +291,7 @@ namespace Coffee_Shop.ViewModels
                 }
                 return deleteUserCommand;
             }
-        } 
+        }
 
         #endregion
 
@@ -325,7 +303,7 @@ namespace Coffee_Shop.ViewModels
             {
                 if (deleteNewsCommand == null)
                 {
-                    deleteNewsCommand = new DelegateCommand(() => 
+                    deleteNewsCommand = new DelegateCommand(() =>
                     {
                         if (SelectedItemForNewsDB == null)
                         {
@@ -343,8 +321,105 @@ namespace Coffee_Shop.ViewModels
                 return deleteNewsCommand;
             }
         }
+        #endregion
 
-        #endregion 
+        #region Confirm The Order 
+
+        public ICommand ConfirmTheOrderCommand
+        {
+            get
+            {
+                if (confirmTheOrderCommand == null)
+                {
+                    confirmTheOrderCommand = new DelegateCommand(() =>
+                    {
+                        new Task(() =>
+                        {
+                            SendToMailConfirm(
+                            SelectedItemForOrderDB.User.Email,
+                            SelectedItemForOrderDB.User.UserName,
+                            SelectedItemForOrderDB.Total,
+                            SelectedItemForOrderDB.User
+                            ); ;
+                        }).Start();
+
+                        Orders = Db.Order.GetIEnumerable().ToList();
+                    });
+                }
+                return confirmTheOrderCommand;
+            }
+        }
+
+        #endregion
+
+        #region Reject The Order
+
+        public ICommand RejectTheOrderCommand
+        {
+            get
+            {
+                if (rejectTheOrderCommand == null)
+                {
+                    rejectTheOrderCommand = new DelegateCommand(() =>
+                    {
+                        new Task(() =>
+                        {
+                            SendToMailReject(
+                            SelectedItemForOrderDB.User.Email,
+                            SelectedItemForOrderDB.User.UserName,
+                            SelectedItemForOrderDB.Total,
+                            SelectedItemForOrderDB.User
+                        );
+                        }).Start();
+
+                        Db.Order.Delete(SelectedItemForOrderDB.Id);
+                        Db.Save();
+                        Orders = Db.Order.GetIEnumerable().ToList();
+                    });
+                }
+                return rejectTheOrderCommand;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+        private void SendToMailConfirm(string email, string name, decimal total, User user)
+        {
+            string title = "Информация о заказе";
+            string content = $"{name}, ваш заказ на сумму {total}$ успешно одобрен администратором.";
+            MailBuilder mail = new MailBuilder(title, TypeOfLetter.Welcome, email, content);
+            mail.Send();
+
+            Notification notification = new Notification();
+            notification.Title = title;
+            notification.Content = content;
+            notification.Date = DateTime.Now;
+            User User = Db.Users.Get(user.Id);
+            User.Notifications.Add(notification);
+            Db.Order.Delete(SelectedItemForOrderDB.Id);
+            Db.Save();
+        }
+        private void SendToMailReject(string email, string name, decimal total, User user)
+        {
+            string title = "Информация о заказе";
+            string content = $"{name}, ваш заказ на сумму {total}$ был отклонен администратором.";
+
+            MailBuilder mail = new MailBuilder(title, TypeOfLetter.Welcome, email, content);
+            mail.Send();
+
+            Notification notification = new Notification();
+            notification.Title = title;
+            notification.Content = content;
+            notification.Date = DateTime.Now;
+            User User = Db.Users.Get(user.Id);
+            User.Notifications.Add(notification);
+            Db.Order.Delete(SelectedItemForOrderDB.Id);
+            Db.Save();
+        }
 
         #endregion
     }

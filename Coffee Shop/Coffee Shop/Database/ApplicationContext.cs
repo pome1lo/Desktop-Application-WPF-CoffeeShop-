@@ -19,23 +19,18 @@ namespace Coffee_Shop.Database
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<SocialNetworks> SocialNetworks { get; set; } = null!;
         public DbSet<ProductType> ProductTypes { get; set; } = null!;
-
-        //private static IRepository? database { get; set; }
-
-        //private enum ChoiceDataBase : byte
-        //{
-        //    ServerSQL = 0,
-        //    PostgreSQL = 1,
-        //}
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<OrderStatus> OrderStatuses{ get; set; } = null!;
+        public DbSet<Address> Addresses { get; set; } = null!;
 
 
         private static string ConnectionString { get; set; } = string.Empty;
-        private ApplicationContext() 
+        private static ApplicationContext? Instance;
+        public ApplicationContext() 
         {
             ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionStringPostgressSQL"].ConnectionString;
         }
-
-        private static ApplicationContext? Instance;
+        
         public static ApplicationContext GetContext()
         {
             if (Instance == null)
@@ -44,30 +39,6 @@ namespace Coffee_Shop.Database
             }
             return Instance;
         }
-
-        //public static void SetConnectionString(byte choice)
-        //{
-        //    switch (choice)
-        //    {
-        //        case (byte)ChoiceDataBase.ServerSQL:
-        //            {
-        //                ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionStringServerSQL"].ConnectionString;
-        //                database = new SQLServerRepository();
-        //                break;
-        //            }
-        //        case (byte)ChoiceDataBase.PostgreSQL:
-        //            {
-        //                ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionStringPostgressSQL"].ConnectionString;
-        //                database = new PostgreSQLRepository();
-        //                break;
-        //            }
-        //    }
-        //}
-
-        //public static IRepository? GetTheCurrentDatabase()
-        //{
-        //    return database;
-        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

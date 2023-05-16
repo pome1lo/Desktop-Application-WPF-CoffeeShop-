@@ -11,7 +11,6 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.g.cs
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.g.cs
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.g.cs
@@ -62,7 +61,6 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\OrderView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AboutView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\AdminView.baml
-D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\BasketView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\HomeView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\MenuView.baml
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\obj\Debug\net6.0-windows\Views\Pages\ProductInfoView.baml
@@ -233,3 +231,5 @@ D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — коп�
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.pdb
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\Coffee Shop.genruntimeconfig.cache
 D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop — копия\Coffee Shop\obj\Debug\net6.0-windows\ref\Coffee Shop.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\LiveCharts.dll
+D:\FILES\Курсачи\Мои курсачи\ООП 2-2\Coffee Shop\Coffee Shop\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll

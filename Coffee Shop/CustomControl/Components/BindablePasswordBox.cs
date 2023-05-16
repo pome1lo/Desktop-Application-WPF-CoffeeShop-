@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows;
 
 namespace CustomControl
 {
@@ -16,23 +11,19 @@ namespace CustomControl
 
         public string Password
         {
-            get
-            {
-                return (string)GetValue(PasswordProperty);
-            }
+            get => (string)GetValue(PasswordProperty);
             set
             {
                 SetValue(PasswordProperty, value);
             }
         }
-
-        #endregion
-
         #region Dependecy Property
 
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox),
                 new PropertyMetadata(string.Empty));
+
+        #endregion
 
         #endregion
 
@@ -46,13 +37,18 @@ namespace CustomControl
 
         #endregion
 
+        #region Fields
+
+        private PasswordBox passwordBox;
+
+        #endregion
+
+        #region Methods
+
         private void PasswordBoxPasswordChanged(object sender, RoutedEventArgs e)
         {
             Password = passwordBox.Password;
         }
-
-
-        private PasswordBox passwordBox;
 
         public override void OnApplyTemplate()
         {
@@ -63,5 +59,7 @@ namespace CustomControl
                 passwordBox.PasswordChanged += PasswordBoxPasswordChanged;
             }
         }
+
+        #endregion
     }
 }

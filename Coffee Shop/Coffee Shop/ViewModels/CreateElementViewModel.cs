@@ -1,23 +1,17 @@
-﻿using CoffeeShop.Commands;
-using CoffeeShop.Views;
-using CoffeShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows;
+﻿using APIForEmail;
+using Coffee_Shop.Database;
 using Coffee_Shop.Models;
-using CoffeeShop.Data.Models;
-using System.Windows.Controls;
-using System.Text.RegularExpressions;
-using System.Reflection;
-using DataValidation;
-using static DataValidation.Validator;
 using Coffee_Shop.Models.Entities;
 using Coffee_Shop.Views;
-using Coffee_Shop.Database;
+using CoffeeShop.Commands;
+using CoffeeShop.Data.Models;
+using CoffeShop.Models;
+using DataEncryption;
+using DataValidation;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using static DataValidation.Validator;
 
 namespace Coffee_Shop.ViewModels
 {
@@ -25,7 +19,7 @@ namespace Coffee_Shop.ViewModels
     {
         #region Constructor 
 
-        public CreateElementViewModel() 
+        public CreateElementViewModel()
         {
             this.validator = new Validator(this);
             Db = new UnitOfWork();
@@ -59,10 +53,16 @@ namespace Coffee_Shop.ViewModels
 
         private string errorUserName = string.Empty;
         private string errorPassword = string.Empty;
+        private string errorEmail = string.Empty;
 
         private string errorTitle = string.Empty;
         private string errorContent = string.Empty;
         private string errorImg = string.Empty;
+
+        private DelegateCommand<ProdType> checkedTypeCommand;
+        private DelegateCommand<CreateElement>? addNewProductCommand;
+        private DelegateCommand<CreateElement>? addNewNewsCommand;
+        private DelegateCommand<CreateElement>? addNewUserCommand;
 
         #endregion
 
@@ -207,7 +207,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductPrice;
             set
             {
-                errorProductPrice = value; 
+                errorProductPrice = value;
                 OnPropertyChanged(nameof(ErrorProductPrice));
             }
         }
@@ -217,7 +217,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductCalories;
             set
             {
-                errorProductCalories = value; 
+                errorProductCalories = value;
                 OnPropertyChanged(nameof(ErrorProductCalories));
             }
         }
@@ -226,16 +226,16 @@ namespace Coffee_Shop.ViewModels
             get => errorProductTotalFat;
             set
             {
-                errorProductTotalFat = value; 
+                errorProductTotalFat = value;
                 OnPropertyChanged(nameof(ErrorProductTotalFat));
             }
-        } 
+        }
         public string ErrorProductSaturatedFat
         {
             get => errorProductSaturatedFat;
             set
             {
-                errorProductSaturatedFat = value; 
+                errorProductSaturatedFat = value;
                 OnPropertyChanged(nameof(ErrorProductSaturatedFat));
             }
         }
@@ -244,7 +244,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductTransFat;
             set
             {
-                errorProductTransFat = value; 
+                errorProductTransFat = value;
                 OnPropertyChanged(nameof(ErrorProductTransFat));
             }
         }
@@ -253,7 +253,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductCholesterol;
             set
             {
-                errorProductCholesterol = value; 
+                errorProductCholesterol = value;
                 OnPropertyChanged(nameof(ErrorProductCholesterol));
             }
         }
@@ -262,7 +262,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductSodium;
             set
             {
-                errorProductSodium = value; 
+                errorProductSodium = value;
                 OnPropertyChanged(nameof(ErrorProductSodium));
             }
         }
@@ -271,7 +271,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductTotalCarbohydrates;
             set
             {
-                errorProductTotalCarbohydrates = value; 
+                errorProductTotalCarbohydrates = value;
                 OnPropertyChanged(nameof(ErrorProductTotalCarbohydrates));
             }
         }
@@ -280,7 +280,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductProtein;
             set
             {
-                errorProductProtein = value; 
+                errorProductProtein = value;
                 OnPropertyChanged(nameof(ErrorProductProtein));
             }
         }
@@ -289,7 +289,7 @@ namespace Coffee_Shop.ViewModels
             get => errorProductCaffeine;
             set
             {
-                errorProductCaffeine = value; 
+                errorProductCaffeine = value;
                 OnPropertyChanged(nameof(ErrorProductCaffeine));
             }
         }
@@ -319,6 +319,16 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
+        public string Email
+        {
+            get => user.Email;
+            set
+            {
+                user.Email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
 
         #endregion
         #region Errors
@@ -332,7 +342,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(ErrorUserName));
             }
         }
-        
+
         public string ErrorPassword
         {
             get => errorPassword;
@@ -340,6 +350,16 @@ namespace Coffee_Shop.ViewModels
             {
                 errorPassword = value;
                 OnPropertyChanged(nameof(ErrorPassword));
+            }
+        }
+
+        public string ErrorEmail
+        {
+            get => errorEmail;
+            set
+            {
+                errorEmail = value;
+                OnPropertyChanged(nameof(ErrorEmail));
             }
         }
 
@@ -421,7 +441,6 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-
         #region Whether to send a newsletter
 
         public bool WhetherToSendANewsletter
@@ -442,8 +461,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Add New Product
 
-        private DelegateCommand<CreateElement>? addNewProductCommand;
-
         public ICommand AddNewProductCommand
         {
             get
@@ -454,27 +471,37 @@ namespace Coffee_Shop.ViewModels
                     {
                         if (NewProductValidate())
                         {
-                            //product.ProductType = Db.GetProductType("Coffee");
                             Db.Products.Create(product);
                             Db.Save();
                             SendToModalWindow("The product was successfully added to the database.");
                             view.Close();
                             if (WhetherToSendANewsletter == true)
                             {
-                                // почта отправка епта
+                                new Task(() => { SendAProductLetter(product.Name); }).Start();
                             }
+
+                            Notification notification;
+                            foreach (var item in Db.Users.GetIEnumerable())
+                            {
+                                notification = new()
+                                {
+                                    Content = $"{item.UserName}, у нас пополнение товара! Скорее приходи к нам и узнай, что же за новинка появилась на прилавке! Подсказка.. название начинается на {product.Name}",
+                                    Title = "У нас для тебя сюрприз!",
+                                    Date = DateTime.Now,
+                                };
+                                item.Notifications.Add(notification);
+                            }
+                            Db.Save();
                         }
                     });
                 }
                 return addNewProductCommand;
             }
-        } 
+        }
 
         #endregion
 
         #region Add New News
-
-        private DelegateCommand<CreateElement>? addNewNewsCommand;
 
         public ICommand AddNewNewsCommand
         {
@@ -482,7 +509,7 @@ namespace Coffee_Shop.ViewModels
             {
                 if (addNewNewsCommand == null)
                 {
-                    addNewNewsCommand = new DelegateCommand<CreateElement>((CreateElement view) => 
+                    addNewNewsCommand = new DelegateCommand<CreateElement>((CreateElement view) =>
                     {
                         if (NewNewsValidate())
                         {
@@ -493,8 +520,22 @@ namespace Coffee_Shop.ViewModels
                             view.Close();
                             if (WhetherToSendANewsletter == true)
                             {
-                                // почта отправка епта
+                                new Task(() => { SendANewsLetter(news.Content); }).Start();
                             }
+
+                            Notification notification;
+                            foreach (var item in Db.Users.GetIEnumerable())
+                            {
+                                notification = new()
+                                {
+                                    Content = $"{item.UserName}, а ты знаешь что случилось? {news.Content}",
+                                    Title = "Внимание, внимание!",
+                                    Date = DateTime.Now,
+                                };
+                                item.Notifications.Add(notification);
+                            }
+                            Db.Save();
+
 
                         }
                     });
@@ -508,8 +549,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Add New User
 
-        private DelegateCommand<CreateElement>? addNewUserCommand;
-
         public ICommand AddNewUserCommand
         {
             get
@@ -520,14 +559,15 @@ namespace Coffee_Shop.ViewModels
                     {
                         if (NewUserValidate())
                         {
+                            user.Password = CryptographerBuilder.Encrypt(user.Password);
+                            user.Notifications = new() { GetDefaultNotification() };
                             Db.Users.Create(user);
                             Db.Save();
                             SendToModalWindow("The user was successfully added to the database.");
                             view.Close();
-                            if (WhetherToSendANewsletter == true)
-                            {
-                                SendANewsLetter();
-                            }
+                            new Task(() => { SendMailMessage(user); }).Start();
+
+
                         }
                     });
                 }
@@ -535,12 +575,10 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-
         #endregion
 
         #region Checked type
-
-        private DelegateCommand<ProdType> checkedTypeCommand;
+ 
         public ICommand CheckedTypeCommand
         {
             get
@@ -549,18 +587,12 @@ namespace Coffee_Shop.ViewModels
                 {
                     checkedTypeCommand = new DelegateCommand<ProdType>((ProdType obj) =>
                     {
-                        //switch (obj)
-                        //{
-                        //    case ProdType.Meal: product.ProductType = Db.GetProductType(obj.ToString()); break;
-                        //    case ProdType.Coffee: product.ProductType = Db.GetProductType(obj.ToString()); break;
-                        //    case ProdType.Drinks: product.ProductType = Db.GetProductType(obj.ToString()); break;
-                        //}
                         product.ProductType = Db.ProductTypes.GetByName(obj.ToString());
                     });
                 }
                 return checkedTypeCommand;
             }
-        } 
+        }
 
         #endregion
 
@@ -568,9 +600,45 @@ namespace Coffee_Shop.ViewModels
 
         #region Methods
 
-        private void SendANewsLetter()
+        private Notification GetDefaultNotification()
         {
-            throw new NotImplementedException();
+            Notification notification = new Notification();
+            notification.Title = $"{user.UserName}, welcome to the Coffee Shop!";
+            notification.Content =
+                "Thanks to our application, you can view the menu catalog, " +
+                "place orders, learn the history of the company, as well as " +
+                "quickly learn about news and new products thanks to our newsletter.";
+            notification.Date = DateTime.Now;
+            return notification;
+        }
+
+        private void SendMailMessage(User user)
+        {
+            MailBuilder mail;
+            mail = new MailBuilder("Welcome to Coffee Shop!", TypeOfLetter.Welcome, user.Email,
+                                    $"Добро пожаловать к нам, {user.UserName}! У нас ты можешь не только вкусно выпить кофе, но еще и закусить. Мы предлагаем Вам широкий ассортимент товаров с возможностью фильтрации и доставку в любую точку твоего города!");
+            mail.Send();
+        }
+
+        private void SendANewsLetter(string content)
+        {
+            MailBuilder mail;
+            foreach (var item in Db.Users.GetIEnumerable())
+            {
+                mail = new MailBuilder("Внимание, внимание!", TypeOfLetter.Welcome, item.Email,
+                                    $"{item.UserName}, а ты знаешь что случилось? {content}");
+                mail.Send();
+            }
+        }
+        private void SendAProductLetter(string prod)
+        {
+            MailBuilder mail;
+            foreach (var item in Db.Users.GetIEnumerable())
+            {
+                mail = new MailBuilder("У нас для тебя сюрприз!", TypeOfLetter.Welcome, item.Email,
+                                    $"{item.UserName}, у нас пополнение товара! Скорее приходи к нам и узнай, что же за новинка появилась на прилавке! Подсказка.. название начинается на {prod}");
+                mail.Send();
+            }
         }
 
         private bool NewProductValidate()
@@ -587,22 +655,20 @@ namespace Coffee_Shop.ViewModels
                 validator.Verify(ValidationBased.OrdinaryDigits, ProductProtein.ToString(), nameof(ErrorProductProtein)) &
                 validator.Verify(ValidationBased.OrdinaryDigits, ProductCaffeine.ToString(), nameof(ErrorProductCaffeine));
         }
-        
+
         private bool NewNewsValidate()
         {
             return validator.Verify(ValidationBased.TextTo, Title, nameof(ErrorTitle)) &
-                //validator.Verify(ValidationBased.Image, Img, nameof(ErrorImg)) &
                 ImgValidate() &
                 validator.Verify(ValidationBased.TextTo, Content, nameof(ErrorContent));
-                //validator.Verify(ValidationBased.Date, Date.ToString(), nameof(ErrorDate));
         }
 
         private bool NewUserValidate()
         {
             return validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName)) &
-                validator.Verify(ValidationBased.TextTo, Password, nameof(ErrorPassword));
+                validator.Verify(ValidationBased.TextTo, Password, nameof(ErrorPassword)) &
+                validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail));
         }
-
 
         private bool ImgValidate()
         {

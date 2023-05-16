@@ -1,12 +1,6 @@
 ﻿using CoffeShop.Data.Models;
 using CoffeShop.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows;
 
 namespace Coffee_Shop.Models.Entities
 {

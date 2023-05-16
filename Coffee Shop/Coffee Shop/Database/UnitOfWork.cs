@@ -1,9 +1,5 @@
 ﻿using Coffee_Shop.Database.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Coffee_Shop.Database
 {
@@ -20,6 +16,9 @@ namespace Coffee_Shop.Database
         private DescriptionRepositoryPosgreSQL? descriptionRepository;
         private ProductTypeRepositoryPostgreSQL? productTypeRepository;
         private ProductFromBascketRepositoryPosgreSQL? productFromBascketRepository;
+        private OrderRepositoryPostgreSQL? orderRepository;
+        private OrderStatusRepositoruPostgreSQL? orderStatusRepository;
+        private AddressRepositoryPostgreSQL? addressRepository;
 
         #endregion
 
@@ -102,14 +101,51 @@ namespace Coffee_Shop.Database
                 return productFromBascketRepository;
             }
         }
+        public OrderRepositoryPostgreSQL Order
+        {
+            get
+            {
+                if (orderRepository == null)
+                {
+                    orderRepository = new OrderRepositoryPostgreSQL();
+                }
+                return orderRepository;
+            }
+        }
+        public OrderStatusRepositoruPostgreSQL OrderStatuses
+        {
+            get
+            {
+                if (orderStatusRepository == null)
+                {
+                    orderStatusRepository = new OrderStatusRepositoruPostgreSQL();
+                }
+                return orderStatusRepository;
+            }
+        }
+        public AddressRepositoryPostgreSQL Address
+        {
+            get
+            {
+                if (addressRepository == null)
+                {
+                    addressRepository = new AddressRepositoryPostgreSQL();
+                }
+                return addressRepository;
+            }
+        }
 
         #endregion
 
         #region Methods
 
+        private object obj = new();
         public void Save()
         {
-            db.SaveChanges();
+            lock (obj)
+            {
+                db.SaveChanges();
+            }
         }
 
         #region Dispose

@@ -1,4 +1,5 @@
-﻿using Coffee_Shop.Database;
+﻿using APIForEmail;
+using Coffee_Shop.Database;
 using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using CoffeeShop.Data.Models;
@@ -8,6 +9,8 @@ using DataValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using static DataValidation.Validator;
 
@@ -19,6 +22,8 @@ namespace Coffee_Shop.ViewModels
 
         public LogIOViewModel()
         {
+            ChangeTheme("Dark");
+            ChangeLanguage(".en-US");
             this.Db = new UnitOfWork();
             this.users = Db.Users.GetIEnumerable().ToList();
             this.validator = new Validator(this);
@@ -72,6 +77,32 @@ namespace Coffee_Shop.ViewModels
                 "quickly learn about news and new products thanks to our newsletter.";
             notification.Date = DateTime.Now;
             return notification;
+        }
+
+        private void ChangeLanguage(string Language)
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(
+                        String.Format($"StaticFiles/Resources/Lang{Language}.xaml"),
+                        UriKind.Relative
+                    )
+                }
+            );
+        }
+
+        private void ChangeTheme(string Theme)
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(
+                        String.Format($"StaticFiles/Themes/{Theme}.xaml"),
+                        UriKind.Relative
+                    )
+                }
+            );
         }
 
         #endregion
@@ -205,10 +236,14 @@ namespace Coffee_Shop.ViewModels
                     {
                         if (IsTheNewUserDataCorrect())
                         {
-                            if (!users.Any(x => x.UserName == user.UserName && x.Password == user.Password))
+                            if (!users.Any(x => x.UserName == user.UserName))
                             {
                                 user.Password = CryptographerBuilder.Encrypt(user.Password);
                                 user.Notifications = new() { GetDefaultNotification() };
+
+                                new Task(SendMailMessage).Start();
+
+
                                 Db.Users.Create(user);
                                 Db?.Save();
                                 GoToTheMainPage(obj);
@@ -222,6 +257,13 @@ namespace Coffee_Shop.ViewModels
                 }
                 return joinCommand;
             }
+        }
+
+        private void SendMailMessage()
+        {
+            MailBuilder mail = new MailBuilder("Welcome to Coffee Shop!", TypeOfLetter.Welcome, Email,
+                                    $"Добро пожаловать к нам, {UserName}! У нас ты можешь не только вкусно выпить кофе, но еще и закусить. Мы предлагаем Вам широкий ассортимент товаров с возможностью фильтрации и доставку в любую точку твоего города!");
+            mail.Send();
         }
 
         #endregion

@@ -95,6 +95,10 @@
     <v:String x:Key="Basket_SymbTotal">******************************************</v:String>
 
     <!-- AdminView.xaml -->
+
+    <v:String x:Key="Admin_ConfirmOrder">Подвердить заказ</v:String>
+    <v:String x:Key="Admin_RejectOrder">Отклонить заказ</v:String>
+    
     <v:String x:Key="Admin_ButUserDatabase">База данных - пользователи</v:String>
     <v:String x:Key="Admin_ButProductDatabase">База данных - продукты</v:String>
     <v:String x:Key="Admin_ButNewsDatabase">База данных - новости</v:String>

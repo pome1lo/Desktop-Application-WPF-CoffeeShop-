@@ -158,10 +158,10 @@
                             <custom:InputBox TextName="{DynamicResource Log_Password}" 
                                              TextInput="{Binding Password, Mode=TwoWay}"
                                              ErrorMessage="{Binding ErrorPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                            
-                            <CheckBox IsChecked="{Binding WhetherToSendANewsletter}" Width="200"
-                                      Content="{DynamicResource Admin_newsletter}"/>
-                            
+                            <custom:InputBox TextName="{DynamicResource Log_Mail}" 
+                                             TextInput="{Binding Email, Mode=TwoWay}"
+                                             ErrorMessage="{Binding ErrorEmail, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                          
                             <Button Content="{DynamicResource Admin_ButAddNewUser}" 
                                     Command="{Binding AddNewUserCommand}"
                                     CommandParameter="{Binding ElementName=view}"

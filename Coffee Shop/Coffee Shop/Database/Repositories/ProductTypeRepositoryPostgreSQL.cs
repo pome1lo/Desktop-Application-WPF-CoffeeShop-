@@ -1,12 +1,8 @@
 ﻿using Coffee_Shop.Models.Entities;
-using CoffeShop.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Coffee_Shop.Database.Repositories
 {

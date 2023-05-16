@@ -1,13 +1,13 @@
-﻿using Coffee_Shop.Models;
+﻿using APIForEmail;
+using Coffee_Shop.Database;
+using Coffee_Shop.Models;
 using Coffee_Shop.Views;
 using CoffeeShop.Commands;
 using DataValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using static DataValidation.Validator;
 
@@ -17,15 +17,10 @@ namespace Coffee_Shop.ViewModels
     {
         #region Constructor
 
-        //public OrderViewModel()
-        //{
-        //    Products = CurrentUser.ProductsFromBasket;//Db.GetProductFromBasketList().ToList();
-        //    //Total = Products.Select(x => x.Product.Price * x.Quantity).Sum();
-        //}
-
         public OrderViewModel()
         {
             this.validator = new Validator(this);
+            this.Db = new UnitOfWork();
         }
 
         #endregion
@@ -34,21 +29,19 @@ namespace Coffee_Shop.ViewModels
 
         private List<ProductFromBasket> products = CurrentUser.ProductsFromBasket;
 
-        private string flat = string.Empty;
-        private string intercom = string.Empty;
-        private string entrance = string.Empty;
-        private string floor = string.Empty;
+        private UnitOfWork Db;
+
+        private Address address = new Address();
+
         private string comment = string.Empty;
-        
         private string errorFlat = string.Empty;
         private string errorIntercom = string.Empty;
         private string errorEntrance = string.Empty;
         private string errorFloor = string.Empty;
-        private string errorComment = string.Empty;
 
         private Validator validator;
 
-        private DelegateCommand? payCommand;
+        private DelegateCommand<OrderView>? payCommand;
         private DelegateCommand? changeBankCard;
 
         #endregion
@@ -76,7 +69,6 @@ namespace Coffee_Shop.ViewModels
             get => Products.Sum(x => x.Product.Price * x.Quantity);
             set
             {
-                //total = Products.Sum(x => x.Product.Price * x.Quantity);
                 OnPropertyChanged(nameof(Total));
             }
         }
@@ -87,44 +79,44 @@ namespace Coffee_Shop.ViewModels
 
         public string Flat
         {
-            get => flat;
+            get => address.Flat;
             set
             {
-                flat = value;
+                address.Flat = value;
                 OnPropertyChanged(nameof(Flat));
             }
         }
-        
+
         public string Intercom
         {
-            get => intercom;
+            get => address.Intercom;
             set
             {
-                intercom = value;
+                address.Intercom = value;
                 OnPropertyChanged(nameof(Intercom));
             }
         }
 
         public string Entrance
         {
-            get => entrance;
+            get => address.Entrance;
             set
             {
-                entrance = value;
+                address.Entrance = value;
                 OnPropertyChanged(nameof(Entrance));
             }
         }
 
         public string Floor
         {
-            get => floor;
+            get => address.Floor;
             set
             {
-                floor = value;
+                address.Floor = value;
                 OnPropertyChanged(nameof(Floor));
             }
         }
-        
+
         public string Comment
         {
             get => comment;
@@ -134,8 +126,6 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(Comment));
             }
         }
-
-
 
         #endregion
 
@@ -179,7 +169,7 @@ namespace Coffee_Shop.ViewModels
                 errorFloor = value;
                 OnPropertyChanged(nameof(ErrorFloor));
             }
-        } 
+        }
 
         #endregion
 
@@ -214,13 +204,17 @@ namespace Coffee_Shop.ViewModels
             {
                 if (payCommand == null)
                 {
-                    payCommand = new DelegateCommand(() =>
+                    payCommand = new DelegateCommand<OrderView>((OrderView view) =>
                     {
                         if (IsAdressValidate())
                         {
                             if (CurrentUser.BankCard != null)
                             {
-                                SendToModalWindow("ВСЕ ЗАЕБОК");
+                                SendToModalWindow("The order has been placed!");
+                                new Task(CreateOrder).Start();
+                                new Task(SendMailToUserAboutOrder).Start();
+
+                                view?.Close();
                             }
                             else
                             {
@@ -233,14 +227,42 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-
-
         #endregion
 
         #endregion
 
         #region Methods
 
+        private void SendMailToUserAboutOrder()
+        {
+            MailBuilder mail = new MailBuilder("Информация о заказе", TypeOfLetter.Welcome, CurrentUser.Email,
+                                $"{CurrentUser.UserName}, ваш заказ оформлен и переведен в статус проверки.");
+            mail.Send();
+        }
+
+        private void CreateOrder()
+        {
+            Notification notification = new Notification()
+            {
+                Content = $"{CurrentUser.UserName}, ваш заказ оформлен и переведен в статус проверки.",
+                Date = DateTime.Now,
+                Title = "Информация о заказе",
+            };
+
+            Order order = new Order()
+            {
+                Date = DateTime.Now,
+                Status = Db.OrderStatuses.GetByName("VALIDATING"),
+                Total = Total,
+                Comment = this.comment,
+                User = CurrentUser,
+            };
+            Db.Order.Create(order);
+            CurrentUser.ProductsFromBasket = new();
+            CurrentUser.Notifications.Add(notification);
+            CurrentUser.Address = this.address;
+            Db.Save();
+        }
         private bool IsAdressValidate()
         {
             return validator.Verify(ValidationBased.OrdinaryDigits, Flat, nameof(ErrorFlat)) &

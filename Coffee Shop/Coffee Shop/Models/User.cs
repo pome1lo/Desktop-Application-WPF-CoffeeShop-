@@ -19,9 +19,16 @@ namespace CoffeeShop.Data.Models
         public string Theme { get; set; } = "Dark";
         public string Language { get; set; } = ".en-US";
 
+        public Address Address { get; set; }
         public BankCard? BankCard { get; set; }
-        public SocialNetworks? SocialNetworks { get; set; }
+        public SocialNetworks SocialNetworks { get; set; }
         public List<Notification>? Notifications { get; set; }
-        public List<ProductFromBasket>? ProductsFromBasket { get; set; }
+        public List<ProductFromBasket> ProductsFromBasket { get; set; }
+        public User()
+        {
+            this.Address = new();
+            this.SocialNetworks = new();
+            this.ProductsFromBasket = new();
+        }
     }
 }

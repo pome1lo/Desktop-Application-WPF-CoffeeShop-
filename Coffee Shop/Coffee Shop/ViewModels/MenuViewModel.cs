@@ -2,15 +2,12 @@
 using Coffee_Shop.Models;
 using Coffee_Shop.Models.Entities;
 using Coffee_Shop.Views;
-using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
 using CoffeShop.Models;
 using DataValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using static DataValidation.Validator;
 
@@ -38,6 +35,7 @@ namespace Coffee_Shop.ViewModels
         private Product? selectedItemForListProducts;
         private Validator validator;
 
+        private string prodNameFroItemCard;
         private string errorRangeFrom = string.Empty;
         private string errorRangeTo = string.Empty;
         private string searchString = string.Empty;
@@ -45,10 +43,14 @@ namespace Coffee_Shop.ViewModels
         private string rangeTo = string.Empty;
         private int sliderValue = -1;
 
+        private DelegateCommand? findButtonCommand;
+        private DelegateCommand? resetButtonCommand;
         private DelegateCommand<object>? plusItemCardCommand;
         private DelegateCommand<object>? minusItemCardCommand;
         private DelegateCommand<object>? closeItemCardCommand;
         private DelegateCommand<object>? addToBasketCommand;
+        private DelegateCommand<ProdType> checkedTypeCommand;
+        private DelegateCommand? placeAnOrderCommand;
 
         #endregion
 
@@ -58,10 +60,7 @@ namespace Coffee_Shop.ViewModels
 
         public List<Product>? Products
         {
-            get
-            {
-                return products;
-            }
+            get => products;
             set
             {
                 products = value;
@@ -189,7 +188,6 @@ namespace Coffee_Shop.ViewModels
             {
                 ShowProductInfoPage(value);
                 OnPropertyChanged(nameof(SelectedItemForListProducts));
-                //App.ConnectionTheProductInfoViewModel(SelectedItemForListProducts);
             }
         }
 
@@ -197,14 +195,9 @@ namespace Coffee_Shop.ViewModels
 
         #region Selected item name for basket list products
 
-        private string prodNameFroItemCard;
-
         public string ProdNameFroItemCard
         {
-            get
-            {
-                return prodNameFroItemCard;
-            }
+            get => prodNameFroItemCard;
             set
             {
                 prodNameFroItemCard = value;
@@ -223,7 +216,6 @@ namespace Coffee_Shop.ViewModels
             var currentProducts = Db.Products.GetIEnumerable().ToList();
             Products = currentProducts.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
         }
-
 
         private void RangeFilter()
         {
@@ -249,9 +241,7 @@ namespace Coffee_Shop.ViewModels
 
         #region Command
 
-
         #region Buttons for item card 
-
 
         public ICommand PlusItemCardCommand
         {
@@ -264,13 +254,12 @@ namespace Coffee_Shop.ViewModels
                         var prod = obj as ProductFromBasket;
                         CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity++;
                         Db.Save();
-                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
                     });
                 }
                 return plusItemCardCommand;
             }
         }
-
 
         public ICommand MinusItemCardCommand
         {
@@ -282,21 +271,21 @@ namespace Coffee_Shop.ViewModels
                     {
                         var prod = obj as ProductFromBasket;
                         ProductFromBasket? prodFromDB = CurrentUser.ProductsFromBasket.Find(x => x == prod);
-                        
+
                         if (prodFromDB != null)
                         {
                             if (prodFromDB.Quantity == 1)
                             {
                                 Db.ProductsFromBascket.Delete(prod.Id);
                                 Db.Save();
-                                ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                                ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
                             }
                             else
                             {
                                 CurrentUser.ProductsFromBasket.Find(x => x == prod).Quantity--;
                             }
                             Db.Save();
-                            ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                            ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
                         }
                     });
                 }
@@ -316,7 +305,7 @@ namespace Coffee_Shop.ViewModels
                         var prod = obj as ProductFromBasket;
                         Db.ProductsFromBascket.Delete(prod.Id);
                         Db.Save();
-                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket); 
                     });
                 }
                 return closeItemCardCommand;
@@ -335,21 +324,18 @@ namespace Coffee_Shop.ViewModels
                 {
                     addToBasketCommand = new DelegateCommand<object>((object obj) =>
                     {
-                        
+
                         Product? product = obj as Product;
                         if (CurrentUser.ProductsFromBasket.Any(x => x.Product == product))
                         {
                             CurrentUser.ProductsFromBasket.First(x => x.Product == product).Quantity += 1;
-                            //product.Id = Db.GetProductFromBasketList().First(x => x.Product == Product.Product).Id;
-                            //(Db.GetProductFromBasket(product.Id) ?? new ProductFromBasket()).Quantity += 1;
                         }
                         else
                         {
                             CurrentUser.ProductsFromBasket.Add(new ProductFromBasket() { Product = product });
-                            //Db.CreateProductFromBasket(Product);
                         }
                         Db.Save();
-                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);//Db.GetProductFromBasketList().ToList();
+                        ProductsFromBasket = new(CurrentUser.ProductsFromBasket);
                     });
                 }
                 return addToBasketCommand;
@@ -359,8 +345,6 @@ namespace Coffee_Shop.ViewModels
         #endregion
 
         #region Reset
-
-        private DelegateCommand? resetButtonCommand;
 
         public ICommand ResetButtonCommand
         {
@@ -385,10 +369,8 @@ namespace Coffee_Shop.ViewModels
 
         #endregion
 
-
         #region Checked type
-
-        private DelegateCommand<ProdType> checkedTypeCommand;
+        
         public ICommand CheckedTypeCommand
         {
             get
@@ -409,10 +391,7 @@ namespace Coffee_Shop.ViewModels
         #endregion
 
         #region Search product
-
-
-        private DelegateCommand? findButtonCommand;
-
+          
         public ICommand FindButtonCommand
         {
             get
@@ -420,7 +399,7 @@ namespace Coffee_Shop.ViewModels
                 if (findButtonCommand == null)
                 {
                     findButtonCommand = new DelegateCommand(() =>
-                    { 
+                    {
                         SliderFilter();
                         RangeFilter();
                     });
@@ -428,22 +407,18 @@ namespace Coffee_Shop.ViewModels
                 return findButtonCommand;
             }
         }
-
-        
-
+         
         #endregion
 
         #region Place an order 
-
-        private DelegateCommand? placeAnOrderCommand;
-
+         
         public ICommand PlaceAnOrderCommand
         {
             get
             {
                 if (placeAnOrderCommand == null)
                 {
-                    placeAnOrderCommand = new DelegateCommand(/*App.ConnectionTheOrderViewModel*/() =>
+                    placeAnOrderCommand = new DelegateCommand(() =>
                     {
                         new OrderView().ShowDialog();
                     });

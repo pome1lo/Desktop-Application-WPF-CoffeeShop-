@@ -25,9 +25,6 @@
     <Compile Update="Views\Pages\AdminView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\BasketView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,9 +79,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\AdminView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pages\BasketView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\HomeView.xaml">

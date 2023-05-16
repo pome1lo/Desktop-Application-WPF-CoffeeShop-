@@ -1,14 +1,10 @@
-﻿using Coffee_Shop.Views.Pages;
+﻿using Coffee_Shop.Database;
+using Coffee_Shop.Views.Pages;
 using CoffeeShop.Commands;
 using CoffeeShop.Views;
-using CustomControl;
-using MaterialDesignThemes.Wpf;
-using Microsoft.Web.WebView2.Core;
 using System;
-using System.CodeDom;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -21,16 +17,12 @@ namespace Coffee_Shop.ViewModels
 
         public MainViewModel()
         {
+            Db = new UnitOfWork();
+            ChangeTheme(CurrentUser.Theme);
+            ChangeLanguage(CurrentUser.Language);
             ConfiguringApplicationForUserType();
             ShowPage(new HomeView());
         }
-
-        //public MainViewModel(HeaderButton adminButton)
-        //{
-            
-
-        //    ConfiguringApplicationForUserType();
-        //}
 
         #endregion
 
@@ -38,8 +30,25 @@ namespace Coffee_Shop.ViewModels
 
         private Visibility visibilityAdminButton = Visibility.Collapsed;
 
+        private bool isThemeFirstImage = true;
+        private bool isLangFirstImage = true;
+
+        private UnitOfWork Db;
         private DelegateCommand? showAdminPageCommand;
         private MainView? view;
+
+        private ImageSource currentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeDark.png", UriKind.Relative));
+        private ImageSource currentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\en.png", UriKind.Relative));
+
+        private DelegateCommand? showMenuCommand;
+        private DelegateCommand<object> exitAccountCommand;
+        private DelegateCommand? exitCommand;
+        private DelegateCommand? showProfileCommand;
+        private DelegateCommand? showMapCommand;
+        private DelegateCommand? showAboutCommand;
+        private DelegateCommand toggleImageLangCommand;
+        private DelegateCommand? showHomeCommand;
+        private DelegateCommand toggleImageThemeCommand;
         #endregion
 
         #region Property
@@ -54,6 +63,26 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
+        public ImageSource CurrentThemeImage
+        {
+            get => currentThemeImage;
+            set
+            {
+                currentThemeImage = value;
+                OnPropertyChanged(nameof(CurrentThemeImage));
+            }
+        }
+
+        public ImageSource CurrentLangImage
+        {
+            get => currentLangImage;
+            set
+            {
+                currentLangImage = value;
+                OnPropertyChanged(nameof(CurrentLangImage));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -64,23 +93,12 @@ namespace Coffee_Shop.ViewModels
             {
                 SettingUpForAdmin();
             }
-            //}
-            //else
-            //{
-            //    SettingUpForUser();
-            //}
         }
 
         private void SettingUpForAdmin()
         {
-            //App.ConnectionTheAdminViewModel();
             VisibilityAdminButton = Visibility.Visible;
         }
-
-        //private void SettingUpForUser()
-        //{
-        //    App.ConnectionTheHomeViewModel();
-        //}
 
         private void ChangeLanguage(string Language)
         {
@@ -94,6 +112,7 @@ namespace Coffee_Shop.ViewModels
                 }
             );
             CurrentUser.Language = Language;
+            Db.Save();
         }
 
         private void ChangeTheme(string Theme)
@@ -108,6 +127,7 @@ namespace Coffee_Shop.ViewModels
                 }
             );
             CurrentUser.Theme = Theme;
+            Db.Save();
         }
 
         #endregion
@@ -116,17 +136,15 @@ namespace Coffee_Shop.ViewModels
 
         #region Show menu page
 
-        private DelegateCommand? showMenuCommand;
-
         public ICommand ShowMenuCommand
         {
             get
             {
                 if (showMenuCommand == null)
                 {
-                    showMenuCommand = new DelegateCommand(/*App.ConnectionTheMenuViewModel*/() => 
-                    { 
-                        ShowPage(new MenuView()); 
+                    showMenuCommand = new DelegateCommand(() =>
+                    {
+                        ShowPage(new MenuView());
                     });
                 }
                 return showMenuCommand;
@@ -136,8 +154,6 @@ namespace Coffee_Shop.ViewModels
         #endregion
 
         #region Exit account
-
-        private DelegateCommand<object> exitAccountCommand;
 
         public ICommand ExitAccountCommand
         {
@@ -151,37 +167,13 @@ namespace Coffee_Shop.ViewModels
                         (obj as MainView)?.Close();
                     });
                 }
-                return exitAccountCommand; 
-            }
-        }
-
-        #endregion
-
-        #region Show basket page
-
-        private DelegateCommand? showBasketCommand;
-
-        public ICommand ShowBasketCommand
-        {
-            get
-            {
-                if (showBasketCommand == null)
-                {
-                    showBasketCommand = new DelegateCommand(/*App.ConnectionTheBasketViewModel*/() =>
-                    {
-                        ShowPage(new BasketView());
-                    });
-                }
-                return showBasketCommand;
+                return exitAccountCommand;
             }
         }
 
         #endregion
 
         #region Exit for application
-
-        private DelegateCommand? exitCommand;
-
 
         public ICommand ExitCommand
         {
@@ -201,15 +193,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Show about page
 
-        private DelegateCommand? showAboutCommand;
-
         public ICommand ShowAboutCommand
         {
             get
             {
                 if (showAboutCommand == null)
                 {
-                    showAboutCommand = new DelegateCommand(/*App.ConnectionTheAboutView*/() => 
+                    showAboutCommand = new DelegateCommand(() =>
                     {
                         ShowPage(new AboutView());
                     });
@@ -222,15 +212,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Show home page
 
-        private DelegateCommand? showHomeCommand;
-
         public ICommand ShowHomeCommand
         {
             get
             {
                 if (showHomeCommand == null)
                 {
-                    showHomeCommand = new DelegateCommand(/*App.ConnectionTheHomeViewModel*/() => 
+                    showHomeCommand = new DelegateCommand(() =>
                     {
                         ShowPage(new HomeView());
                     });
@@ -243,15 +231,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Show profile page
 
-        private DelegateCommand? showProfileCommand;
-
         public ICommand ShowProfileCommand
         {
             get
             {
                 if (showProfileCommand == null)
                 {
-                    showProfileCommand = new DelegateCommand(/*App.ConnectionTheProfileViewModel*/() => 
+                    showProfileCommand = new DelegateCommand(() =>
                     {
                         ShowPage(new ProfileView());
                     });
@@ -264,15 +250,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Show map page
 
-        private DelegateCommand? showMapCommand;
-
         public ICommand ShowMapCommand
         {
             get
             {
                 if (showMapCommand == null)
                 {
-                    showMapCommand = new DelegateCommand(/*App.ConnectionTheMapView*/ () => 
+                    showMapCommand = new DelegateCommand(() =>
                     {
                         ShowPage(new MapView());
                     });
@@ -285,14 +269,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Show admin page
 
-
         public ICommand ShowAdminPageCommand
         {
             get
             {
                 if (showAdminPageCommand == null)
                 {
-                    showAdminPageCommand = new DelegateCommand(/*App.ConnectionTheAdminViewModel*/() =>
+                    showAdminPageCommand = new DelegateCommand(() =>
                     {
                         ShowPage(new AdminView());
                     });
@@ -305,14 +288,13 @@ namespace Coffee_Shop.ViewModels
 
         #region Toggle Image Theme Command
 
-        private DelegateCommand toggleImageThemeCommand;
         public ICommand ToggleImageThemeCommand
         {
             get
             {
                 if (toggleImageThemeCommand == null)
                 {
-                    toggleImageThemeCommand = new DelegateCommand(() => 
+                    toggleImageThemeCommand = new DelegateCommand(() =>
                     {
                         if (isThemeFirstImage)
                         {
@@ -321,7 +303,7 @@ namespace Coffee_Shop.ViewModels
                             isThemeFirstImage = false;
                         }
                         else
-                        { 
+                        {
                             CurrentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeDark.png", UriKind.Relative));
                             new Task(() => { ChangeTheme("Dark"); }).Start();
                             isThemeFirstImage = true;
@@ -331,7 +313,7 @@ namespace Coffee_Shop.ViewModels
                 return toggleImageThemeCommand;
             }
         }
-        private DelegateCommand toggleImageLangCommand;
+        
         public ICommand ToggleImageLangCommand
         {
             get
@@ -357,29 +339,7 @@ namespace Coffee_Shop.ViewModels
                 return toggleImageLangCommand;
             }
         }
-        private ImageSource currentThemeImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\ThemeDark.png", UriKind.Relative));
-        public ImageSource CurrentThemeImage
-        {
-            get => currentThemeImage;
-            set
-            {
-                currentThemeImage = value;
-                OnPropertyChanged(nameof(CurrentThemeImage));
-            }
-        } 
-        private ImageSource currentLangImage = new BitmapImage(new Uri("\\StaticFiles\\Img\\en.png", UriKind.Relative));
-        public ImageSource CurrentLangImage
-        {
-            get => currentLangImage;
-            set
-            {
-                currentLangImage = value;
-                OnPropertyChanged(nameof(CurrentLangImage));
-            }
-        }
-        private bool isThemeFirstImage = true;
-        private bool isLangFirstImage = true;
-
+      
         #endregion
 
         #endregion

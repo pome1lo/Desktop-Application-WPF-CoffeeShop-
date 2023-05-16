@@ -199,7 +199,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image x:Name="image" Source="{Binding Product.Product.Img}" Width="150" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Image x:Name="image" Source="{Binding Product.Product.Image}" Width="150" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

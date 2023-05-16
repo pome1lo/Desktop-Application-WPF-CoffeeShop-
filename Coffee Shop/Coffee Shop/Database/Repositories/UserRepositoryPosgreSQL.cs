@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Coffee_Shop.Database.Repositories
 {
@@ -21,12 +19,12 @@ namespace Coffee_Shop.Database.Repositories
 
         #endregion
 
-
-        #region User Methods
+        #region Methods
 
         public IEnumerable<User> GetIEnumerable()
         {
             return db.Users.Include(x => x.BankCard)
+                .Include(x => x.Address)
                 .Include(x => x.ProductsFromBasket)
                 .Include(x => x.SocialNetworks)
                 .Include(x => x.Notifications);

@@ -163,7 +163,7 @@
                             <StackPanel Width="130" Margin="0 16 0 0">
                                 <Border CornerRadius="20 0 0 20" Width="90" Height="90" HorizontalAlignment="Center">
                                     <Border.Background>
-                                        <ImageBrush Stretch="Fill" ImageSource="{Binding Img}"/>
+                                        <ImageBrush Stretch="Fill" ImageSource="{Binding Image}"/>
                                     </Border.Background>
                                 </Border>
                                 <DockPanel> 
@@ -268,7 +268,7 @@
                                     </Grid.RowDefinitions>
                                     <Border CornerRadius="20 0 0 20" Width="60" Height="61" Grid.Column="0" Grid.RowSpan="3" HorizontalAlignment="Left">
                                         <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="{Binding Product.Img}" />
+                                            <ImageBrush Stretch="Fill" ImageSource="{Binding Product.Image}" />
                                         </Border.Background>
                                     </Border>
 

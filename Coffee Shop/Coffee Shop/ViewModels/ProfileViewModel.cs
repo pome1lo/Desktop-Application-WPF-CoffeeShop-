@@ -3,14 +3,10 @@ using Coffee_Shop.Models;
 using CoffeeShop.Commands;
 using DataEncryption;
 using DataValidation;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using static DataValidation.Validator;
 
@@ -48,6 +44,13 @@ namespace Coffee_Shop.ViewModels
         private string vkontakte = CurrentUser.SocialNetworks.Vkontakte;
         private string instagram = CurrentUser.SocialNetworks.Instagram;
 
+        private DelegateCommand? goToTheVKCommand;
+        private DelegateCommand profileSaveChangesCommand;
+        private DelegateCommand saveChangesCommand;
+        private DelegateCommand<Notification> closeItemCardCommand;
+        private DelegateCommand? goToTheInstagramCommand;
+        private DelegateCommand? goToTheTelegramCommand;
+
         #endregion
 
         #region Property
@@ -66,7 +69,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(ErrorNewPassword));
             }
         }
-        
+
         public string ErrorConfirmPassword
         {
             get
@@ -80,7 +83,7 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-        
+
         public string ErrorUserName
         {
             get
@@ -106,7 +109,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(ErrorEmail));
             }
         }
-        
+
         public string ErrorVkontakte
         {
             get
@@ -119,7 +122,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(ErrorVkontakte));
             }
         }
-        
+
         public string ErrorInstagram
         {
             get
@@ -132,7 +135,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(ErrorInstagram));
             }
         }
-        
+
         public string ErrorTelegram
         {
             get
@@ -220,7 +223,7 @@ namespace Coffee_Shop.ViewModels
                 OnPropertyChanged(nameof(Picture));
             }
         }
-        
+
         public string CurrentPassword
         {
             get => new String('●', CryptographerBuilder.Decrypt(CurrentUser.Password).Count());
@@ -269,8 +272,6 @@ namespace Coffee_Shop.ViewModels
 
         #region VK
 
-        private DelegateCommand? goToTheVKCommand;
-
         public ICommand GoToTheVKCommand
         {
             get
@@ -289,8 +290,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Instagramm
 
-        private DelegateCommand? goToTheInstagramCommand;
-
         public ICommand GoToTheInstagramCommand
         {
             get
@@ -308,8 +307,6 @@ namespace Coffee_Shop.ViewModels
         #endregion
 
         #region Telegram
-
-        private DelegateCommand? goToTheTelegramCommand;
 
         public ICommand GoToTheTelegramCommand
         {
@@ -332,7 +329,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Password save changes
 
-        private DelegateCommand saveChangesCommand;
         public ICommand SaveChangesCommand
         {
             get
@@ -342,7 +338,7 @@ namespace Coffee_Shop.ViewModels
                     saveChangesCommand = new DelegateCommand(
                         () =>
                         {
-                            if(IsThePasswordCorrect())
+                            if (IsThePasswordCorrect())
                             {
                                 CurrentUser.Password = CryptographerBuilder.Encrypt(NewPassword);
                                 Db.Save();
@@ -351,51 +347,28 @@ namespace Coffee_Shop.ViewModels
                         }
                     );
                 }
-                return saveChangesCommand; 
+                return saveChangesCommand;
             }
-        }
-
-        private bool IsThePasswordCorrect()
-        {
-            if(validator.Verify(Validator.ValidationBased.Password, NewPassword, nameof(ErrorNewPassword)) &
-                validator.Verify(Validator.ValidationBased.Password, ConfirmPassword, nameof(ErrorConfirmPassword)) 
-                )
-
-            //if (validator.CheckingForPasswordLength(NewPassword, nameof(ErrorNewPassword)) &
-            //    validator.CheckingForPasswordLength(ConfirmPassword, nameof(ErrorConfirmPassword)))
-            {
-                if (NewPassword == ConfirmPassword)
-                {
-                    return true;
-                }
-                else
-                {
-                    SendToModalWindow("The confirmation password does not match the new password.");
-                }
-            }
-            return false;
-
         }
 
         #endregion
 
         #region Close item card 
 
-        private DelegateCommand<Notification> closeItemCardCommand;
         public ICommand CloseItemCardCommand
         {
             get
             {
                 if (closeItemCardCommand == null)
                 {
-                    closeItemCardCommand = new DelegateCommand<Notification>((Notification notification) => 
+                    closeItemCardCommand = new DelegateCommand<Notification>((Notification notification) =>
                     {
                         CurrentUser.Notifications.Remove(notification);
                         Db.Save();
                         Notifications = new(CurrentUser.Notifications);
                     });
                 }
-                return closeItemCardCommand; 
+                return closeItemCardCommand;
             }
         }
 
@@ -403,7 +376,6 @@ namespace Coffee_Shop.ViewModels
 
         #region Profile save changes
 
-        private DelegateCommand profileSaveChangesCommand;
         public ICommand ProfileSaveChangesCommand
         {
             get
@@ -424,10 +396,6 @@ namespace Coffee_Shop.ViewModels
                                 Db.Save();
                                 SendToModalWindow("Your data has been successfully changed");
                             }
-                            else
-                            {
-                                MessageBox.Show("хуй");
-                            }
                         }
                     );
                 }
@@ -435,26 +403,38 @@ namespace Coffee_Shop.ViewModels
             }
         }
 
-        private bool IsTheProfileCorrect()
-        {
-            return validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName)) &
-                validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail)) &
-
-                validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte)) &
-                validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram)) &
-                validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram))
-
-                //validator.CheckingTheCorrectnessOfLinks(Vkontakte, nameof(ErrorVkontakte)) &
-                //validator.CheckingTheCorrectnessOfLinks(Instagram, nameof(ErrorInstagram)) &
-                //validator.CheckingTheCorrectnessOfLinks(Telegram, nameof(ErrorTelegram))
-                ;
-        }
-
         #endregion
 
         #endregion
 
         #region Methods
+
+        private bool IsThePasswordCorrect()
+        {
+            if (validator.Verify(Validator.ValidationBased.Password, NewPassword, nameof(ErrorNewPassword)) &
+                validator.Verify(Validator.ValidationBased.Password, ConfirmPassword, nameof(ErrorConfirmPassword)))
+            {
+                if (NewPassword == ConfirmPassword)
+                {
+                    return true;
+                }
+                else
+                {
+                    SendToModalWindow("The confirmation password does not match the new password.");
+                }
+            }
+            return false;
+
+        }
+        private bool IsTheProfileCorrect()
+        {
+            return validator.Verify(ValidationBased.TextTo, UserName, nameof(ErrorUserName)) &
+                validator.Verify(ValidationBased.Email, Email, nameof(ErrorEmail)) &
+                validator.Verify(ValidationBased.Links, Vkontakte, nameof(ErrorVkontakte)) &
+                validator.Verify(ValidationBased.Links, Instagram, nameof(ErrorInstagram)) &
+                validator.Verify(ValidationBased.Links, Telegram, nameof(ErrorTelegram))
+                ;
+        }
 
         private void FollowTheLink(string link)
         {
@@ -466,7 +446,7 @@ namespace Coffee_Shop.ViewModels
             {
                 Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
             }
-        } 
+        }
 
         #endregion
     }

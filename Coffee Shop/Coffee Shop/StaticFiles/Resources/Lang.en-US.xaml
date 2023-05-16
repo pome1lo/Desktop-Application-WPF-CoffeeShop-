@@ -101,8 +101,10 @@
     <v:String x:Key="Admin_NewNewsContent">Content</v:String>
     <v:String x:Key="Admin_NewNewsImg">Image</v:String>
     <v:String x:Key="Admin_newsletter">Whether to send a newsletter</v:String>
-    
-    
+
+    <v:String x:Key="Admin_ConfirmOrder">Confirm the order</v:String>
+    <v:String x:Key="Admin_RejectOrder">Reject an order</v:String>
+
     <v:String x:Key="Admin_ButUserDatabase">User database</v:String>
     <v:String x:Key="Admin_ButProductDatabase">Product database</v:String>
     <v:String x:Key="Admin_ButNewsDatabase">News database</v:String>
@@ -207,7 +209,5 @@
         are working to store more carbon than we emit, replenish more freshwater than we use, and
         eliminate waste. We know we can’t do it alone. It takes all of us.
     </v:String>
-    
-    
 
 </ResourceDictionary>

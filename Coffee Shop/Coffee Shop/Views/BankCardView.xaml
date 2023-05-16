@@ -8,6 +8,7 @@
         WindowStyle="None"
         xmlns:control="clr-namespace:CustomControl;assembly=CustomControl"
         mc:Ignorable="d"
+        Name="view"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="BankCardVIew" Height="350" Width="350">
@@ -43,6 +44,7 @@
                                   ErrorMessage="{Binding ErrorHolderName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <Button Content="{DynamicResource Basket_Checkout}" 
                         Style="{StaticResource ButtonBlack}"
+                        CommandParameter="{Binding ElementName=view}"
                         Command="{Binding GoToTheCheckoutCommand}"
                         Width="200"/>
             </StackPanel>

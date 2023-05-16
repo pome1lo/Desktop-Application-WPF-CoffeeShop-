@@ -1,9 +1,6 @@
 using System;
-using System.CodeDom;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 
 namespace DataValidation
 {
@@ -20,7 +17,7 @@ namespace DataValidation
         {
             Email,
             Password,
-            TextTo, // gsgsaaaaaaaaaaaaaaaaaa
+            TextTo,
             OrdinaryDigits,
             Links,
             BankCVV,
@@ -46,7 +43,7 @@ namespace DataValidation
                     errorMessage = "Incorrect password";
                     break;
                 case ValidationBased.TextTo:
-                    regex = @"^[a-zA-Z\s]{5,}$"; //@"^[a-zA-Z]{5,}$";
+                    regex = @"^[a-zA-Z\s]{5,}$";
                     errorMessage = "Incorrect data";
                     break;
                 case ValidationBased.OrdinaryDigits:
@@ -92,75 +89,6 @@ namespace DataValidation
             SetPropertyValue(Instance, property, "");
             return true;
         }
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="property"></param>
-        /// <returns></returns>
-        //public bool ValidationOfEmail(string value, string property)
-        //{
-        //    Regex regex = new Regex("^((\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)\\s*[;]{0,1}\\s*)+$");
-        //    if (!regex.IsMatch(value) || value.Length < 10)
-        //    {
-        //        SetPropertyValue(Instance, property, "Incorrect email");
-        //        return false;
-        //    }
-        //    SetPropertyValue(Instance, property, "");
-        //    return true;
-        //}
-
-        //public bool CheckingForPasswordLength(string value, string property)
-        //{
-        //    if (value.Length < 6)
-        //    {
-        //        SetPropertyValue(Instance, property, "The password is too short");
-        //        return false;
-        //    }
-        //    SetPropertyValue(Instance, property, "");
-        //    return true;
-        //}
-
-        //public bool ValidationOfPlainText(string value, string property)
-        //{
-        //    Regex regex = new Regex("^[a-zA-Z]+$");
-        //    if (!regex.IsMatch(value) || value.Length < 5)
-        //    {
-        //        SetPropertyValue(Instance, property, "Incorrect data");
-        //        return false;
-        //    }
-        //    SetPropertyValue(Instance, property, "");
-        //    return true;
-        //}
-
-        //public bool ValidationOfOrdinaryDigits(string value, string property)
-        //{
-        //    Regex regex = new Regex(@"^[1-9]\d{0,2}$");
-        //    if (!regex.IsMatch(value))
-        //    {
-        //        SetPropertyValue(Instance, property, "Incorrect data");
-        //        return false;
-        //    }
-        //    SetPropertyValue(Instance, property, "");
-        //    return true;
-        //}
-
-        //public bool CheckingTheCorrectnessOfLinks(string value, string property)
-        //{
-        //    string pattern = @"^(http|https|ftp|)\://|[a-zA-Z0-9\-\.]+\.[a-zA-Z](:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$";
-        //    Regex regex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        //    if (!regex.IsMatch(value))
-        //    {
-        //        SetPropertyValue(Instance, property, "Incorrect link");
-        //        return false;
-        //    }
-        //    SetPropertyValue(Instance, property, "");
-        //    return true;
-        //}
-
 
         private static void SetPropertyValue(object obj, string propertyName, object value)
         {

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coffee_Shop.Views.Pages"
       xmlns:vm="clr-namespace:Coffee_Shop.ViewModels"
+       
       xmlns:custom="clr-namespace:CustomControl;assembly=CustomControl"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -365,7 +366,7 @@
                     </DockPanel>
                 </Button>
 
-                <!--<custom:AdminButton ImgSource="/StaticFiles/Img/Other.png"
+                <custom:AdminButton ImgSource="/StaticFiles/Img/Other.png"
                                     x:Name="radioOther"
                                     Text="{DynamicResource Admin_ButOther}" RenderTransformOrigin="0.5,0.5">
                     <custom:AdminButton.RenderTransform>
@@ -376,7 +377,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </custom:AdminButton.RenderTransform>
-                </custom:AdminButton>-->
+                </custom:AdminButton>
             </StackPanel>
 
             <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenUsers}">
@@ -400,15 +401,18 @@
                         Content="{DynamicResource Admin_DeleteProduct}" 
                         Style="{StaticResource ButtonBlack}"
                         Width="200"/>
-                <DataGrid Background="Transparent" Foreground="White" 
-                          ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" 
-                          SelectedItem="{Binding SelectedItemForProductsDB}">
-                    <DataGrid.Resources>
-                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Foreground" Value="White" />
-                        </Style>
-                    </DataGrid.Resources>
-                </DataGrid>
+                <ScrollViewer Height="400">
+                    <DataGrid Background="Transparent" Foreground="White" 
+                              ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" 
+                              SelectedItem="{Binding SelectedItemForProductsDB}">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                    
+                </ScrollViewer>
             </StackPanel>
 
             <StackPanel Margin="20 0 0 0" Width="620" Style="{DynamicResource Visible/HidenNews}">
@@ -427,36 +431,39 @@
                 </DataGrid>
             </StackPanel>
 
-            <!--<StackPanel Margin="20 0 0 0" Style="{StaticResource Visible/HidenOther}">
-
-                --><!--<RadioButton Content=".en-US"/>
-                <RadioButton Content=".ru-RU"/>-->
 
 
-                <!--<RadioButton Content="Dark"/>
-                <RadioButton Content="Light"/>--><!--
+            <StackPanel Margin="20 0 0 0"  Width="620"  Style="{StaticResource Visible/HidenOther}">
 
                 <TextBlock Text="{DynamicResource Admin_TextLanguage}"
                            Style="{StaticResource TextBlockAbout}"
                            HorizontalAlignment="Left"/>
+                <ScrollViewer>
+                    <DataGrid Background="Transparent" Foreground="White" 
+                              ItemsSource="{Binding Orders, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedItemForOrderDB}">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                </ScrollViewer>
 
-                <ComboBox SelectedItem="{Binding Language, UpdateSourceTrigger=PropertyChanged}"
-                          Style="{DynamicResource MaterialDesignComboBox}"
-                          Background="Transparent">
-                    <ComboBoxItem Content=".en-US" Background="Transparent"/>
-                    <ComboBoxItem Content=".ru-RU" Background="Transparent"/>
-                </ComboBox>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
 
-                <TextBlock Text="{DynamicResource Admin_TextTheme}" 
-                           Style="{StaticResource TextBlockAbout}"
-                           HorizontalAlignment="Left"/>
-                <ComboBox SelectedItem="{Binding Theme, UpdateSourceTrigger=PropertyChanged}"
-                          Background="Transparent">
-                    <ComboBoxItem Content="Dark"/>
-                    <ComboBoxItem Content="Light"/>
-                </ComboBox>
+                <Button Command="{Binding ConfirmTheOrderCommand}"
+                        Content="{DynamicResource Admin_ConfirmOrder}"
+                        Style="{StaticResource ButtonBlack}"
+                        Width="200" Margin="0 0 30 0"/>
+                <Button Command="{Binding RejectTheOrderCommand}"
+                        Content="{DynamicResource Admin_RejectOrder}"
+                        Style="{StaticResource ButtonBlack}"
+                        Width="200"/>
+                </StackPanel>
 
-            </StackPanel>-->
+            
+        </StackPanel>
         </StackPanel>
     </StackPanel>
 </Page>

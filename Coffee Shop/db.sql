@@ -3,6 +3,13 @@ INSERT INTO public."ProductTypes" ("Id", "Name") VALUES
 	(2, 'Meal'),
 	(3, 'Coffee')
 
+INSERT INTO public."OrderStatuses" ("Id", "StatusName") VALUES
+	(1, 'VALIDATING'),
+	(2, 'VALIDATING_ERROR'),
+	(3, 'CANCELLED'),
+	(4, 'DELIVERY_TRANSPORTATION')
+
+
 INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Cholesterol", "Sodium", "TotalCarbohydrates", "Protein", "Caffeine") VALUES
 	(110, 120, 130, 140, 150, 160, 170, 180),
 	(190, 200, 210, 220, 230, 240, 250, 260),
@@ -22,7 +29,7 @@ INSERT INTO public."Descriptions" ("TotalFat", "SaturatedFat", "TransFat", "Chol
 	(50, 60, 70, 80, 90, 100, 110, 120)
 	
 
-INSERT INTO public."Products" ("Name", "Img", "Price", "Calories", "ProductTypeId", "DescriptionId") VALUES
+INSERT INTO public."Products" ("Name", "Image", "Price", "Calories", "ProductTypeId", "DescriptionId") VALUES
 	
 	('Caffe Misto', '\StaticFiles\Img\CaffeMisto.png', 168, 245, 3, 1), 
 	('Caramel Macchiato', '\StaticFiles\Img\CaramelMacchiato.png', 254, 145, 3, 2), 
